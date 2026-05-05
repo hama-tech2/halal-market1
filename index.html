@@ -391,26 +391,16 @@ const CAT_ICONS={all:'🛒',rice:'🌾',meat:'🥩',cereal:'🌽',cleaning:'🧹
 
 const LOCATIONS=[
   {id:1,
-    name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
-    addr:{
-      ckb:'جووتسایدی بنصڵاوە تەنیشت مزگەوتی اسراء و معراج',
-      ar:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج',
-      en:'Binaslawa Two-Way, Next to Al-Isra and Al-Mi\'raj Mosque'
-    },
-    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-    fb:'https://www.facebook.com/share/1AmkRDDf5S/',
-    phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
+   name:{ckb:'حلال مارکێت – لقی یەکەم',ar:'هلال ماركت – الفرع الأول',en:'Halal Market – Branch One'},
+   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
+   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+   phone:'07517985971',phone_display:'0751 798 5971',hr:'8:00 AM – 12:00 AM',
   },
   {id:2,
-    name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
-    addr:{
-      ckb:'بەحركە - بەرامبەر بەنزینخانەی بەحركە',
-      ar:'بحرگة - مقابل محطة وقود بحرگة',
-      en:'Baharka - Opposite Baharka Gas Station'
-    },
-    link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
-    fb:'https://www.facebook.com/share/18LEioK1mf/',
-    phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
+   name:{ckb:'حلال مارکێت – لقی دووەم',ar:'هلال ماركت – الفرع الثاني',en:'Halal Market – Branch Two'},
+   addr:{ckb:'هەولێر، کوردستان',ar:'أربيل، كردستان',en:'Erbil, Kurdistan'},
+   link:'https://maps.app.goo.gl/rudJi41RGtGzbjG9A',
+   phone:'07507364615',phone_display:'0750 736 4615',hr:'8:00 AM – 12:00 AM',
   },
 ];
 
@@ -1538,9 +1528,6 @@ function App(){
                   <div className="loc-row"><i className="fas fa-circle" style={{color:'var(--green)',fontSize:7}}/><span style={{color:'var(--green)',fontWeight:700}}>{t('open')}</span></div>
                 </div>
                 <div className="loc-btns">
-                  <a href={loc.fb} target="_blank" rel="noreferrer" className="btn btn-gold" style={{ padding: '8px', borderRadius: '10px' }}>
-  <i className="fab fa-facebook"></i>
-</a>
                   <a href={loc.link} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{borderRadius:10,padding:'9px 8px',fontSize:11,gap:4}}>
                     <i className="fas fa-map-marker-alt"/> {t('openMap')}
                   </a>
@@ -1608,27 +1595,74 @@ function App(){
 
       <div className="divline"/>
 
-      {/* Facebook Buttons Start */}
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', padding: '20px 0' }}>
-  <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" className="btn btn-gold">
-    <i className="fab fa-facebook" style={{ fontSize: '18px' }}></i> Halal Market 1
-  </a>
-  <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" className="btn btn-gold">
-    <i className="fab fa-facebook" style={{ fontSize: '18px' }}></i> Halal Market 2
-  </a>
-</div>
-      
-{/* Facebook Buttons End */}
+      {/* CONTACT */}
+      <section id="contact" style={{padding:'56px 0',background:'var(--surface)'}}>
+        <div className="c">
+          <div className="stitle">
+            <div className="stitle-bar"/>
+            <div>
+              <h2>{t('ctitle')}</h2>
+              <div className="stitle-sub">{lang==='ckb'?'هەر کاتێک ئامادەین':lang==='ar'?'نحن دائماً هنا':'We are always here for you'}</div>
+            </div>
+          </div>
+          <div className="contact-grid">
+            <a href="tel:+9647517985971" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)'}}><i className="fas fa-phone" style={{color:'var(--gold)'}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('branch1')}</div>
+                <div style={{fontSize:14,fontWeight:700,color:'var(--gold)',direction:'ltr'}}>0751 798 5971</div>
+              </div>
+            </a>
+            <a href="tel:+9647507364615" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(200,150,44,.1)',border:'1px solid rgba(200,150,44,.2)'}}><i className="fas fa-phone" style={{color:'var(--gold)'}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('branch2')}</div>
+                <div style={{fontSize:14,fontWeight:700,color:'var(--gold)',direction:'ltr'}}>0750 736 4615</div>
+              </div>
+            </a>
+            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(37,211,102,.1)',border:'1px solid rgba(37,211,102,.2)'}}><i className="fab fa-whatsapp" style={{color:'#25d366',fontSize:20}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>WhatsApp</div>
+                <div style={{fontSize:12,color:'var(--muted)'}}>{lang==='ckb'?'بنووسینی پەیامی':lang==='ar'?'راسلنا':'Message us anytime'}</div>
+              </div>
+            </a>
+            <a href={LOCATIONS[0].link} target="_blank" rel="noreferrer" className="contact-card" style={{textDecoration:'none'}}>
+              <div className="contact-ico" style={{background:'rgba(96,165,250,.1)',border:'1px solid rgba(96,165,250,.2)'}}><i className="fas fa-map-marker-alt" style={{color:'#60a5fa',fontSize:19}}/></div>
+              <div>
+                <div style={{fontSize:12,fontWeight:800,marginBottom:3}}>{t('openMap')}</div>
+                <div style={{fontSize:12,color:'var(--muted)'}}>Erbil · Kurdistan</div>
+              </div>
+            </a>
+          </div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:10,justifyContent:'center',marginTop:28}}>
+            <a href="tel:+9647517985971" className="btn btn-gold" style={{borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fas fa-phone"/> {t('callUs')}
+            </a>
+            <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn" style={{background:'#25d366',color:'#fff',borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fab fa-whatsapp"/> WhatsApp
+            </a>
+            <a href={LOCATIONS[0].link} target="_blank" rel="noreferrer" className="btn btn-ghost" style={{borderRadius:30,padding:'12px 26px',fontSize:14}}>
+              <i className="fas fa-map-marker-alt"/> {t('findStore')}
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer style={{background:'var(--elevated)',borderTop:'1px solid var(--border)',padding:'36px 16px 78px',textAlign:'center'}}>
-  <img src={LOGO} alt="حلال مارکێت" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 14px',border:'1px solid rgba(200,150,44,.2)',display:'block'}} onError={e=>{e.target.style.display='none'}}/>
-  <div style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:24,marginBottom:4,background:'linear-gradient(120deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>حلال مارکێت</div>
-  <div style={{fontSize:8,fontWeight:700,letterSpacing:3.5,color:'var(--muted)',marginBottom:12,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
-  
-  <div style={{height:1,background:'linear-gradient(90deg,transparent,var(--border),transparent)',margin:'16px auto',maxWidth:320}}/>
-  <p style={{fontSize:10,color:'var(--border2)'}}>{t('copy')}</p>
-</footer>
-      
+        <img src={LOGO} alt="حلال مارکێت" style={{width:52,height:52,objectFit:'contain',borderRadius:12,margin:'0 auto 14px',border:'1px solid rgba(200,150,44,.2)',display:'block'}} onError={e=>{e.target.style.display='none'}}/>
+        <div style={{fontFamily:'Syne,sans-serif',fontWeight:900,fontSize:24,marginBottom:4,background:'linear-gradient(120deg,var(--gold3),var(--gold))',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent'}}>حلال مارکێت</div>
+        <div style={{fontSize:8,fontWeight:700,letterSpacing:3.5,color:'var(--muted)',marginBottom:12,textTransform:'uppercase'}}>ERBIL · KURDISTAN</div>
+        <div style={{display:'flex',gap:10,justifyContent:'center',marginBottom:20,flexWrap:'wrap'}}>
+          <a href="tel:+9647517985971" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',fontSize:12}}><i className="fas fa-phone"/> 0751 798 5971</a>
+          <a href="tel:+9647507364615" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',fontSize:12}}><i className="fas fa-phone"/> 0750 736 4615</a>
+          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="btn btn-g" style={{borderRadius:10,padding:'8px 16px',color:'#25d366',borderColor:'rgba(37,211,102,.2)'}}><i className="fab fa-whatsapp"/> WhatsApp</a>
+        </div>
+        <div style={{height:1,background:'linear-gradient(90deg,transparent,var(--border),transparent)',margin:'16px auto',maxWidth:320}}/>
+        <p style={{fontSize:10,color:'var(--border2)'}}>{t('copy')}</p>
+      </footer>
+
       {/* MOBILE NAV */}
       <nav className="mnav md">
         {navItems.map(x=>(
@@ -1642,7 +1676,9 @@ function App(){
       </nav>
 
       {/* FABs */}
-      
+      <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" className="fab-wa"><i className="fab fa-whatsapp"/></a>
+      {isAdmin&&<button className="fab-add" onClick={()=>{setEditing(null);setPostModal(true);}}><i className="fas fa-plus"/></button>}
+
       {globalLb&&<GlobalLightbox imgs={globalLb.imgs} startIdx={globalLb.idx} onClose={handleCloseLb}/>}
 
       {drawer&&<Drawer onClose={()=>setDrawer(false)} onAuth={()=>setAuthOpen(true)} onAdd={()=>{setEditing(null);setPostModal(true);}} onSp={()=>setSpOpen(true)} onProfile={()=>setProfileOpen(true)}/>}
