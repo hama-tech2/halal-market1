@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
@@ -7,21 +8,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+/* ── VARIABLES ── */
 :root{
-  --bg:#060807;
-  --surface:#0c1009;
-  --elevated:#121610;
-  --border:#1c2a1e;
-  --border2:#243026;
-  --text:#ede9e0;
-  --muted:#6b8a72;
-  --soft:#a4bfaa;
-  --gold:#c8962c;
-  --gold2:#a67820;
-  --gold3:#e8c06a;
-  --gold4:rgba(200,150,44,.08);
-  --green:#22c55e;
-  --danger:#ef4444;
+  --bg:#060807;--surface:#0c1009;--elevated:#121610;
+  --border:#1c2a1e;--border2:#243026;
+  --text:#ede9e0;--muted:#6b8a72;--soft:#a4bfaa;
+  --gold:#c8962c;--gold2:#a67820;--gold3:#e8c06a;--gold4:rgba(200,150,44,.08);
+  --green:#22c55e;--hdr:52px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -29,305 +22,329 @@ body{font-family:'Outfit','Noto Sans Arabic',sans-serif;background:var(--bg);col
 button,input,select{font-family:inherit}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:2px}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes glow{0%,100%{opacity:.5}50%{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glow{0%,100%{opacity:.45}50%{opacity:.9}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes goldPulse{
-  0%,100%{text-shadow:0 0 32px rgba(232,192,106,.18),0 0 8px rgba(200,150,44,.12)}
-  50%{text-shadow:0 0 56px rgba(232,192,106,.38),0 0 20px rgba(200,150,44,.28)}
-}
+@keyframes goldPulse{0%,100%{text-shadow:0 0 30px rgba(232,192,106,.15)}50%{text-shadow:0 0 52px rgba(232,192,106,.35),0 0 18px rgba(200,150,44,.25)}}
+@keyframes slideInR{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes slideInL{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
 
+/* ── LAYOUT ── */
 .c{max-width:1100px;margin:0 auto;padding:0 16px}
+.divline{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
 /* ── TICKER ── */
-.ticker-wrap{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));height:34px;overflow:hidden;display:flex;align-items:center}
-.ticker-inner{display:flex;white-space:nowrap;animation:marquee 22s linear infinite}
-.ticker-inner span{padding:0 28px;font-size:12px;font-weight:700;color:#1a0e00;letter-spacing:.4px}
+.ticker-wrap{background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));height:30px;overflow:hidden;display:flex;align-items:center}
+.ticker-inner{display:flex;white-space:nowrap;animation:marquee 24s linear infinite}
+.ticker-inner span{padding:0 24px;font-size:11px;font-weight:700;color:#1a0e00;letter-spacing:.4px}
 .ticker-inner span::before{content:'★ ';opacity:.6}
 
 /* ── HEADER ── */
-.hdr{position:sticky;top:0;z-index:40;background:rgba(6,8,7,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.hdr-inner{display:flex;align-items:center;justify-content:space-between;height:58px;gap:8px}
-.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;flex-shrink:0}
-.logo-img{width:38px;height:38px;object-fit:contain;border-radius:8px}
-.logo-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;background:linear-gradient(120deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo-sub{font-size:7.5px;font-weight:600;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:-2px}
-
-/* Desktop nav */
-.desk-nav{display:flex;gap:4px}
-.nav-link{padding:6px 11px;font-size:12px;font-weight:700;background:none;border:1px solid transparent;border-radius:8px;cursor:pointer;color:var(--muted);transition:all .15s;font-family:inherit;white-space:nowrap}
-.nav-link:hover,.nav-link.act{color:var(--gold);border-color:rgba(200,150,44,.3);background:rgba(200,150,44,.06)}
-
-/* ── LANGUAGE SWITCHER ── */
-.lang-bar{display:flex;gap:5px;flex-shrink:0}
-.lang-btn{
-  padding:7px 12px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--muted);
-  font-size:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition:all .14s;
-  font-family:inherit;
-  line-height:1;
-  white-space:nowrap;
-  min-width:52px;
-  text-align:center;
-}
-.lang-btn.act{border-color:var(--gold);color:var(--gold);background:var(--gold4)}
-
-/* Mobile-only language strip pinned just below the sticky header */
-.mob-lang-strip{
-  display:none;
-  position:sticky;
-  top:58px;
-  z-index:39;
-  background:rgba(6,8,7,.97);
+.hdr{
+  position:sticky;top:0;z-index:60;
+  background:rgba(6,8,7,.98);backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
-  padding:10px 16px;
-  gap:10px;
-  justify-content:center;
-  align-items:center;
+  height:var(--hdr);
 }
-.mob-lang-strip .lang-btn{
-  flex:1;
-  max-width:110px;
-  padding:10px 8px;
-  font-size:13px;
-  border-radius:10px;
-  min-height:40px;
+.hdr-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:var(--hdr);gap:8px;padding:0 12px;
 }
+/* Logo */
+.logo-wrap{display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.logo-img{width:32px;height:32px;object-fit:contain;border-radius:7px}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:13px;
+  background:linear-gradient(120deg,var(--gold3),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.logo-sub{font-size:7px;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:1px}
+
+/* Hamburger */
+.hamburger{
+  width:36px;height:36px;border-radius:9px;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;cursor:pointer;flex-shrink:0;transition:border-color .15s;
+}
+.hamburger:hover{border-color:var(--gold)}
+.hamburger span{
+  display:block;width:16px;height:1.5px;
+  background:var(--soft);border-radius:2px;transition:all .2s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* Compact language buttons in header */
+.lang-group{display:flex;gap:4px;flex-shrink:0}
+.lb{
+  padding:4px 8px;border-radius:6px;
+  border:1px solid var(--border);background:transparent;
+  color:var(--muted);font-size:10px;font-weight:700;
+  cursor:pointer;transition:all .14s;font-family:inherit;
+  white-space:nowrap;line-height:1.2;
+}
+.lb:hover{border-color:var(--gold);color:var(--text)}
+.lb.act{border-color:var(--gold);color:var(--gold);background:var(--gold4)}
+
+/* Desktop nav (hidden on mobile) */
+.desk-nav{display:flex;gap:2px}
+.dnl{
+  padding:5px 10px;font-size:11px;font-weight:700;
+  background:none;border:1px solid transparent;border-radius:7px;
+  cursor:pointer;color:var(--muted);transition:all .15s;
+  font-family:inherit;white-space:nowrap;
+}
+.dnl:hover,.dnl.act{color:var(--gold);border-color:rgba(200,150,44,.28);background:var(--gold4)}
+
+/* ── DRAWER MENU ── */
+.drawer-ov{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:70;
+  opacity:0;pointer-events:none;transition:opacity .22s;
+}
+.drawer-ov.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:absolute;top:0;bottom:0;
+  width:min(260px,80vw);
+  background:var(--surface);border-inline-end:1px solid var(--border);
+  display:flex;flex-direction:column;overflow-y:auto;
+  transform:translateX(100%);transition:transform .22s ease;
+}
+/* RTL: drawer slides from right */
+[dir="rtl"] .drawer{right:0;transform:translateX(100%)}
+[dir="rtl"] .drawer-ov.open .drawer{transform:translateX(0)}
+[dir="ltr"] .drawer{left:0;transform:translateX(-100%)}
+[dir="ltr"] .drawer-ov.open .drawer{transform:translateX(0)}
+
+.drawer-head{
+  padding:16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.drawer-item{
+  display:flex;align-items:center;gap:11px;
+  padding:13px 16px;font-size:13px;font-weight:600;
+  color:var(--text);background:none;border:none;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  width:100%;text-align:inherit;cursor:pointer;
+  transition:background .12s;font-family:inherit;
+}
+.drawer-item:hover{background:var(--elevated)}
+.drawer-item .dico{
+  width:30px;height:30px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;
+}
+
+/* ── SECTION TITLES ── */
+.stitle{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.stitle-bar{width:4px;height:28px;border-radius:2px;background:linear-gradient(180deg,var(--gold3),var(--gold2));flex-shrink:0}
+.stitle h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(18px,3vw,26px)}
+.stitle-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 18px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .16s;white-space:nowrap;font-family:inherit;text-decoration:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;box-shadow:0 4px 16px rgba(200,150,44,.25)}
+.btn-gold:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);color:var(--soft)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--text)}
 
 /* ── HERO ── */
 #hero{
-  position:relative;
-  min-height:100vh;
-  min-height:100dvh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  /* removed overflow:hidden so the hero title gradient never gets clipped */
-  isolation:isolate;
+  position:relative;min-height:100vh;min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;isolation:isolate;
 }
-.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(4,6,5,.92) 0%,rgba(6,8,7,.62) 50%,rgba(4,6,5,.93) 100%)}
+.hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(4,6,5,.93) 0%,rgba(6,8,7,.60) 50%,rgba(4,6,5,.94) 100%)}
 .hero-body{
-  position:relative;
-  z-index:3;
-  text-align:center;
-  padding:100px 40px 80px;
-  width:100%;
-  max-width:900px;
-  margin:0 auto;
-  /* allow content to overflow without clipping the gradient text */
-  overflow:visible;
+  position:relative;z-index:3;text-align:center;
+  padding:90px 24px 76px;width:100%;max-width:820px;margin:0 auto;
 }
-.hero-eyebrow{
-  font-size:10px;font-weight:800;letter-spacing:4px;
-  text-transform:uppercase;color:rgba(232,192,106,.65);
-  margin-bottom:16px;animation:fadeUp .6s ease .08s both;
-}
-
-/* ── HERO TITLE ──
-   Fix: font-size uses clamp with a safe floor so the full text always fits.
-   white-space:nowrap keeps "HALAL MARKET" on one line.
-   overflow:visible prevents any ancestor from masking gradient edges.
-   Extra padding ensures -webkit-background-clip doesn't crop the last glyph. */
+.hero-eyebrow{font-size:9px;font-weight:750;letter-spacing:4px;text-transform:uppercase;color:rgba(232,192,106,.6);margin-bottom:14px;animation:fadeUp .6s ease .1s both}
+/* Hero title — single line, sized to never clip */
 .hero-title{
-  font-family:'Syne',sans-serif;
-  font-weight:900;
-  /* floor: 24px guarantees it fits on 320px phones; ceiling: 68px */
-  font-size:clamp(24px,6.5vw,68px);
-  letter-spacing:2px;
-  line-height:1.1;
-  background:linear-gradient(145deg,#ffffff 0%,var(--gold3) 38%,var(--gold) 62%,#e0d5c0 100%);
+  font-family:'Syne',sans-serif;font-weight:900;
+  font-size:clamp(26px,6.8vw,68px);
+  letter-spacing:-0.5px;line-height:.90;
+  background:linear-gradient(145deg,#fff 0%,var(--gold3) 38%,var(--gold) 65%,#ddd 100%);
   background-size:220% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:fadeUp .7s ease .16s both, goldPulse 5s ease-in-out 1.2s infinite;
-  margin-bottom:20px;
-  display:block;
-  white-space:nowrap;
-  overflow:visible;
-  /* generous padding so the gradient never clips at either end */
-  padding:10px 20px 12px;
-  /* ensure the element itself is wide enough to contain the text */
-  width:100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:fadeUp .7s ease .18s both, goldPulse 5s ease-in-out 1.5s infinite;
+  margin-bottom:16px;display:block;
+  white-space:nowrap;overflow:visible;padding:6px 10px 8px;
 }
-.hero-sub{
-  font-family:'Noto Sans Arabic',sans-serif;font-weight:600;
-  font-size:clamp(12px,2.2vw,16px);color:rgba(232,192,106,.72);
-  animation:fadeUp .7s ease .32s both;margin-bottom:32px;letter-spacing:.5px;
-}
-.hero-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation:fadeUp .7s ease .46s both}
-.hero-glow-a{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,44,.07),transparent 68%);top:4%;inset-inline-end:-10%;filter:blur(72px);animation:glow 7s ease-in-out infinite;z-index:2;pointer-events:none}
-.hero-glow-b{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.05),transparent 70%);bottom:6%;inset-inline-start:-8%;filter:blur(80px);animation:glow 9s ease-in-out 2.5s infinite;z-index:2;pointer-events:none}
-.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,.2);animation:fadeIn 1s ease 2.2s both;pointer-events:none}
+.hero-sub{font-family:'Noto Sans Arabic',sans-serif;font-weight:600;font-size:clamp(12px,2vw,15px);color:rgba(232,192,106,.7);animation:fadeUp .7s ease .3s both;margin-bottom:28px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;animation:fadeUp .7s ease .44s both}
+.hero-glow-a{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,44,.07),transparent 68%);top:4%;inset-inline-end:-10%;filter:blur(70px);animation:glow 7s ease-in-out infinite;z-index:2;pointer-events:none}
+.hero-glow-b{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(34,197,94,.05),transparent 70%);bottom:6%;inset-inline-start:-8%;filter:blur(78px);animation:glow 9s ease-in-out 2.5s infinite;z-index:2;pointer-events:none}
+.scroll-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,.18);animation:fadeIn 1s ease 2s both;pointer-events:none}
 .scroll-hint span{font-size:7px;letter-spacing:3px;font-weight:700;text-transform:uppercase}
-.scroll-hint i{font-size:10px;animation:float 2.5s ease-in-out infinite}
+.scroll-hint i{font-size:9px;animation:float 2.5s ease-in-out infinite}
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 20px;border-radius:10px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:all .16s;white-space:nowrap;font-family:inherit;text-decoration:none}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;box-shadow:0 4px 18px rgba(200,150,44,.28)}
-.btn-gold:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,150,44,.38)}
-.btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--soft)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--text);background:rgba(200,150,44,.08)}
-
-/* ── DIVIDER ── */
-.divline{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
-
-/* ── SECTION TITLES ── */
-.stitle{display:flex;align-items:center;gap:14px;margin-bottom:28px}
-.stitle-bar{width:4px;height:32px;border-radius:2px;background:linear-gradient(180deg,var(--gold3),var(--gold2));flex-shrink:0}
-.stitle h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(20px,3.5vw,28px)}
-.stitle-sub{font-size:12px;color:var(--muted);margin-top:2px}
-
-/* ── PROMO IMAGE ── */
-.promo-img-wrap{width:100%;border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.45)}
-.promo-img-wrap img{width:100%;display:block;object-fit:cover;min-height:80px;background:var(--surface)}
-
-/* ── FACEBOOK + LOCATION GRID ──
-   direction:ltr keeps Market1 on the LEFT and Market2 on the RIGHT
-   regardless of the page RTL direction.
-   Each column stacks its FB button above the matching location button. */
-.fb-loc-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  direction:ltr;
-}
-.fb-loc-col{display:flex;flex-direction:column;gap:10px}
-
-/* Facebook button */
+/* ── PROMO / FB+LOCATION ── */
+.promo-img-wrap{width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:18px;box-shadow:0 8px 28px rgba(0,0,0,.45)}
+.promo-img-wrap img{width:100%;display:block;object-fit:cover;min-height:60px;background:var(--surface)}
+/* Grid: direction:ltr forces Market1=left, Market2=right regardless of page RTL */
+.fb-loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;direction:ltr}
+.fb-loc-col{display:flex;flex-direction:column;gap:8px}
 .fb-btn{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px 10px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:12px 10px;border-radius:11px;
   background:linear-gradient(135deg,#1877f2,#0d65d9);
   color:#fff;font-size:13px;font-weight:700;
   text-decoration:none;transition:all .16s;
-  box-shadow:0 4px 14px rgba(24,119,242,.28);
-  width:100%;
-  min-height:48px;
+  box-shadow:0 4px 14px rgba(24,119,242,.25);width:100%;
 }
-.fb-btn:hover{filter:brightness(1.09);transform:translateY(-2px)}
-.fb-btn i{font-size:16px;flex-shrink:0}
-
-/* Location button */
-.loc-btn-map{
+.fb-btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.fb-btn i{font-size:15px;flex-shrink:0}
+.loc-map-btn{
   display:flex;align-items:center;justify-content:center;gap:7px;
-  padding:12px 10px;border-radius:12px;
-  background:rgba(200,150,44,.1);
-  border:1px solid rgba(200,150,44,.22);
+  padding:11px 10px;border-radius:11px;
+  background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.2);
   color:var(--gold);font-size:13px;font-weight:700;
-  text-decoration:none;transition:all .16s;
-  width:100%;
-  min-height:48px;
+  text-decoration:none;transition:all .16s;width:100%;
 }
-.loc-btn-map:hover{background:rgba(200,150,44,.18);transform:translateY(-2px)}
-.loc-btn-map i{font-size:14px;flex-shrink:0}
+.loc-map-btn:hover{background:rgba(200,150,44,.18);transform:translateY(-2px)}
+.loc-map-btn i{font-size:14px;flex-shrink:0}
 
-/* ── LOCATIONS SECTION ── */
-.loc-grid{display:grid;grid-template-columns:1fr;gap:16px}
-.loc-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;position:relative;overflow:hidden;transition:all .2s}
-.loc-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(200,150,44,.08),transparent 70%);pointer-events:none}
-.loc-card:hover{border-color:rgba(200,150,44,.28);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.46)}
-.loc-num{position:absolute;top:18px;inset-inline-end:20px;font-family:'Syne',sans-serif;font-weight:900;font-size:44px;color:rgba(200,150,44,.07);line-height:1;pointer-events:none}
-.loc-icon{width:46px;height:46px;border-radius:12px;background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px}
-.loc-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;margin-bottom:6px;line-height:1.3}
-.loc-meta{display:flex;flex-direction:column;gap:7px;margin:12px 0 18px}
-.loc-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--soft);direction:ltr;text-align:start}
-.loc-row i{width:16px;color:var(--gold);font-size:11px;flex-shrink:0}
-.loc-action-btns{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
-.lac{display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 6px;border-radius:10px;font-size:11px;font-weight:700;text-decoration:none;transition:all .15s;border:none;cursor:pointer;font-family:inherit}
-.lac-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;box-shadow:0 3px 12px rgba(200,150,44,.22)}
-.lac-gold:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.lac-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--soft)}
-.lac-ghost:hover{border-color:var(--gold);color:var(--text)}
-.lac-wa{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.18);color:#25d366}
-.lac-wa:hover{background:rgba(37,211,102,.14)}
+/* ── ABOUT ── */
+.about-wrap{
+  border-radius:16px;overflow:hidden;border:1px solid var(--border);
+  box-shadow:0 10px 36px rgba(0,0,0,.42);position:relative;
+}
+.about-wrap img{width:100%;display:block;object-fit:cover;min-height:160px;background:var(--surface)}
+.about-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(4,6,5,.88) 100%);
+  pointer-events:none;
+}
+.about-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 22px;
+}
+.about-caption h3{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(16px,3vw,22px);margin-bottom:6px}
+.about-caption p{font-size:12px;color:var(--soft);line-height:1.6;font-family:'Noto Sans Arabic',sans-serif;max-width:520px}
+
+/* ── LOCATIONS ── */
+.loc-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:560px){.loc-grid{grid-template-columns:1fr 1fr}}
+.loc-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:22px;position:relative;overflow:hidden;transition:all .2s;
+}
+.loc-card::before{content:'';position:absolute;top:0;right:0;width:70px;height:70px;background:radial-gradient(circle at top right,rgba(200,150,44,.08),transparent 70%);pointer-events:none}
+.loc-card:hover{border-color:rgba(200,150,44,.26);transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.44)}
+.loc-num{position:absolute;top:16px;inset-inline-end:18px;font-family:'Syne',sans-serif;font-weight:900;font-size:40px;color:rgba(200,150,44,.07);line-height:1;pointer-events:none}
+.loc-icon{width:42px;height:42px;border-radius:11px;background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px}
+.loc-name{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;margin-bottom:5px;line-height:1.3}
+.loc-meta{display:flex;flex-direction:column;gap:6px;margin:10px 0 16px}
+.loc-row{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--soft);direction:ltr;text-align:start}
+.loc-row i{width:14px;color:var(--gold);font-size:10px;flex-shrink:0}
+.loc-btns{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px}
+.lb2{display:flex;align-items:center;justify-content:center;gap:4px;padding:8px 5px;border-radius:9px;font-size:11px;font-weight:700;text-decoration:none;transition:all .15s;border:none;cursor:pointer;font-family:inherit}
+.lb2-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00}
+.lb2-gold:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.lb2-ghost{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);color:var(--soft)}
+.lb2-ghost:hover{border-color:var(--gold);color:var(--text)}
+.lb2-wa{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.18);color:#25d366}
+.lb2-wa:hover{background:rgba(37,211,102,.14)}
 
 /* ── REVIEWS ── */
-.rev-head{display:flex;align-items:center;gap:16px;margin-bottom:22px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;flex-wrap:wrap}
-.rev-big-n{font-family:'Syne',sans-serif;font-weight:900;font-size:44px;color:#fff;line-height:1}
+.rev-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:13px;flex-wrap:wrap}
+.rev-big-n{font-family:'Syne',sans-serif;font-weight:900;font-size:42px;color:#fff;line-height:1}
 .rev-stars{display:flex;gap:3px}
-.rev-star{color:var(--gold);font-size:13px}
-.rev-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;-ms-overflow-style:none;scrollbar-width:none}
+.rev-star{color:var(--gold);font-size:12px}
+.rev-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;-ms-overflow-style:none;scrollbar-width:none}
 .rev-scroll::-webkit-scrollbar{display:none}
-.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;min-width:230px;max-width:250px;flex-shrink:0;transition:border-color .2s}
+.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px;min-width:210px;max-width:240px;flex-shrink:0;transition:border-color .2s}
 .rev-card:hover{border-color:rgba(200,150,44,.2)}
-.rev-txt{font-size:12px;color:var(--soft);line-height:1.6;margin:8px 0 10px;font-family:'Noto Sans Arabic',sans-serif}
-.rev-name{font-size:11px;font-weight:700;color:var(--muted)}
+.rev-txt{font-size:11.5px;color:var(--soft);line-height:1.6;margin:7px 0 9px;font-family:'Noto Sans Arabic',sans-serif}
+.rev-name{font-size:10px;font-weight:700;color:var(--muted)}
 
-/* ── DISCOUNT CARDS ── */
-.deal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.deal-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 22px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
-.deal-card:hover{border-color:rgba(200,150,44,.25);transform:translateY(-3px)}
-.deal-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(200,150,44,.1),transparent 70%);pointer-events:none}
-.deal-icon{width:46px;height:46px;border-radius:12px;background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;font-size:22px}
-.deal-title{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;line-height:1.3}
-.deal-txt{font-size:12px;color:var(--soft);line-height:1.6;font-family:'Noto Sans Arabic',sans-serif}
-.deal-link{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a0e00;border-radius:10px;font-size:12px;font-weight:800;text-decoration:none;width:fit-content;transition:filter .15s}
-.deal-link:hover{filter:brightness(1.1)}
-.deal-link-wa{background:rgba(37,211,102,.12);color:#25d366;border:1px solid rgba(37,211,102,.22)}
-.deal-link-wa:hover{background:rgba(37,211,102,.2)}
+/* ── WORKER SECTION ── */
+#worker{padding:56px 0;background:var(--surface)}
+.worker-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;direction:ltr}
+.worker-card{
+  background:var(--elevated);border:1px solid var(--border);
+  border-radius:16px;padding:22px;display:flex;flex-direction:column;
+  gap:14px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;
+}
+.worker-card:hover{border-color:rgba(200,150,44,.24);transform:translateY(-3px)}
+.worker-card::before{content:'';position:absolute;top:0;right:0;width:70px;height:70px;background:radial-gradient(circle at top right,rgba(200,150,44,.07),transparent 70%);pointer-events:none}
+.worker-branch-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;
+  background:var(--gold4);color:var(--gold);border:1px solid rgba(200,150,44,.18);
+  width:fit-content;
+}
+.worker-icon{font-size:26px;margin-bottom:2px}
+.worker-title{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;line-height:1.3}
+.worker-txt{font-size:11px;color:var(--soft);line-height:1.6;font-family:'Noto Sans Arabic',sans-serif}
+.worker-actions{display:flex;flex-direction:column;gap:7px;margin-top:auto}
+.w-btn{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 12px;border-radius:10px;font-size:12px;font-weight:700;
+  text-decoration:none;transition:all .15s;width:100%;border:none;cursor:pointer;font-family:inherit;
+}
+.w-btn-wa{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.2);color:#25d366}
+.w-btn-wa:hover{background:rgba(37,211,102,.2);transform:translateY(-1px)}
+.w-btn-tel{background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.2);color:var(--gold)}
+.w-btn-tel:hover{background:rgba(200,150,44,.18);transform:translateY(-1px)}
+@media(max-width:420px){
+  .worker-grid{grid-template-columns:1fr}
+}
 
 /* ── MOBILE BOTTOM NAV ── */
-.mnav{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(6,8,7,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;height:58px;padding-bottom:env(safe-area-inset-bottom)}
-.mnb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);background:none;border:none;cursor:pointer;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;transition:color .14s;padding:0;text-decoration:none}
+.mnav{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  background:rgba(6,8,7,.97);border-top:1px solid var(--border);
+  display:flex;justify-content:space-around;
+  height:54px;padding-bottom:env(safe-area-inset-bottom);
+}
+.mnb{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:2px;color:var(--muted);background:none;border:none;
+  cursor:pointer;font-size:7px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.3px;transition:color .14s;padding:0;text-decoration:none;
+}
 .mnb.act,.mnb.act i{color:var(--gold)}
-.mnb i{font-size:19px;transition:color .14s}
+.mnb i{font-size:17px;transition:color .14s}
 
 /* ── FAB ── */
-.fab-wa{position:fixed;bottom:70px;right:16px;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:23px;z-index:45;box-shadow:0 4px 22px rgba(37,211,102,.38);transition:transform .18s;text-decoration:none}
+.fab-wa{
+  position:fixed;bottom:66px;right:14px;width:48px;height:48px;
+  border-radius:50%;background:#25d366;display:flex;align-items:center;
+  justify-content:center;color:#fff;font-size:21px;z-index:45;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .18s;
+  text-decoration:none;
+}
 .fab-wa:hover{transform:scale(1.1)}
 
 /* ── RESPONSIVE ── */
-@media(min-width:560px){.loc-grid{grid-template-columns:1fr 1fr}}
-
 @media(max-width:640px){
-  /* Hide desktop nav & lang bar in header on mobile */
-  .desk-nav{display:none}
-  .hdr-lang{display:none!important}
-  /* Show mobile language strip */
-  .mob-lang-strip{display:flex!important}
-  /* Hero body padding on mobile */
-  .hero-body{padding:80px 24px 70px!important}
-  /* Hero title: allow wrapping if absolutely necessary on tiny screens */
-  .hero-title{
-    font-size:clamp(22px,8vw,48px)!important;
-    white-space:normal!important;
-    word-break:keep-all!important;
-    padding:8px 16px 10px!important;
-    letter-spacing:1px!important;
-  }
-  /* FAB above bottom nav */
-  .fab-wa{bottom:68px;right:12px}
-  /* loc action grid: 2 cols on narrow screens */
-  .loc-action-btns{grid-template-columns:1fr 1fr}
-  /* Facebook/location grid stays 2-column but with tighter gap */
-  .fb-loc-grid{gap:8px}
-  .fb-btn{font-size:12px;padding:12px 8px}
-  .loc-btn-map{font-size:12px;padding:10px 8px}
+  .desk-nav{display:none!important}
+  .hdr-desktop-lang{display:none!important}
+  .hero-body{padding:76px 18px 64px!important}
+  .fab-wa{bottom:64px;right:12px}
+  .loc-btns{grid-template-columns:1fr 1fr}
 }
-
-@media(max-width:360px){
-  .hero-title{font-size:20px!important;letter-spacing:0!important}
-  .fb-btn span,.loc-btn-map span{font-size:11px}
-}
-
 @media(min-width:641px){
-  .mnav{display:none}
-  .mob-lang-strip{display:none!important}
+  .mnav{display:none!important}
+  .fab-wa{bottom:20px}
+  .hamburger{display:none!important}
+}
+@media(min-width:641px) and (max-width:900px){
+  .desk-nav{display:none!important}
 }
 </style>
 </head>
@@ -338,72 +355,119 @@ a{color:inherit;text-decoration:none}
   <div class="ticker-inner" id="ticker"></div>
 </div>
 
-<!-- HEADER -->
+<!-- ═══ HEADER ═══ -->
 <header class="hdr">
-  <div class="c hdr-inner">
+  <div class="hdr-inner">
 
-    <!-- Logo -->
-    <div class="logo-wrap" onclick="go('hero')">
+    <!-- Left: Hamburger (mobile) -->
+    <button class="hamburger" id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Center: Logo -->
+    <div class="logo-wrap" onclick="go('hero')" style="flex:1;justify-content:center">
       <img src="https://github.com/hama-tech2/halal-market/blob/main/halal-market-logo2.png?raw=true"
            alt="Halal Market" class="logo-img" onerror="this.style.display='none'">
-      <div>
+      <div class="logo-text">
         <div class="logo-name">حلال مارکێت</div>
         <div class="logo-sub">Erbil · Kurdistan</div>
       </div>
     </div>
 
-    <!-- Desktop nav links -->
-    <nav class="desk-nav">
-      <button class="nav-link act" id="nav-hero"  onclick="go('hero')">Home</button>
-      <button class="nav-link"     id="nav-deals" onclick="go('deals')"><span id="nav-deals-lbl">داشکاندن</span></button>
-      <button class="nav-link"     id="nav-locs"  onclick="go('locs')">Locations</button>
+    <!-- Desktop nav -->
+    <nav class="desk-nav" style="flex-shrink:0">
+      <button class="dnl act" id="dn-hero"   onclick="go('hero')">Home</button>
+      <button class="dnl"     id="dn-promo"  onclick="go('promo')"><span id="dn-disc">داشکاندن</span></button>
+      <button class="dnl"     id="dn-locs"   onclick="go('locs')">Locations</button>
+      <button class="dnl"     id="dn-worker" onclick="go('worker')"><span id="dn-wlbl">کارمەند</span></button>
+      <button class="dnl"     id="dn-about"  onclick="go('about')"><span id="dn-ablbl">دەربارە</span></button>
     </nav>
 
-    <!-- Language switcher — desktop only -->
-    <div class="lang-bar hdr-lang">
-      <button class="lang-btn act" id="lb-ckb" onclick="setLang('ckb')">کوردی</button>
-      <button class="lang-btn"     id="lb-ar"  onclick="setLang('ar')">عربي</button>
-      <button class="lang-btn"     id="lb-en"  onclick="setLang('en')">EN</button>
+    <!-- Right: Compact language switcher (always visible) -->
+    <div class="lang-group" id="hdr-lang">
+      <button class="lb act" id="lb-ckb" onclick="setLang('ckb')">کوردی</button>
+      <button class="lb"     id="lb-ar"  onclick="setLang('ar')">عربي</button>
+      <button class="lb"     id="lb-en"  onclick="setLang('en')">EN</button>
     </div>
 
   </div>
 </header>
 
-<!-- MOBILE LANGUAGE STRIP — sticky below header, mobile only -->
-<div class="mob-lang-strip" id="mob-lang-strip">
-  <button class="lang-btn act" id="mlb-ckb" onclick="setLang('ckb')">کوردی</button>
-  <button class="lang-btn"     id="mlb-ar"  onclick="setLang('ar')">عربي</button>
-  <button class="lang-btn"     id="mlb-en"  onclick="setLang('en')">EN</button>
+<!-- ═══ DRAWER ═══ -->
+<div class="drawer-ov" id="drawer-ov" onclick="closeDrawer()">
+  <div class="drawer" id="drawer" onclick="e=>e.stopPropagation()">
+
+    <div class="drawer-head">
+      <img src="https://github.com/hama-tech2/halal-market/blob/main/halal-market-logo2.png?raw=true"
+           style="width:34px;height:34px;object-fit:contain;border-radius:8px;border:1px solid rgba(200,150,44,.2)"
+           onerror="this.style.display='none'">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:13px;background:linear-gradient(90deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent">حلال مارکێت</div>
+        <div style="font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase">Erbil · Kurdistan</div>
+      </div>
+      <button onclick="closeDrawer()" style="margin-inline-start:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1">×</button>
+    </div>
+
+    <!-- Nav items -->
+    <button class="drawer-item" onclick="go('hero');closeDrawer()">
+      <div class="dico" style="background:rgba(200,150,44,.1)"><i class="fas fa-home" style="color:var(--gold);font-size:12px"></i></div>
+      <span id="dr-home">سەرەکی</span>
+    </button>
+    <button class="drawer-item" onclick="go('promo');closeDrawer()">
+      <div class="dico" style="background:rgba(239,68,68,.1)"><i class="fas fa-tags" style="color:#f87171;font-size:12px"></i></div>
+      <span id="dr-disc">داشکاندن</span>
+    </button>
+    <button class="drawer-item" onclick="go('locs');closeDrawer()">
+      <div class="dico" style="background:rgba(96,165,250,.1)"><i class="fas fa-map-marker-alt" style="color:#60a5fa;font-size:12px"></i></div>
+      <span id="dr-locs">شوێنەکان</span>
+    </button>
+    <button class="drawer-item" onclick="go('worker');closeDrawer()">
+      <div class="dico" style="background:rgba(34,197,94,.1)"><i class="fas fa-briefcase" style="color:#4ade80;font-size:12px"></i></div>
+      <span id="dr-worker">کارمەند</span>
+    </button>
+    <button class="drawer-item" onclick="go('about');closeDrawer()">
+      <div class="dico" style="background:rgba(167,139,250,.1)"><i class="fas fa-info-circle" style="color:#a78bfa;font-size:12px"></i></div>
+      <span id="dr-about">دەربارەمان</span>
+    </button>
+    <a href="https://wa.me/9647517985971" target="_blank" class="drawer-item" style="color:#25d366">
+      <div class="dico" style="background:rgba(37,211,102,.1)"><i class="fab fa-whatsapp" style="color:#25d366;font-size:13px"></i></div>
+      WhatsApp
+    </a>
+
+    <!-- Lang in drawer -->
+    <div style="padding:14px 16px;border-top:1px solid rgba(255,255,255,.04);margin-top:auto">
+      <p style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px" id="dr-lang-lbl">زمان</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <button class="lb act" id="dlb-ckb" onclick="setLang('ckb');closeDrawer()" style="padding:8px 4px;font-size:11px;border-radius:8px">کوردی</button>
+        <button class="lb"     id="dlb-ar"  onclick="setLang('ar');closeDrawer()"  style="padding:8px 4px;font-size:11px;border-radius:8px">عربي</button>
+        <button class="lb"     id="dlb-en"  onclick="setLang('en');closeDrawer()"  style="padding:8px 4px;font-size:11px;border-radius:8px">EN</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-bg">
     <img src="https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true"
          alt="Halal Market"
          onerror="document.querySelector('.hero-bg').style.background='linear-gradient(150deg,#04100a,#081c10)'">
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-ov"></div>
   <div class="hero-glow-a"></div>
   <div class="hero-glow-b"></div>
 
   <div class="hero-body">
     <div class="hero-eyebrow" id="h-eyebrow">هەولێر · کوردستان</div>
-
-    <!--
-      Single-line title. font-size clamp ensures it fits on all screen widths.
-      overflow:visible prevents ancestor clipping of the gradient text.
-      padding:10px 20px gives the gradient room at both ends so no letter is cut off.
-    -->
     <span class="hero-title">HALAL MARKET</span>
-
     <div class="hero-sub" id="h-sub">حلال مارکێت · هەموو ئەوەی پێویستتە</div>
     <div class="hero-btns">
-      <button class="btn btn-gold"  onclick="go('deals')" style="padding:13px 28px;border-radius:30px;font-size:14px">
-        <i class="fas fa-tags"></i> <span id="h-btn1t">داشکاندنەکان</span>
+      <button class="btn btn-gold" onclick="go('promo')" style="padding:12px 26px;border-radius:28px;font-size:13px">
+        <i class="fas fa-tags"></i> <span id="h-btn1">داشکاندنەکان</span>
       </button>
-      <button class="btn btn-ghost" onclick="go('locs')"  style="padding:13px 24px;border-radius:30px;font-size:14px">
-        <i class="fas fa-map-marker-alt"></i> <span id="h-btn2t">شوێنەکانمان</span>
+      <button class="btn btn-ghost" onclick="go('locs')" style="padding:12px 22px;border-radius:28px;font-size:13px">
+        <i class="fas fa-map-marker-alt"></i> <span id="h-btn2">شوێنەکانمان</span>
       </button>
     </div>
   </div>
@@ -416,106 +480,68 @@ a{color:inherit;text-decoration:none}
 
 <div class="divline"></div>
 
-<!-- ═══════════ PROMO + FACEBOOK / LOCATION BUTTONS ═══════════ -->
-<section style="padding:44px 0 38px;background:var(--bg)">
+<!-- ═══ PROMO + FB + LOCATION ═══ -->
+<section id="promo" style="padding:44px 0 38px;background:var(--bg)">
   <div class="c">
-
-    <!-- Promo image -->
     <div class="promo-img-wrap">
       <img src="https://github.com/hama-tech2/halal-market1/blob/main/promo.jpg.png?raw=true"
            alt="Halal Market Promo"
            onerror="this.parentElement.style.minHeight='60px'">
     </div>
-
-    <!--
-      direction:ltr on the grid forces:
-        left  column → Halal Market 1
-        right column → Halal Market 2
-      regardless of the page RTL direction.
-    -->
+    <!-- direction:ltr: left=Market1, right=Market2 always -->
     <div class="fb-loc-grid">
-
-      <!-- ① LEFT — Halal Market 1 -->
+      <!-- LEFT — Market 1 -->
       <div class="fb-loc-col">
-        <a href="https://www.facebook.com/share/1AmkRDDf5S/"
-           target="_blank" rel="noreferrer" class="fb-btn">
-          <i class="fab fa-facebook-f"></i>
-          <span>Halal Market 1</span>
+        <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="fb-btn">
+          <i class="fab fa-facebook-f"></i><span>Halal Market 1</span>
         </a>
-        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"
-           target="_blank" rel="noreferrer" class="loc-btn-map">
-          <i class="fas fa-map-marker-alt"></i>
-          <span id="loc-btn1-lbl">شوێنی لقی ١</span>
+        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="loc-map-btn">
+          <i class="fas fa-map-marker-alt"></i><span id="map-btn1">شوێنی لقی ١</span>
         </a>
       </div>
-
-      <!-- ② RIGHT — Halal Market 2 -->
+      <!-- RIGHT — Market 2 -->
       <div class="fb-loc-col">
-        <a href="https://www.facebook.com/share/18LEioK1mf/"
-           target="_blank" rel="noreferrer" class="fb-btn">
-          <i class="fab fa-facebook-f"></i>
-          <span>Halal Market 2</span>
+        <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="fb-btn">
+          <i class="fab fa-facebook-f"></i><span>Halal Market 2</span>
         </a>
-        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"
-           target="_blank" rel="noreferrer" class="loc-btn-map">
-          <i class="fas fa-map-marker-alt"></i>
-          <span id="loc-btn2-lbl">شوێنی لقی ٢</span>
+        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="loc-map-btn">
+          <i class="fas fa-map-marker-alt"></i><span id="map-btn2">شوێنی لقی ٢</span>
         </a>
       </div>
-
     </div>
   </div>
 </section>
 
 <div class="divline"></div>
 
-<!-- ═══════════ DISCOUNTS ═══════════ -->
-<section id="deals" style="padding:56px 0;background:var(--bg)">
+<!-- ═══ ABOUT US ═══ -->
+<section id="about" style="padding:56px 0;background:var(--surface)">
   <div class="c">
     <div class="stitle">
       <div class="stitle-bar"></div>
       <div>
-        <h2 id="deals-title">داشکاندنەکان</h2>
-        <div class="stitle-sub" id="deals-sub">داشکاندنی ئەم هەفتەیە</div>
+        <h2 id="about-title">دەربارەمان</h2>
+        <div class="stitle-sub" id="about-sub">کێین و چییین</div>
       </div>
     </div>
-    <div class="deal-grid">
-
-      <div class="deal-card">
-        <div class="deal-icon">🏷️</div>
-        <h3 class="deal-title" id="d1-title">داشکاندنی هەفتانە</h3>
-        <p  class="deal-txt"   id="d1-txt">هەموو هەفتەیەک داشکاندنی تازە لە بەرهەمە جۆراوجۆرەکاندا. پەیجی فەیسبووکمان بنووسە بۆ زانیاری زیاتر.</p>
-        <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="deal-link">
-          <i class="fab fa-facebook-f"></i> <span id="d1-btn">لقی یەکەم</span>
-        </a>
+    <div class="about-wrap">
+      <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg.png?raw=true"
+           alt="About Halal Market"
+           style="max-height:420px;object-fit:cover;width:100%"
+           onerror="this.style.minHeight='200px';this.style.background='var(--surface)'">
+      <div class="about-overlay"></div>
+      <div class="about-caption">
+        <h3 id="about-cap-title">حلال مارکێت</h3>
+        <p id="about-cap-txt">دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخ خزمەتی کڕیارەکانی هەولێر دەکات. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکەیە.</p>
       </div>
-
-      <div class="deal-card">
-        <div class="deal-icon">🌾</div>
-        <h3 class="deal-title" id="d2-title">داشکاندنی بەرهەمی تازە</h3>
-        <p  class="deal-txt"   id="d2-txt">بەرهەمی تازە بە نرخی تایبەت. سەردانی لقی دووەممان بکە و لە داشکاندنەکانمان سوود وەرگرە.</p>
-        <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="deal-link">
-          <i class="fab fa-facebook-f"></i> <span id="d2-btn">لقی دووەم</span>
-        </a>
-      </div>
-
-      <div class="deal-card">
-        <div class="deal-icon" style="background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.15)">📱</div>
-        <h3 class="deal-title" id="d3-title">پەیوەندیمان بکە</h3>
-        <p  class="deal-txt"   id="d3-txt">بۆ زانیاری داشکاندن و کاڵای تازە، پەیوەندیمان بکە لە ڕێگای واتساپ.</p>
-        <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="deal-link deal-link-wa">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
 
 <div class="divline"></div>
 
-<!-- ═══════════ LOCATIONS ═══════════ -->
-<section id="locs" style="padding:56px 0;background:var(--surface)">
+<!-- ═══ LOCATIONS ═══ -->
+<section id="locs" style="padding:56px 0;background:var(--bg)">
   <div class="c">
     <div class="stitle">
       <div class="stitle-bar"></div>
@@ -535,13 +561,13 @@ a{color:inherit;text-decoration:none}
           <div class="loc-row"><i class="fas fa-map-marker-alt"></i><span id="loc1-addr">جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج</span></div>
           <div class="loc-row"><i class="fas fa-phone"></i><span>0751 798 5971</span></div>
           <div class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></div>
-          <div class="loc-row"><i class="fas fa-circle" style="color:var(--green);font-size:7px"></i><span style="color:var(--green);font-weight:700" id="loc-open1">کراوەیە</span></div>
+          <div class="loc-row"><i class="fas fa-circle" style="color:var(--green);font-size:6px"></i><span style="color:var(--green);font-weight:700" id="lopen1">کراوەیە</span></div>
         </div>
-        <div class="loc-action-btns">
-          <a href="https://www.facebook.com/share/1AmkRDDf5S/"    target="_blank" rel="noreferrer" class="lac lac-gold"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"     target="_blank" rel="noreferrer" class="lac lac-gold"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647517985971"                                                              class="lac lac-ghost"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647517985971"                   target="_blank" rel="noreferrer" class="lac lac-wa"><i class="fab fa-whatsapp"></i></a>
+        <div class="loc-btns">
+          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lb2 lb2-gold"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lb2 lb2-gold"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="tel:+9647517985971" class="lb2 lb2-ghost"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="lb2 lb2-wa"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
 
@@ -554,13 +580,13 @@ a{color:inherit;text-decoration:none}
           <div class="loc-row"><i class="fas fa-map-marker-alt"></i><span id="loc2-addr">بەحركە - بەرامبەر بەنزینخانەی بەحركە</span></div>
           <div class="loc-row"><i class="fas fa-phone"></i><span>0750 736 4615</span></div>
           <div class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></div>
-          <div class="loc-row"><i class="fas fa-circle" style="color:var(--green);font-size:7px"></i><span style="color:var(--green);font-weight:700" id="loc-open2">کراوەیە</span></div>
+          <div class="loc-row"><i class="fas fa-circle" style="color:var(--green);font-size:6px"></i><span style="color:var(--green);font-weight:700" id="lopen2">کراوەیە</span></div>
         </div>
-        <div class="loc-action-btns">
-          <a href="https://www.facebook.com/share/18LEioK1mf/"    target="_blank" rel="noreferrer" class="lac lac-gold"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"     target="_blank" rel="noreferrer" class="lac lac-gold"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647507364615"                                                              class="lac lac-ghost"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647507364615"                   target="_blank" rel="noreferrer" class="lac lac-wa"><i class="fab fa-whatsapp"></i></a>
+        <div class="loc-btns">
+          <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="lb2 lb2-gold"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lb2 lb2-gold"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="tel:+9647507364615" class="lb2 lb2-ghost"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/9647507364615" target="_blank" rel="noreferrer" class="lb2 lb2-wa"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
 
@@ -570,8 +596,8 @@ a{color:inherit;text-decoration:none}
 
 <div class="divline"></div>
 
-<!-- ═══════════ REVIEWS ═══════════ -->
-<section id="reviews" style="padding:56px 0;background:var(--bg)">
+<!-- ═══ REVIEWS ═══ -->
+<section id="reviews" style="padding:56px 0;background:var(--surface)">
   <div class="c">
     <div class="stitle">
       <div class="stitle-bar"></div>
@@ -590,23 +616,23 @@ a{color:inherit;text-decoration:none}
           <span class="rev-star"><i class="fas fa-star"></i></span>
           <span class="rev-star"><i class="fas fa-star"></i></span>
         </div>
-        <div style="font-size:11px;color:var(--muted);margin-top:4px" id="rev-count">+٢٠٠ نرخاندن</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px" id="rev-count">+٢٠٠ نرخاندن</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:5px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:11px;color:var(--muted);width:20px">5★</span>
-          <div style="width:110px;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:92%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px"></div></div>
-          <span style="font-size:10px;color:var(--muted)">92%</span>
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="font-size:10px;color:var(--muted);width:18px">5★</span>
+          <div style="width:100px;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="height:100%;width:92%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px"></div></div>
+          <span style="font-size:9px;color:var(--muted)">92%</span>
         </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:11px;color:var(--muted);width:20px">4★</span>
-          <div style="width:110px;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:6%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px"></div></div>
-          <span style="font-size:10px;color:var(--muted)">6%</span>
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="font-size:10px;color:var(--muted);width:18px">4★</span>
+          <div style="width:100px;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="height:100%;width:6%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px"></div></div>
+          <span style="font-size:9px;color:var(--muted)">6%</span>
         </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:11px;color:var(--muted);width:20px">3★</span>
-          <div style="width:110px;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;width:2%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px"></div></div>
-          <span style="font-size:10px;color:var(--muted)">2%</span>
+        <div style="display:flex;align-items:center;gap:7px">
+          <span style="font-size:10px;color:var(--muted);width:18px">3★</span>
+          <div style="width:100px;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="height:100%;width:2%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px"></div></div>
+          <span style="font-size:9px;color:var(--muted)">2%</span>
         </div>
       </div>
     </div>
@@ -616,45 +642,92 @@ a{color:inherit;text-decoration:none}
 
 <div class="divline"></div>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer style="background:var(--elevated);border-top:1px solid var(--border);padding:38px 16px 78px;text-align:center">
+<!-- ═══ WORKER / JOBS ═══ -->
+<section id="worker" style="padding:56px 0;background:var(--bg)">
+  <div class="c">
+    <div class="stitle">
+      <div class="stitle-bar"></div>
+      <div>
+        <h2 id="worker-title">کارمەندی پێویستمانە</h2>
+        <div class="stitle-sub" id="worker-sub">ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە</div>
+      </div>
+    </div>
+
+    <!-- direction:ltr: left=Market1, right=Market2 -->
+    <div class="worker-grid">
+
+      <!-- LEFT — Market 1 -->
+      <div class="worker-card">
+        <div>
+          <div class="worker-branch-tag"><i class="fas fa-store" style="font-size:9px"></i> <span id="wc1-tag">لقی یەکەم</span></div>
+          <div class="worker-icon" style="margin-top:12px">👨‍💼</div>
+          <div class="worker-title" id="wc1-title" style="margin-top:6px">حلال مارکێت ١</div>
+          <p class="worker-txt" id="wc1-txt" style="margin-top:6px">ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.</p>
+        </div>
+        <div class="worker-actions">
+          <a href="https://wa.me/9647517985971?text=سڵاو، دەمەوێت کار بکەم لە حلال مارکێت لقی یەکەم" target="_blank" rel="noreferrer" class="w-btn w-btn-wa">
+            <i class="fab fa-whatsapp"></i> <span id="wc1-wa">پەیام بنێرە</span>
+          </a>
+          <a href="tel:+9647517985971" class="w-btn w-btn-tel">
+            <i class="fas fa-phone"></i> <span id="wc1-tel">0751 798 5971</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT — Market 2 -->
+      <div class="worker-card">
+        <div>
+          <div class="worker-branch-tag"><i class="fas fa-store" style="font-size:9px"></i> <span id="wc2-tag">لقی دووەم</span></div>
+          <div class="worker-icon" style="margin-top:12px">👩‍💼</div>
+          <div class="worker-title" id="wc2-title" style="margin-top:6px">حلال مارکێت ٢</div>
+          <p class="worker-txt" id="wc2-txt" style="margin-top:6px">ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.</p>
+        </div>
+        <div class="worker-actions">
+          <a href="https://wa.me/9647507364615?text=سڵاو، دەمەوێت کار بکەم لە حلال مارکێت لقی دووەم" target="_blank" rel="noreferrer" class="w-btn w-btn-wa">
+            <i class="fab fa-whatsapp"></i> <span id="wc2-wa">پەیام بنێرە</span>
+          </a>
+          <a href="tel:+9647507364615" class="w-btn w-btn-tel">
+            <i class="fas fa-phone"></i> <span id="wc2-tel">0750 736 4615</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<!-- ═══ FOOTER ═══ -->
+<!-- No phone/WhatsApp links per request -->
+<footer style="background:var(--elevated);border-top:1px solid var(--border);padding:32px 16px 68px;text-align:center">
   <img src="https://github.com/hama-tech2/halal-market/blob/main/halal-market-logo2.png?raw=true"
        alt="Halal Market"
-       style="width:52px;height:52px;object-fit:contain;border-radius:12px;margin:0 auto 14px;border:1px solid rgba(200,150,44,.2);display:block"
+       style="width:46px;height:46px;object-fit:contain;border-radius:11px;margin:0 auto 12px;border:1px solid rgba(200,150,44,.2);display:block"
        onerror="this.style.display='none'">
-  <div style="font-family:'Syne',sans-serif;font-weight:900;font-size:24px;margin-bottom:4px;background:linear-gradient(120deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent">حلال مارکێت</div>
-  <div style="font-size:8px;font-weight:700;letter-spacing:3.5px;color:var(--muted);margin-bottom:12px;text-transform:uppercase">ERBIL · KURDISTAN</div>
-  <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:16px auto;max-width:320px"></div>
-  <div style="display:flex;justify-content:center;gap:14px;margin-bottom:16px">
-    <a href="tel:+9647517985971"
-       style="color:var(--muted);font-size:12px;transition:color .15s"
-       onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">
-      <i class="fas fa-phone" style="margin-inline-end:5px"></i>0751 798 5971
-    </a>
-    <a href="https://wa.me/9647517985971" target="_blank"
-       style="color:#25d366;font-size:12px">
-      <i class="fab fa-whatsapp" style="margin-inline-end:5px"></i>WhatsApp
-    </a>
-  </div>
+  <div style="font-family:'Syne',sans-serif;font-weight:900;font-size:22px;margin-bottom:4px;background:linear-gradient(120deg,var(--gold3),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent">حلال مارکێت</div>
+  <div style="font-size:7px;font-weight:700;letter-spacing:3px;color:var(--muted);margin-bottom:12px;text-transform:uppercase">ERBIL · KURDISTAN</div>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:14px auto;max-width:280px"></div>
   <p style="font-size:10px;color:var(--border2)" id="footer-copy">© ٢٠٢٥ حلال مارکێت · هەولێر</p>
 </footer>
 
-<!-- MOBILE BOTTOM NAV -->
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
 <nav class="mnav">
-  <button class="mnb act" id="mnb-hero"  onclick="go('hero')"><i class="fas fa-home"></i><span id="mn-home">سەرەکی</span></button>
-  <button class="mnb"     id="mnb-deals" onclick="go('deals')"><i class="fas fa-tags"></i><span id="mn-deals">داشکاندن</span></button>
-  <button class="mnb"     id="mnb-locs"  onclick="go('locs')"><i class="fas fa-map-marker-alt"></i><span id="mn-locs">شوێن</span></button>
-  <a href="https://wa.me/9647517985971" target="_blank" class="mnb" style="color:#25d366"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+  <button class="mnb act" id="mnb-hero"   onclick="go('hero')">  <i class="fas fa-home"></i>           <span id="mn-home">سەرەکی</span></button>
+  <button class="mnb"     id="mnb-promo"  onclick="go('promo')"> <i class="fas fa-tags"></i>           <span id="mn-disc">داشکاندن</span></button>
+  <button class="mnb"     id="mnb-locs"   onclick="go('locs')">  <i class="fas fa-map-marker-alt"></i> <span id="mn-locs">شوێن</span></button>
+  <button class="mnb"     id="mnb-worker" onclick="go('worker')"><i class="fas fa-briefcase"></i>      <span id="mn-work">کارمەند</span></button>
+  <button class="mnb"     id="mnb-about"  onclick="go('about')"> <i class="fas fa-info-circle"></i>    <span id="mn-about">دەربارە</span></button>
 </nav>
 
-<!-- WhatsApp FAB (desktop only) -->
-<a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="fab-wa" style="display:none" id="fab-wa">
+<!-- WhatsApp FAB (desktop) -->
+<a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="fab-wa">
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<!-- ═══════════════ JAVASCRIPT ═══════════════ -->
 <script>
-// ── REVIEWS DATA ──────────────────────────────────────────────────────
+// ── REVIEWS DATA ─────────────────────────────────────────────────────
 const REVIEWS=[
   {name:'ئاکۆ عومەر',ckb:'کاڵاکانی تازە و نرخەکانی زۆر باشن. دووکانی پێویستم بۆ مانگی کرد!',ar:'المنتجات طازجة والأسعار ممتازة. أصبح متجري المفضل!',en:'Fresh products and great prices. My go-to store every week!',stars:5},
   {name:'سارا حسن',ckb:'خزمەتگوزاری زۆر باشە و شوێنەکەش بیناوی.',ar:'الخدمة رائعة والمكان نظيف جداً.',en:'Wonderful service and very clean place.',stars:5},
@@ -663,189 +736,172 @@ const REVIEWS=[
   {name:'دلاور ئەحمەد',ckb:'هەموو ئەوەی پێویستمە لێرەدا دەدۆزمەوە. زۆر سوپاس.',ar:'أجد كل ما أحتاجه هنا. شكراً جزيلاً.',en:'I find everything I need here. Thank you so much.',stars:5},
 ];
 
-// ── TRANSLATIONS ──────────────────────────────────────────────────────
+// ── TRANSLATIONS ─────────────────────────────────────────────────────
 const TX={
   ckb:{
-    eyebrow:'هەولێر · کوردستان',
-    sub:'حلال مارکێت · هەموو ئەوەی پێویستتە',
+    eyebrow:'هەولێر · کوردستان',sub:'حلال مارکێت · هەموو ئەوەی پێویستتە',
     btn1:'داشکاندنەکان',btn2:'شوێنەکانمان',
-    navDeals:'داشکاندن',
+    dnDisc:'داشکاندن',dnWork:'کارمەند',dnAbout:'دەربارە',
+    aboutTitle:'دەربارەمان',aboutSub:'کێین و چییین',
+    aboutCapTitle:'حلال مارکێت',
+    aboutCapTxt:'دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخ خزمەتی کڕیارەکانی هەولێر دەکات. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکەیە.',
     locsTitle:'شوێنەکانمان',locsSub:'هەر دوو لقەکانمان',
-    loc1:'حلال مارکێت – لقی یەکەم',
-    loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج',
-    loc2:'حلال مارکێت – لقی دووەم',
-    loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە',
+    loc1:'حلال مارکێت – لقی یەکەم',loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج',
+    loc2:'حلال مارکێت – لقی دووەم',loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە',
     open:'کراوەیە',
-    dealsTitle:'داشکاندنەکان',dealsSub:'داشکاندنی ئەم هەفتەیە',
-    d1title:'داشکاندنی هەفتانە',
-    d1txt:'هەموو هەفتەیەک داشکاندنی تازە لە بەرهەمە جۆراوجۆرەکاندا. پەیجی فەیسبووکمان بنووسە بۆ زانیاری زیاتر.',
-    d1btn:'لقی یەکەم',
-    d2title:'داشکاندنی بەرهەمی تازە',
-    d2txt:'بەرهەمی تازە بە نرخی تایبەت. سەردانی لقی دووەممان بکە و لە داشکاندنەکانمان سوود وەرگرە.',
-    d2btn:'لقی دووەم',
-    d3title:'پەیوەندیمان بکە',
-    d3txt:'بۆ زانیاری داشکاندن و کاڵای تازە، پەیوەندیمان بکە لە ڕێگای واتساپ.',
     revTitle:'نرخاندنی کڕیارەکان',revSub:'نرخاندنی کڕیارەکانمان',revCount:'+٢٠٠ نرخاندن',
+    workerTitle:'کارمەندی پێویستمانە',workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە',
+    wc1tag:'لقی یەکەم',wc1title:'حلال مارکێت ١',wc1txt:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.',
+    wc2tag:'لقی دووەم',wc2title:'حلال مارکێت ٢',wc2txt:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.',
+    waBtn:'پەیام بنێرە',
+    mapBtn1:'شوێنی لقی ١',mapBtn2:'شوێنی لقی ٢',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر',
-    navHome:'سەرەکی',navLocs:'شوێن',navDealsM:'داشکاندن',
-    locBtn1:'شوێنی لقی ١',locBtn2:'شوێنی لقی ٢',
+    navHome:'سەرەکی',navDisc:'داشکاندن',navLocs:'شوێن',navWork:'کارمەند',navAbout:'دەربارە',
+    drHome:'سەرەکی',drDisc:'داشکاندن',drLocs:'شوێنەکان',drWork:'کارمەند',drAbout:'دەربارەمان',drLang:'زمان',
   },
   ar:{
-    eyebrow:'أربيل · كوردستان',
-    sub:'هلال ماركت · كل ما تحتاجه بأفضل الأسعار',
+    eyebrow:'أربيل · كوردستان',sub:'هلال ماركت · كل ما تحتاجه بأفضل الأسعار',
     btn1:'العروض',btn2:'فروعنا',
-    navDeals:'العروض',
+    dnDisc:'العروض',dnWork:'التوظيف',dnAbout:'عنّا',
+    aboutTitle:'عن هلال ماركت',aboutSub:'من نحن وماذا نقدم',
+    aboutCapTitle:'هلال ماركت',
+    aboutCapTxt:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار. يخدم عملاء أربيل. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.',
     locsTitle:'فروعنا',locsSub:'كلا الفرعين',
-    loc1:'هلال ماركت – الفرع الأول',
-    loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج',
-    loc2:'هلال ماركت – الفرع الثاني',
-    loc2addr:'بحرگة - مقابل محطة وقود بحرگة',
+    loc1:'هلال ماركت – الفرع الأول',loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج',
+    loc2:'هلال ماركت – الفرع الثاني',loc2addr:'بحرگة - مقابل محطة وقود بحرگة',
     open:'مفتوح',
-    dealsTitle:'العروض',dealsSub:'عروض هذا الأسبوع',
-    d1title:'عروض أسبوعية',
-    d1txt:'كل أسبوع عروض جديدة على مختلف المنتجات. تابع صفحتنا على فيسبوك.',
-    d1btn:'الفرع الأول',
-    d2title:'منتجات طازجة بأسعار مميزة',
-    d2txt:'منتجات طازجة بأسعار خاصة. قم بزيارة الفرع الثاني واستفد من عروضنا.',
-    d2btn:'الفرع الثاني',
-    d3title:'تواصل معنا',
-    d3txt:'لمزيد من المعلومات حول العروض، تواصل معنا عبر واتساب.',
-    revTitle:'آراء عملائنا',revSub:'آراء عملائنا الكرام',revCount:'+٢٠٠ تقييم',
+    revTitle:'آراء عملائنا',revSub:'ماذا يقول عملاؤنا',revCount:'+٢٠٠ تقييم',
+    workerTitle:'نحن نبحث عن موظفين',workerSub:'إذا أردت العمل معنا، تواصل معنا',
+    wc1tag:'الفرع الأول',wc1title:'هلال ماركت ١',wc1txt:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.',
+    wc2tag:'الفرع الثاني',wc2title:'هلال ماركت ٢',wc2txt:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.',
+    waBtn:'أرسل رسالة',
+    mapBtn1:'موقع الفرع ١',mapBtn2:'موقع الفرع ٢',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل',
-    navHome:'الرئيسية',navLocs:'الفروع',navDealsM:'العروض',
-    locBtn1:'موقع الفرع ١',locBtn2:'موقع الفرع ٢',
+    navHome:'الرئيسية',navDisc:'العروض',navLocs:'الفروع',navWork:'التوظيف',navAbout:'عنّا',
+    drHome:'الرئيسية',drDisc:'العروض',drLocs:'الفروع',drWork:'التوظيف',drAbout:'من نحن',drLang:'اللغة',
   },
   en:{
-    eyebrow:'Erbil · Kurdistan',
-    sub:'Halal Market · Everything You Need',
+    eyebrow:'Erbil · Kurdistan',sub:'Halal Market · Everything You Need',
     btn1:'Discounts',btn2:'Our Locations',
-    navDeals:'Discounts',
-    locsTitle:'Our Locations',locsSub:'Find us near you',
-    loc1:'Halal Market – Branch One',
-    loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque",
-    loc2:'Halal Market – Branch Two',
-    loc2addr:'Baharka - Opposite Baharka Gas Station',
+    dnDisc:'Discounts',dnWork:'Jobs',dnAbout:'About',
+    aboutTitle:'About Us',aboutSub:'Who we are',
+    aboutCapTitle:'Halal Market',
+    aboutCapTxt:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. Branch One in Binaslawa, Branch Two in Baharka.',
+    locsTitle:'Our Locations',locsSub:'Both our branches',
+    loc1:'Halal Market – Branch One',loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque",
+    loc2:'Halal Market – Branch Two',loc2addr:'Baharka - Opposite Baharka Gas Station',
     open:'Open',
-    dealsTitle:'Discounts',dealsSub:"This week's deals",
-    d1title:'Weekly Discounts',
-    d1txt:'Every week fresh discounts on various products. Follow our Facebook page for the latest.',
-    d1btn:'Branch One',
-    d2title:'Fresh Products, Special Prices',
-    d2txt:'Fresh products at special prices. Visit Branch Two and benefit from our deals.',
-    d2btn:'Branch Two',
-    d3title:'Contact Us',
-    d3txt:'For discount info and fresh arrivals, get in touch via WhatsApp.',
     revTitle:'Customer Reviews',revSub:'What our customers say',revCount:'+200 reviews',
+    workerTitle:'We Are Hiring',workerSub:'If you want to work with us, get in touch',
+    wc1tag:'Branch One',wc1title:'Halal Market 1',wc1txt:'If you want to work at Halal Market Branch One, send us a message or call us.',
+    wc2tag:'Branch Two',wc2title:'Halal Market 2',wc2txt:'If you want to work at Halal Market Branch Two, send us a message or call us.',
+    waBtn:'Send Message',
+    mapBtn1:'Location 1',mapBtn2:'Location 2',
     copy:'© 2025 Halal Market · Erbil',
-    navHome:'Home',navLocs:'Locations',navDealsM:'Discounts',
-    locBtn1:'Location 1',locBtn2:'Location 2',
+    navHome:'Home',navDisc:'Deals',navLocs:'Locations',navWork:'Jobs',navAbout:'About',
+    drHome:'Home',drDisc:'Discounts',drLocs:'Locations',drWork:'Jobs',drAbout:'About Us',drLang:'Language',
   }
 };
 
 // ── STATE ─────────────────────────────────────────────────────────────
 let lang='ckb';
+let drawerOpen=false;
 
 // ── HELPERS ───────────────────────────────────────────────────────────
 function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
 function $s(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
 
-// ── LANG ──────────────────────────────────────────────────────────────
+// ── DRAWER ────────────────────────────────────────────────────────────
+function toggleDrawer(){drawerOpen?closeDrawer():openDrawer();}
+function openDrawer(){
+  drawerOpen=true;
+  document.getElementById('drawer-ov').classList.add('open');
+  document.getElementById('ham-btn').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  drawerOpen=false;
+  document.getElementById('drawer-ov').classList.remove('open');
+  document.getElementById('ham-btn').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('drawer-ov').addEventListener('click',function(e){
+  if(e.target===this)closeDrawer();
+});
+document.getElementById('drawer').addEventListener('click',function(e){e.stopPropagation();});
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────
 function setLang(l){
   lang=l;
   document.documentElement.lang=l;
   document.documentElement.dir=l==='en'?'ltr':'rtl';
-  // update both desktop and mobile lang buttons
   ['ckb','ar','en'].forEach(x=>{
-    const d=document.getElementById('lb-'+x);
-    const m=document.getElementById('mlb-'+x);
-    if(d)d.classList.toggle('act',x===l);
-    if(m)m.classList.toggle('act',x===l);
+    ['lb-','dlb-'].forEach(p=>{
+      const el=document.getElementById(p+x);
+      if(el)el.classList.toggle('act',x===l);
+    });
   });
   applyTranslations();
 }
 
 function applyTranslations(){
   const t=TX[lang];
-  $s('h-eyebrow',t.eyebrow);
-  $s('h-sub',t.sub);
-  $s('h-btn1t',t.btn1);
-  $s('h-btn2t',t.btn2);
-  $s('nav-deals-lbl',t.navDeals);
-  $s('locs-title',t.locsTitle);
-  $s('locs-sub',t.locsSub);
-  $s('loc1-name',t.loc1);
-  $s('loc1-addr',t.loc1addr);
-  $s('loc2-name',t.loc2);
-  $s('loc2-addr',t.loc2addr);
-  $s('loc-open1',t.open);
-  $s('loc-open2',t.open);
-  $s('deals-title',t.dealsTitle);
-  $s('deals-sub',t.dealsSub);
-  $s('d1-title',t.d1title);
-  $s('d1-txt',t.d1txt);
-  $s('d1-btn',t.d1btn);
-  $s('d2-title',t.d2title);
-  $s('d2-txt',t.d2txt);
-  $s('d2-btn',t.d2btn);
-  $s('d3-title',t.d3title);
-  $s('d3-txt',t.d3txt);
-  $s('rev-title',t.revTitle);
-  $s('rev-sub',t.revSub);
-  $s('rev-count',t.revCount);
+  $s('h-eyebrow',t.eyebrow);$s('h-sub',t.sub);
+  $s('h-btn1',t.btn1);$s('h-btn2',t.btn2);
+  $s('dn-disc',t.dnDisc);$s('dn-wlbl',t.dnWork);$s('dn-ablbl',t.dnAbout);
+  $s('about-title',t.aboutTitle);$s('about-sub',t.aboutSub);
+  $s('about-cap-title',t.aboutCapTitle);$s('about-cap-txt',t.aboutCapTxt);
+  $s('locs-title',t.locsTitle);$s('locs-sub',t.locsSub);
+  $s('loc1-name',t.loc1);$s('loc1-addr',t.loc1addr);
+  $s('loc2-name',t.loc2);$s('loc2-addr',t.loc2addr);
+  $s('lopen1',t.open);$s('lopen2',t.open);
+  $s('rev-title',t.revTitle);$s('rev-sub',t.revSub);$s('rev-count',t.revCount);
+  $s('worker-title',t.workerTitle);$s('worker-sub',t.workerSub);
+  $s('wc1-tag',t.wc1tag);$s('wc1-title',t.wc1title);$s('wc1-txt',t.wc1txt);
+  $s('wc2-tag',t.wc2tag);$s('wc2-title',t.wc2title);$s('wc2-txt',t.wc2txt);
+  $s('wc1-wa',t.waBtn);$s('wc2-wa',t.waBtn);
+  $s('map-btn1',t.mapBtn1);$s('map-btn2',t.mapBtn2);
   $s('footer-copy',t.copy);
-  $s('mn-home',t.navHome);
-  $s('mn-deals',t.navDealsM);
-  $s('mn-locs',t.navLocs);
-  $s('loc-btn1-lbl',t.locBtn1);
-  $s('loc-btn2-lbl',t.locBtn2);
+  $s('mn-home',t.navHome);$s('mn-disc',t.navDisc);$s('mn-locs',t.navLocs);
+  $s('mn-work',t.navWork);$s('mn-about',t.navAbout);
+  $s('dr-home',t.drHome);$s('dr-disc',t.drDisc);$s('dr-locs',t.drLocs);
+  $s('dr-worker',t.drWork);$s('dr-about',t.drAbout);$s('dr-lang-lbl',t.drLang);
   buildReviews();
 }
 
 // ── TICKER ────────────────────────────────────────────────────────────
 (function(){
   const items=['حلال مارکێت · Halal Market','کاڵای تازە · Fresh Products','باشترین نرخ · Best Prices','هەولێر · Erbil Kurdistan','٠٧٥١٧٩٨٥٩٧١','٠٧٥٠٧٣٦٤٦١٥'];
-  const wrap=document.getElementById('ticker');
-  let html='';
-  for(let i=0;i<4;i++)items.forEach(t=>{html+=`<span>${t}</span>`;});
-  wrap.innerHTML=html;
+  const w=document.getElementById('ticker');
+  let h='';for(let i=0;i<4;i++)items.forEach(x=>{h+=`<span>${x}</span>`;});
+  w.innerHTML=h;
 })();
 
 // ── REVIEWS ───────────────────────────────────────────────────────────
 function buildReviews(){
-  const c=document.getElementById('rev-cards');
-  if(!c)return;
+  const c=document.getElementById('rev-cards');if(!c)return;
   c.innerHTML=REVIEWS.map(r=>{
-    const stars=Array.from({length:5},(_,i)=>`<span class="rev-star" style="opacity:${i<r.stars?1:.25}"><i class="fas fa-star"></i></span>`).join('');
-    return`<div class="rev-card"><div class="rev-stars">${stars}</div><p class="rev-txt">${r[lang]||r.en}</p><div style="display:flex;align-items:center;gap:7px"><div style="width:28px;height:28px;border-radius:50%;background:rgba(200,150,44,.12);border:1px solid rgba(200,150,44,.2);display:flex;align-items:center;justify-content:center;font-size:13px">👤</div><span class="rev-name">${r.name}</span></div></div>`;
+    const s=Array.from({length:5},(_,i)=>`<span class="rev-star" style="opacity:${i<r.stars?1:.22}"><i class="fas fa-star"></i></span>`).join('');
+    return`<div class="rev-card"><div class="rev-stars">${s}</div><p class="rev-txt">${r[lang]||r.en}</p><div style="display:flex;align-items:center;gap:6px"><div style="width:26px;height:26px;border-radius:50%;background:rgba(200,150,44,.1);border:1px solid rgba(200,150,44,.18);display:flex;align-items:center;justify-content:center;font-size:12px">👤</div><span class="rev-name">${r.name}</span></div></div>`;
   }).join('');
 }
 
-// ── FAB: show only on desktop ─────────────────────────────────────────
+// ── INTERSECTION OBSERVER ─────────────────────────────────────────────
 (function(){
-  const fab=document.getElementById('fab-wa');
-  function check(){fab.style.display=window.innerWidth>=641?'flex':'none';}
-  check();window.addEventListener('resize',check);
-})();
-
-// ── INTERSECTION OBSERVER (nav highlighting) ──────────────────────────
-(function(){
-  const ids=['hero','deals','locs'];
-  const navMap={hero:'nav-hero',deals:'nav-deals',locs:'nav-locs'};
-  const mnbMap={hero:'mnb-hero',deals:'mnb-deals',locs:'mnb-locs'};
+  const map={hero:'mnb-hero',promo:'mnb-promo',locs:'mnb-locs',worker:'mnb-worker',about:'mnb-about'};
+  const dmap={hero:'dn-hero',locs:'dn-locs',worker:'dn-worker',about:'dn-about'};
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
         const id=e.target.id;
-        ids.forEach(x=>{
-          const n=document.getElementById(navMap[x]);
-          const m=document.getElementById(mnbMap[x]);
-          if(n)n.classList.toggle('act',x===id);
-          if(m)m.classList.toggle('act',x===id);
-        });
+        Object.keys(map).forEach(k=>{const el=document.getElementById(map[k]);if(el)el.classList.toggle('act',k===id);});
+        Object.keys(dmap).forEach(k=>{const el=document.getElementById(dmap[k]);if(el)el.classList.toggle('act',k===id);});
       }
     });
-  },{threshold:.2});
-  ids.forEach(id=>{const el=document.getElementById(id);if(el)obs.observe(el);});
+  },{threshold:.18});
+  ['hero','promo','locs','worker','about','reviews'].forEach(id=>{
+    const el=document.getElementById(id);if(el)obs.observe(el);
+  });
 })();
 
 // ── INIT ──────────────────────────────────────────────────────────────
