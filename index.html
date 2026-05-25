@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#080608">
+<meta name="theme-color" content="#07060a">
 <title>حلال مارکێت | Halal Market</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
+<link rel="icon"             type="image/png" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
+<link rel="shortcut icon"                     href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
+<link rel="apple-touch-icon"                  href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,33 +26,60 @@
 <div class="cur-dot"  id="cur-dot"  aria-hidden="true"></div>
 <div class="cur-ring" id="cur-ring" aria-hidden="true"></div>
 
-<!-- Scroll progress line -->
+<!-- Scroll progress -->
 <div class="scroll-prog" id="scroll-prog" aria-hidden="true"></div>
 
-<!-- ══ TICKER ══════════════════════════════════ -->
+<!-- ══ TICKER ══ -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track" id="ticker-track"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════
+<!-- ══════════════════════════════════════════
      HEADER
-══════════════════════════════════════════════ -->
+     Mobile RTL: [ham LEFT] [logo CENTER] [lang RIGHT]
+     Desktop:    [logo LEFT] [nav CENTER] [lang RIGHT]
+══════════════════════════════════════════ -->
 <header class="hdr" id="hdr">
   <div class="hdr-row">
 
-    <!--
-      Mobile layout (RTL):  [lang-btn]  [logo — center flex:1]  [hamburger]
-      Desktop layout:       [logo]  [desk-nav — center flex:1]  [lang-btn]
-    -->
+    <!-- 1. Hamburger (mobile left) -->
+    <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
 
-    <!-- Language button — always rendered, changes position via CSS -->
+    <!-- 2. Logo (always center on mobile, left on desktop) -->
+    <button class="logo-btn" onclick="go('hero')" aria-label="Home">
+      <!--
+        On mobile: show only the text stack (no separate image to confuse layout)
+        On desktop: show image + text
+      -->
+      <img
+        src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
+        alt="" class="logo-img" aria-hidden="true"
+        onerror="this.style.display='none'">
+      <span class="logo-text">
+        <span class="logo-name">حلال مارکێت</span>
+        <span class="logo-sub">ERBIL · KURDISTAN</span>
+      </span>
+    </button>
+
+    <!-- 3. Desktop nav (center — only >900px) -->
+    <nav class="desk-nav" role="navigation" aria-label="Main nav">
+      <button class="dn act" id="dn-hero"   onclick="go('hero')">  <span id="dn-home-t">سەرەکی</span></button>
+      <button class="dn"     id="dn-promo"  onclick="go('promo')"> <span id="dn-promo-t">داشکاندن</span></button>
+      <button class="dn"     id="dn-locs"   onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
+      <button class="dn"     id="dn-worker" onclick="go('worker')"><span id="dn-work-t">کارمەند</span></button>
+      <button class="dn"     id="dn-about"  onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
+    </nav>
+
+    <!-- 4. Language switcher (always right) -->
     <div class="lang-wrap" id="lang-wrap">
       <button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-globe" aria-hidden="true"></i>
         <span id="lang-label">عربي</span>
         <i class="fas fa-chevron-down lang-chev" id="lang-chev" aria-hidden="true"></i>
       </button>
-      <div class="lang-menu" id="lang-menu" role="menu" aria-label="Language">
+      <div class="lang-menu" id="lang-menu" role="menu">
         <button class="lang-opt active" id="lo-ckb" onclick="setLang('ckb')" role="menuitem">
           <span>🇮🇶 کوردی</span><i class="fas fa-check lo-ck" id="lck-ckb" aria-hidden="true"></i>
         </button>
@@ -65,40 +92,12 @@
       </div>
     </div>
 
-    <!-- Logo — always centered -->
-    <button class="logo-btn" onclick="go('hero')" aria-label="الرئيسية">
-      <img
-        src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
-        alt="Halal Market" class="logo-img"
-        onerror="this.style.display='none'">
-      <span class="logo-text">
-        <span class="logo-name">حلال مارکێت</span>
-        <span class="logo-sub">ERBIL · KURDISTAN</span>
-      </span>
-    </button>
-
-    <!-- Desktop nav — shown only ≥901px, takes center space -->
-    <nav class="desk-nav" role="navigation" aria-label="Main nav">
-      <button class="dn act" id="dn-hero"   onclick="go('hero')">  <span id="dn-home-t">سەرەکی</span></button>
-      <button class="dn"     id="dn-promo"  onclick="go('promo')"> <span id="dn-promo-t">داشکاندن</span></button>
-      <button class="dn"     id="dn-locs"   onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
-      <button class="dn"     id="dn-worker" onclick="go('worker')"><span id="dn-work-t">کارمەند</span></button>
-      <button class="dn"     id="dn-about"  onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
-    </nav>
-
-    <!-- Hamburger — mobile only -->
-    <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
   </div>
 </header>
 
-<!-- ══════════════════════════════════════════════
-     DRAWER
-══════════════════════════════════════════════ -->
+<!-- ══ DRAWER ══════════════════════════════════ -->
 <div class="drw-ov" id="drw-ov" onclick="handleOvClick(event)" aria-hidden="true">
-  <nav class="drw" id="drw" aria-label="Side menu">
+  <nav class="drw" id="drw">
     <div class="drw-head">
       <img src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
            class="drw-logo" alt="" onerror="this.style.display='none'">
@@ -135,61 +134,46 @@
   </nav>
 </div>
 
-<!-- ══════════════════════════════════════════════
+<!-- ══════════════════════════════════════════
   ★  HERO — Cinematic video
-══════════════════════════════════════════════ -->
+══════════════════════════════════════════ -->
 <section id="hero" class="hero">
-
-  <!-- Canvas floating particles -->
   <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
 
-  <!-- Video -->
   <div class="hero-vid-wrap">
-    <video
-      id="hero-vid"
-      autoplay muted loop playsinline
-      preload="metadata"
-      poster="https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true">
+    <video id="hero-vid" autoplay muted loop playsinline preload="metadata"
+           poster="https://github.com/hama-tech2/Bilal-bazar/blob/main/hero-halal-market.jpg?raw=true">
       <source src="https://github.com/hama-tech2/halal-market1/raw/refs/heads/main/halal-market-hero.mp4" type="video/mp4">
     </video>
   </div>
 
-  <!-- Film grain -->
-  <div class="hero-grain" aria-hidden="true"></div>
-
-  <!-- Layered overlays — lighter so video shows through -->
+  <div class="hero-grain"       aria-hidden="true"></div>
   <div class="hero-ov-vignette" aria-hidden="true"></div>
   <div class="hero-ov-bottom"   aria-hidden="true"></div>
   <div class="hero-ov-side"     aria-hidden="true"></div>
 
-  <!-- Decorative corner brackets -->
-  <div class="hero-corner tl" aria-hidden="true"></div>
-  <div class="hero-corner br" aria-hidden="true"></div>
+  <div class="hero-corner tl"   aria-hidden="true"></div>
+  <div class="hero-corner br"   aria-hidden="true"></div>
 
-  <!-- ── Content — lower-center ── -->
   <div class="hero-body">
-
-    <p class="hero-eyebrow" aria-label="Location">
+    <p class="hero-eyebrow">
       <span class="eb-line"></span>
       <span id="h-eyebrow">هەولێر · کوردستان</span>
     </p>
-
     <h1 class="hero-title" aria-label="Halal Market">
-      <span class="wm"><span class="wi" id="hw1">HALAL</span></span>
+      <span class="wm"><span class="wi"       id="hw1">HALAL</span></span>
       <span class="wm"><span class="wi gold-w" id="hw2">MARKET</span></span>
     </h1>
-
     <p class="hero-sub" id="h-sub">
       تازەترین کاڵا · باشترین نرخ · دووکانی متمانەپێکراوی کوردستان
     </p>
-
     <div class="hero-ctas" id="hero-ctas">
       <button class="cta-btn cta-gold" onclick="go('promo')">
-        <i class="fas fa-tags" aria-hidden="true"></i>
+        <i class="fas fa-tags"            aria-hidden="true"></i>
         <span id="h-btn1">داشکاندنەکان</span>
       </button>
       <button class="cta-btn cta-glass" onclick="go('locs')">
-        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+        <i class="fas fa-map-marker-alt"  aria-hidden="true"></i>
         <span id="h-btn2">شوێنەکانمان</span>
       </button>
       <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer"
@@ -199,39 +183,60 @@
     </div>
   </div>
 
-  <!-- Scroll hint -->
   <div class="scroll-hint" aria-hidden="true">
     <div class="sh-bar"></div>
     <span class="sh-txt">SCROLL</span>
   </div>
-
 </section>
 
-<!-- ══ QUALITY PILLARS STRIP ════════════════════ -->
-<div class="pillars" id="pillars">
-  <div class="c pillars-row">
-    <div class="pillar" data-reveal data-delay="0.0">
-      <span class="pillar-icon">🌿</span>
-      <span class="pillar-lbl" id="pil1">تازە · هەموو ڕۆژ</span>
+<!-- ══ WHY US STRIP (replaces pillars) ════════ -->
+<section class="why-us" id="why-us">
+  <div class="c why-us-grid">
+
+    <div class="wu-item" data-reveal data-delay="0.0">
+      <div class="wu-icon-wrap"><i class="fas fa-seedling"></i></div>
+      <div class="wu-text">
+        <span class="wu-title" id="wu1-title">تازە · هەموو ڕۆژ</span>
+        <span class="wu-sub"   id="wu1-sub">کاڵای تازە کە ڕۆژانە دێت</span>
+      </div>
     </div>
-    <div class="pillar-sep" aria-hidden="true"></div>
-    <div class="pillar" data-reveal data-delay="0.1">
-      <span class="pillar-icon">✅</span>
-      <span class="pillar-lbl" id="pil2">١٠٠٪ حلال</span>
+
+    <div class="wu-divider" aria-hidden="true"></div>
+
+    <div class="wu-item" data-reveal data-delay="0.1">
+      <div class="wu-icon-wrap"><i class="fas fa-award"></i></div>
+      <div class="wu-text">
+        <span class="wu-title" id="wu2-title">١٠٠٪ حلال</span>
+        <span class="wu-sub"   id="wu2-sub">دەستپیشخەری متمانەپێکراو</span>
+      </div>
     </div>
-    <div class="pillar-sep" aria-hidden="true"></div>
-    <div class="pillar" data-reveal data-delay="0.2">
-      <span class="pillar-icon">💰</span>
-      <span class="pillar-lbl" id="pil3">باشترین نرخ</span>
+
+    <div class="wu-divider" aria-hidden="true"></div>
+
+    <div class="wu-item" data-reveal data-delay="0.2">
+      <div class="wu-icon-wrap"><i class="fas fa-tag"></i></div>
+      <div class="wu-text">
+        <span class="wu-title" id="wu3-title">باشترین نرخ</span>
+        <span class="wu-sub"   id="wu3-sub">ئۆفەرە تازەکان هەموو هەفتەیەک</span>
+      </div>
     </div>
+
+    <div class="wu-divider" aria-hidden="true"></div>
+
+    <div class="wu-item" data-reveal data-delay="0.3">
+      <div class="wu-icon-wrap"><i class="fas fa-store"></i></div>
+      <div class="wu-text">
+        <span class="wu-title" id="wu4-title">٢ لق</span>
+        <span class="wu-sub"   id="wu4-sub">بنصڵاوە و بەحرکە</span>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════════════════════════
-     PROMO / DISCOUNTS
-══════════════════════════════════════════════ -->
+<!-- ══ PROMO ═══════════════════════════════════ -->
 <section id="promo" class="section bg-base">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -273,9 +278,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════════════════════════
-     ABOUT
-══════════════════════════════════════════════ -->
+<!-- ══ ABOUT ════════════════════════════════════ -->
 <section id="about" class="section bg-surf">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -285,7 +288,6 @@
         <p  class="sec-sub"   id="about-sub">کێین و چییین</p>
       </div>
     </header>
-
     <div class="about-card" data-reveal data-delay="0.1">
       <div class="about-img-clip">
         <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg.png?raw=true"
@@ -306,9 +308,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════════════════════════
-     LOCATIONS
-══════════════════════════════════════════════ -->
+<!-- ══ LOCATIONS ════════════════════════════════ -->
 <section id="locs" class="section bg-base">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -318,7 +318,6 @@
         <p  class="sec-sub"   id="locs-sub">هەر دوو لقەکانمان</p>
       </div>
     </header>
-
     <div class="locs-grid">
 
       <article class="loc-card" data-reveal data-delay="0.0">
@@ -332,10 +331,10 @@
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map" aria-label="Map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647517985971" class="lbtn lbtn-tel" aria-label="Call"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="lbtn lbtn-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"  aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"  target="_blank" rel="noreferrer" class="lbtn lbtn-map" aria-label="Map"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="tel:+9647517985971"                                                           class="lbtn lbtn-tel" aria-label="Call"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/9647517985971"               target="_blank" rel="noreferrer" class="lbtn lbtn-wa"  aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </article>
 
@@ -350,10 +349,10 @@
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map" aria-label="Map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647507364615" class="lbtn lbtn-tel" aria-label="Call"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647507364615" target="_blank" rel="noreferrer" class="lbtn lbtn-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"  aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A"  target="_blank" rel="noreferrer" class="lbtn lbtn-map" aria-label="Map"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="tel:+9647507364615"                                                           class="lbtn lbtn-tel" aria-label="Call"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/9647507364615"               target="_blank" rel="noreferrer" class="lbtn lbtn-wa"  aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </article>
 
@@ -363,9 +362,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════════════════════════
-     REVIEWS
-══════════════════════════════════════════════ -->
+<!-- ══ REVIEWS ══════════════════════════════════ -->
 <section id="reviews" class="section bg-surf">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -391,12 +388,11 @@
 
     <div class="rev-scroll" id="rev-cards" data-reveal data-delay="0.18"></div>
 
-    <!-- Interaction button -->
     <div class="rev-cta" data-reveal data-delay="0.26">
       <p class="rev-cta-label" id="rev-cta-lbl">کاڵاکانمان باشت بوون؟</p>
       <button class="like-btn" id="like-btn" onclick="handleLike(event)">
         <span class="like-icon" aria-hidden="true">⭐</span>
-        <span class="like-text" id="like-text">نرخاندنت بنێرە</span>
+        <span class="like-text"  id="like-text">نرخاندنت بنێرە</span>
         <span class="like-count" id="like-count">+٢٠٠</span>
       </button>
     </div>
@@ -405,9 +401,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════════════════════════
-     JOBS / WORKER
-══════════════════════════════════════════════ -->
+<!-- ══ JOBS ══════════════════════════════════════ -->
 <section id="worker" class="section bg-base">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -417,7 +411,6 @@
         <p  class="sec-sub"   id="worker-sub">ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە</p>
       </div>
     </header>
-
     <div class="worker-grid">
       <article class="wc-card" data-reveal data-delay="0.0">
         <div class="wc-tag"><i class="fas fa-store" aria-hidden="true"></i><span id="wc1-tag">لقی یەکەم</span></div>
@@ -454,7 +447,7 @@
   </div>
 </section>
 
-<!-- ══ FOOTER ══════════════════════════════════ -->
+<!-- ══ FOOTER ════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-rule-top" aria-hidden="true"></div>
   <div class="c footer-inner">
@@ -468,7 +461,7 @@
 </footer>
 
 <!-- ══ MOBILE BOTTOM NAV ══════════════════════ -->
-<nav class="mnav" role="navigation" aria-label="Mobile navigation">
+<nav class="mnav" role="navigation">
   <button class="mnb act" id="mnb-hero"   onclick="go('hero')">  <i class="fas fa-home"></i>           <span id="mn-home">سەرەکی</span></button>
   <button class="mnb"     id="mnb-promo"  onclick="go('promo')"> <i class="fas fa-tags"></i>           <span id="mn-disc">داشکاندن</span></button>
   <button class="mnb"     id="mnb-locs"   onclick="go('locs')">  <i class="fas fa-map-marker-alt"></i> <span id="mn-locs">شوێن</span></button>
@@ -476,9 +469,7 @@
   <button class="mnb"     id="mnb-about"  onclick="go('about')"> <i class="fas fa-info-circle"></i>    <span id="mn-about">دەربارە</span></button>
 </nav>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer"
-   class="fab-wa" id="fab-wa" aria-label="WhatsApp">
+<a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="fab-wa" id="fab-wa" aria-label="WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 
