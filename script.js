@@ -294,7 +294,14 @@ const UPLOAD_WORKER_URL = 'PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE';
 
 const SERVER_READY = (typeof window.supabase !== 'undefined');
 let sb = null;
-if (SERVER_READY) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+if (SERVER_READY) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    flowType: 'pkce',
+    detectSessionInUrl: true,
+    persistSession: true,
+    autoRefreshToken: true
+  }
+});
 
 let currentUser=null, currentProfile=null, isAdmin=false, authMode='login';
 let allPosts=[], marketFilter='all', feedExpanded=false;
@@ -304,16 +311,22 @@ const MAX_RAW_MB=15;
 /* ── AUTH ── */
 async function initAuth(){
   if(!SERVER_READY)return;
-  // Listen FIRST so we never miss the login event coming back from Google.
+
+  // Listen FIRST so we never miss the login event.
   sb.auth.onAuthStateChange((event,s)=>{
     if(s){ onLoggedIn(s, event); } else { onLoggedOut(); }
   });
+
+  // If Google just sent us back with ?code=..., exchange it for a real session.
+  const url=new URL(window.location.href);
+  if(url.searchParams.get('code')){
+    try{ await sb.auth.exchangeCodeForSession(window.location.href); }
+    catch(e){ console.warn('code exchange failed',e); }
+    history.replaceState(null,'',window.location.pathname); // clean the ?code=... after
+  }
+
   const { data:{ session } } = await sb.auth.getSession();
   if(session) await onLoggedIn(session,'INITIAL');
-  // Clean Google's leftover #access_token=... from the address bar.
-  if(window.location.hash.includes('access_token')){
-    history.replaceState(null,'',window.location.pathname);
-  }
 }
 
 async function onLoggedIn(session, event){
