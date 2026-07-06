@@ -304,17 +304,49 @@ const MAX_RAW_MB=15;
 /* ── AUTH ── */
 async function initAuth(){
   if(!SERVER_READY)return;
+  // Listen FIRST so we never miss the login event coming back from Google.
+  sb.auth.onAuthStateChange((event,s)=>{
+    if(s){ onLoggedIn(s, event); } else { onLoggedOut(); }
+  });
   const { data:{ session } } = await sb.auth.getSession();
-  if(session) await onLoggedIn(session);
-  sb.auth.onAuthStateChange((_e,s)=>{ s?onLoggedIn(s):onLoggedOut() });
+  if(session) await onLoggedIn(session,'INITIAL');
+  // Clean Google's leftover #access_token=... from the address bar.
+  if(window.location.hash.includes('access_token')){
+    history.replaceState(null,'',window.location.pathname);
+  }
 }
-async function onLoggedIn(session){
+
+async function onLoggedIn(session, event){
   currentUser=session.user;
-  const { data:profile } = await sb.from('profiles').select('*').eq('id',currentUser.id).single();
+  // maybeSingle() returns null instead of throwing when the row isn't there yet.
+  let profile=null;
+  try{
+    const res=await sb.from('profiles').select('*').eq('id',currentUser.id).maybeSingle();
+    profile=res.data;
+  }catch(e){ console.warn('profile fetch failed, will retry',e); }
+
+  // Brand-new Google user: the trigger may not have finished. Wait briefly + retry once.
+  if(!profile){
+    await new Promise(r=>setTimeout(r,900));
+    try{
+      const res=await sb.from('profiles').select('*').eq('id',currentUser.id).maybeSingle();
+      profile=res.data;
+    }catch(e){ console.warn('profile retry failed',e); }
+  }
   currentProfile=profile;
+
   try{ const { data:ok } = await sb.rpc('is_admin'); isAdmin=ok===true; }catch{ isAdmin=false; }
-  updateAccountUI(); loadFeed();
+
+  updateAccountUI();
+  loadFeed();
+
+  // First real sign-in (not a page refresh): show the profile so they can set name/photo.
+  if(event==='SIGNED_IN'){
+    closeAuthModal();
+    openProfileModal();
+  }
 }
+
 function onLoggedOut(){ currentUser=null;currentProfile=null;isAdmin=false;updateAccountUI();loadFeed(); }
 function updateAccountUI(){
   const icon=$('acc-icon'); if(icon)icon.className=currentUser?'fas fa-user-check':'fas fa-user';
