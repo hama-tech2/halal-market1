@@ -30,12 +30,21 @@
 <header class="hdr" id="hdr">
   <div class="hdr-row">
 
-    <!-- Mobile: hamburger -->
-    <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <!-- START group: hamburger (mobile) + left nav (desktop) -->
+    <div class="hdr-group hdr-group-start">
+      <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="desk-nav" role="navigation">
+        <button class="dn act" id="dn-hero" onclick="go('hero')"><span id="dn-home-t">سەرەکی</span></button>
+        <button class="dn dn-promo-btn" id="dn-promo" onclick="go('promo')">
+          <span id="dn-promo-t">داشکاندن</span>
+          <span class="dn-hot-dot" id="dn-hot-dot" style="display:none"></span>
+        </button>
+      </nav>
+    </div>
 
-    <!-- Logo — center on mobile -->
+    <!-- CENTER: logo emblem -->
     <button class="logo-btn" onclick="go('hero')" aria-label="Home">
       <img src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
            alt="" class="logo-img" aria-hidden="true" onerror="this.style.display='none'">
@@ -45,32 +54,34 @@
       </span>
     </button>
 
-    <!-- Desktop nav -->
-    <nav class="desk-nav" role="navigation">
-      <button class="dn act" id="dn-hero"   onclick="go('hero')">  <span id="dn-home-t">سەرەکی</span></button>
-      <button class="dn"     id="dn-cats"   onclick="go('cats')">  <span id="dn-cats-t">کاڵاکان</span></button>
-      <button class="dn"     id="dn-promo"  onclick="go('promo')"> <span id="dn-promo-t">داشکاندن</span></button>
-      <button class="dn"     id="dn-locs"   onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
-      <button class="dn"     id="dn-about"  onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
-    </nav>
+    <!-- END group: right nav (desktop) + account + language -->
+    <div class="hdr-group hdr-group-end">
+      <nav class="desk-nav" role="navigation">
+        <button class="dn" id="dn-locs"  onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
+        <button class="dn" id="dn-about" onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
+      </nav>
 
-    <!-- Language -->
-    <div class="lang-wrap" id="lang-wrap">
-      <button class="lang-btn" id="lang-btn" onclick="toggleLang()">
-        <i class="fas fa-globe"></i>
-        <span id="lang-label">عربي</span>
-        <i class="fas fa-chevron-down lang-chev" id="lang-chev"></i>
+      <button class="acc-btn" id="acc-btn" onclick="handleAccountClick()" aria-label="Account">
+        <i class="fas fa-user" id="acc-icon"></i>
       </button>
-      <div class="lang-menu" id="lang-menu" role="menu">
-        <button class="lang-opt active" id="lo-ckb" onclick="setLang('ckb')">
-          <span>🇮🇶 کوردی</span><i class="fas fa-check lo-ck" id="lck-ckb"></i>
+
+      <div class="lang-wrap" id="lang-wrap">
+        <button class="lang-btn" id="lang-btn" onclick="toggleLang()">
+          <i class="fas fa-globe"></i>
+          <span id="lang-label">عربي</span>
+          <i class="fas fa-chevron-down lang-chev" id="lang-chev"></i>
         </button>
-        <button class="lang-opt" id="lo-ar" onclick="setLang('ar')">
-          <span>🌙 عربي</span><i class="fas fa-check lo-ck" id="lck-ar"></i>
-        </button>
-        <button class="lang-opt" id="lo-en" onclick="setLang('en')">
-          <span>🌐 English</span><i class="fas fa-check lo-ck" id="lck-en"></i>
-        </button>
+        <div class="lang-menu" id="lang-menu" role="menu">
+          <button class="lang-opt active" id="lo-ckb" onclick="setLang('ckb')">
+            <span>🇮🇶 کوردی</span><i class="fas fa-check lo-ck" id="lck-ckb"></i>
+          </button>
+          <button class="lang-opt" id="lo-ar" onclick="setLang('ar')">
+            <span>🌙 عربي</span><i class="fas fa-check lo-ck" id="lck-ar"></i>
+          </button>
+          <button class="lang-opt" id="lo-en" onclick="setLang('en')">
+            <span>🌐 English</span><i class="fas fa-check lo-ck" id="lck-en"></i>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -92,10 +103,6 @@
     <button class="drw-item" onclick="go('hero');closeDrawer()">
       <span class="di-ic" style="--c:rgba(212,168,67,.12)"><i class="fas fa-home" style="color:var(--gold)"></i></span>
       <span id="di-home">سەرەکی</span>
-    </button>
-    <button class="drw-item" onclick="go('cats');closeDrawer()">
-      <span class="di-ic" style="--c:rgba(100,180,100,.1)"><i class="fas fa-th-large" style="color:#6cc070"></i></span>
-      <span id="di-cats">کاڵاکان</span>
     </button>
     <button class="drw-item" onclick="go('promo');closeDrawer()">
       <span class="di-ic" style="--c:rgba(220,80,60,.1)"><i class="fas fa-tags" style="color:#e06050"></i></span>
@@ -122,9 +129,6 @@
 
 <!-- ══════════════════════════
   ★  HERO
-     - Video is the star, clearly visible
-     - Title: ONE small line at the bottom
-     - Buttons small, bottom-center
 ══════════════════════════ -->
 <section id="hero" class="hero">
   <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
@@ -136,37 +140,27 @@
     </video>
   </div>
 
-  <!-- Very light overlay — video is the hero, not text -->
   <div class="hero-grain"      aria-hidden="true"></div>
   <div class="hero-ov-light"   aria-hidden="true"></div>
   <div class="hero-ov-bottom"  aria-hidden="true"></div>
 
-  <!-- Thin corner accents -->
   <div class="hero-corner tl"  aria-hidden="true"></div>
   <div class="hero-corner br"  aria-hidden="true"></div>
 
-  <!--
-    Hero content — anchored at BOTTOM CENTER
-    Title: ONE line, much smaller than before
-    Buttons: small, tight row
-  -->
   <div class="hero-body">
 
-    <!-- Eyebrow label -->
     <p class="hero-eyebrow">
       <span class="eb-line"></span>
       <span id="h-eyebrow">هەولێر · کوردستان</span>
       <span class="eb-line flip"></span>
     </p>
 
-    <!-- ★ ONE LINE TITLE — smaller font -->
     <h1 class="hero-title" id="hero-title-el">
       <span class="wm">
         <span class="wi" id="hw1">HALAL <span class="gold-w" id="hw2">MARKET</span></span>
       </span>
     </h1>
 
-    <!-- Short subtitle -->
     <p class="hero-sub" id="h-sub">
       تازەترین کاڵا · باشترین نرخ · کوردستان
     </p>
@@ -177,9 +171,9 @@
         <i class="fas fa-tags"></i>
         <span id="h-btn1">داشکاندنەکان</span>
       </button>
-      <button class="cta-btn cta-glass" onclick="go('cats')">
-        <i class="fas fa-th-large"></i>
-        <span id="h-btn3">کاڵاکانمان</span>
+      <button class="cta-btn cta-glass" onclick="go('locs')">
+        <i class="fas fa-map-marker-alt"></i>
+        <span id="h-btn2">شوێنەکانمان</span>
       </button>
       <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer"
          class="cta-btn cta-wa" aria-label="WhatsApp">
@@ -189,7 +183,6 @@
 
   </div>
 
-  <!-- Scroll indicator -->
   <div class="scroll-hint" aria-hidden="true">
     <div class="sh-bar"></div>
     <span class="sh-txt">SCROLL</span>
@@ -198,10 +191,8 @@
 
 <div class="rule"></div>
 
-<div class="rule"></div>
-
 <!-- ══════════════════════════
-     PROMO
+     PROMO / DISCOUNT FEED (server-backed)
 ══════════════════════════ -->
 <section id="promo" class="section bg-surf">
   <div class="c">
@@ -213,31 +204,23 @@
       </div>
     </header>
 
-    <div class="promo-banner" data-reveal data-delay="0.1">
-      <img src="https://github.com/hama-tech2/halal-market1/blob/main/promo.jpg.png?raw=true"
-           alt="Promo" loading="lazy" onerror="this.parentElement.style.minHeight='80px'">
-      <div class="promo-sheen"></div>
+    <div class="market-tabs" id="market-tabs" data-reveal data-delay="0.06">
+      <button class="mtab active" data-market="all">هەموو</button>
+      <button class="mtab" data-market="1">مارکێت یەکەم</button>
+      <button class="mtab" data-market="2">مارکێت دووەم</button>
     </div>
 
-    <div class="branch-row" data-reveal data-delay="0.18">
-      <div class="branch-col">
-        <p class="branch-tag" id="b1-tag">لقی یەکەم</p>
-        <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="fb-lnk">
-          <i class="fab fa-facebook-f"></i><span>Halal Market 1</span>
-        </a>
-        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="map-lnk">
-          <i class="fas fa-map-marker-alt"></i><span id="map-btn1">شوێنی لقی ١</span>
-        </a>
-      </div>
-      <div class="branch-col">
-        <p class="branch-tag" id="b2-tag">لقی دووەم</p>
-        <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="fb-lnk">
-          <i class="fab fa-facebook-f"></i><span>Halal Market 2</span>
-        </a>
-        <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="map-lnk">
-          <i class="fas fa-map-marker-alt"></i><span id="map-btn2">شوێنی لقی ٢</span>
-        </a>
-      </div>
+    <button class="admin-newpost-btn" id="admin-newpost-btn" style="display:none" onclick="openAdminModal()">
+      <i class="fas fa-plus"></i> <span>داشکاندنێکی نوێ</span>
+    </button>
+
+    <div class="discount-feed" id="discount-feed" data-reveal data-delay="0.1"></div>
+    <p class="feed-empty" id="feed-empty" style="display:none">هیچ داشکاندنێک نییە لە ئێستادا</p>
+
+    <div class="feed-more-wrap">
+      <button class="feed-more-btn" id="feed-more-btn" onclick="toggleFeedExpand()" style="display:none">
+        <span id="feed-more-txt">زیاتر ببینە</span>
+      </button>
     </div>
   </div>
 </section>
@@ -431,8 +414,11 @@
 <!-- MOBILE NAV -->
 <nav class="mnav" role="navigation">
   <button class="mnb act" id="mnb-hero"   onclick="go('hero')">  <i class="fas fa-home"></i>           <span id="mn-home">سەرەکی</span></button>
-  <button class="mnb"     id="mnb-cats"   onclick="go('cats')">  <i class="fas fa-th-large"></i>       <span id="mn-cats">کاڵا</span></button>
-  <button class="mnb"     id="mnb-promo"  onclick="go('promo')"> <i class="fas fa-tags"></i>           <span id="mn-disc">داشکاندن</span></button>
+  <button class="mnb mnb-promo-btn" id="mnb-promo" onclick="go('promo')">
+    <i class="fas fa-tags"></i>
+    <span class="mnb-hot-dot" id="mnb-hot-dot" style="display:none"></span>
+    <span id="mn-disc">داشکاندن</span>
+  </button>
   <button class="mnb"     id="mnb-locs"   onclick="go('locs')">  <i class="fas fa-map-marker-alt"></i> <span id="mn-locs">شوێن</span></button>
   <button class="mnb"     id="mnb-about"  onclick="go('about')"> <i class="fas fa-info-circle"></i>    <span id="mn-about">دەربارە</span></button>
 </nav>
@@ -441,8 +427,110 @@
   <i class="fab fa-whatsapp"></i>
 </a>
 
+<!-- ══════════════════════════ AUTH MODAL ══════════════════════════ -->
+<div class="modal-ov" id="auth-modal-ov" onclick="if(event.target===this) closeAuthModal()">
+  <div class="modal auth-modal">
+    <button class="modal-close" onclick="closeAuthModal()">×</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="setAuthMode('login')">چوونەژوورەوە</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="setAuthMode('signup')">خۆتۆمارکردن</button>
+    </div>
+    <input type="email" id="auth-email" class="auth-input" placeholder="ئیمەیل">
+    <input type="password" id="auth-password" class="auth-input" placeholder="وشەی نهێنی">
+    <p class="auth-error" id="auth-error"></p>
+    <button class="auth-submit" onclick="submitAuth()"><span id="auth-submit-txt">چوونەژوورەوە</span></button>
+  </div>
+</div>
+
+<!-- ══════════════════════════ PROFILE MODAL ══════════════════════════ -->
+<div class="modal-ov" id="profile-modal-ov" onclick="if(event.target===this) closeProfileModal()">
+  <div class="modal profile-modal">
+    <button class="modal-close" onclick="closeProfileModal()">×</button>
+    <h3 class="modal-title">پرۆفایل</h3>
+    <div class="profile-avatar-wrap">
+      <img id="profile-avatar-img" class="profile-avatar" src="" alt="">
+      <label class="avatar-upload-btn">
+        <i class="fas fa-camera"></i>
+        <input type="file" accept="image/*" id="avatar-file-input" style="display:none" onchange="handleAvatarChange(event)">
+      </label>
+    </div>
+    <input type="text" id="profile-name-input" class="auth-input" placeholder="ناو">
+    <p class="profile-name-note" id="profile-name-note"></p>
+    <button class="auth-submit" onclick="saveProfileName()">پاشەکەوتکردن</button>
+    <button class="logout-btn" onclick="doLogout()">چوونەدەرەوە</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════ ADMIN NEW POST MODAL ══════════════════════════ -->
+<div class="modal-ov" id="admin-modal-ov" onclick="if(event.target===this) closeAdminModal()">
+  <div class="modal admin-modal">
+    <button class="modal-close" onclick="closeAdminModal()">×</button>
+    <h3 class="modal-title">داشکاندنێکی نوێ</h3>
+
+    <label class="field-label">مارکێت</label>
+    <select id="admin-market" class="auth-input">
+      <option value="1">مارکێت یەکەم</option>
+      <option value="2">مارکێت دووەم</option>
+    </select>
+
+    <label class="field-label">ناونیشان</label>
+    <input type="text" id="admin-title" class="auth-input" placeholder="بۆ نموونە: داشکاندنی برنج">
+
+    <label class="field-label">وردەکاری</label>
+    <textarea id="admin-detail" class="auth-input" rows="3"></textarea>
+
+    <label class="field-label">چەند ڕۆژ داشکاندنەکە بەردەوامە؟</label>
+    <input type="number" id="admin-days" class="auth-input" value="7" min="1">
+
+    <label class="field-label">شێوازی وێنە لە ناو پۆست</label>
+    <select id="admin-ratio" class="auth-input">
+      <option value="1:1" selected>١:١</option>
+      <option value="3:4">٣:٤</option>
+      <option value="9:16">٩:١٦</option>
+    </select>
+
+    <label class="field-label">وێنەکان (دەتوانیت زیاتر لە یەک هەڵبژێریت)</label>
+    <input type="file" id="admin-images" accept="image/*" multiple onchange="handleAdminImagesChange(event)">
+    <div class="admin-image-preview" id="admin-image-preview"></div>
+
+    <p class="auth-error" id="admin-error"></p>
+    <button class="auth-submit" id="admin-submit-btn" onclick="submitNewPost()">
+      <span id="admin-submit-txt">بڵاوکردنەوە</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════ LIGHTBOX MODAL ══════════════════════════ -->
+<div class="modal-ov lightbox-ov" id="lightbox-ov" onclick="if(event.target===this) closeLightbox()">
+  <div class="lightbox">
+    <button class="modal-close lightbox-close" onclick="closeLightbox()">×</button>
+    <div class="lightbox-gallery">
+      <button class="lb-arrow lb-prev" onclick="lbPrev()"><i class="fas fa-chevron-right"></i></button>
+      <div class="lb-imgs" id="lb-imgs"></div>
+      <button class="lb-arrow lb-next" onclick="lbNext()"><i class="fas fa-chevron-left"></i></button>
+    </div>
+    <div class="lightbox-info">
+      <h3 id="lb-title"></h3>
+      <p id="lb-detail"></p>
+      <div class="lb-meta">
+        <span id="lb-countdown"></span>
+        <button class="lb-like-btn" id="lb-like-btn" onclick="toggleLike()"><i class="fas fa-heart"></i> <span id="lb-like-count">0</span></button>
+        <button class="admin-delete-post-btn" id="lb-admin-delete" style="display:none" onclick="deleteCurrentPost()">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+      <div class="lb-comments" id="lb-comments"></div>
+      <div class="lb-comment-input-wrap">
+        <input type="text" id="lb-comment-input" placeholder="کۆمێنتێک بنووسە...">
+        <button onclick="submitComment()"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 </body>
 </html>
