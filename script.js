@@ -237,6 +237,9 @@ function applyTranslations(){
   const t=TX[lang];
   st('h-eyebrow',t.eyebrow); st('h-sub',t.sub); st('h-btn1',t.btn1); st('h-btn2',t.btn2);
   st('lang-label',t.langLabel);
+  const gTxt={ckb:'چوونەژوورەوە بە گووگڵ',ar:'الدخول عبر جوجل',en:'Continue with Google'};
+  const orTxt={ckb:'یان',ar:'أو',en:'or'};
+  st('google-btn-txt',gTxt[lang]); st('auth-or',orTxt[lang]);
   st('promo-title',t.promoTitle); st('promo-sub',t.promoSub);
   st('mtab-all',t.mAll); st('mtab-1',t.m1); st('mtab-2',t.m2);
   st('admin-newpost-txt',t.newPost); st('feed-empty',t.feedEmpty);
@@ -338,6 +341,14 @@ async function submitAuth(){
     : await sb.auth.signUp({email,password});
   if(error){err.textContent=error.message;return}
   closeAuthModal();
+}
+async function signInWithGoogle(){
+  if(!SERVER_READY){ alert('پەیوەندی سێرڤەر هێشتا ئامادە نییە'); return; }
+  const { error } = await sb.auth.signInWithOAuth({
+    provider:'google',
+    options:{ redirectTo: window.location.origin + window.location.pathname }
+  });
+  if(error) $('auth-error').textContent = error.message;
 }
 async function doLogout(){ await sb.auth.signOut(); closeProfileModal(); }
 
