@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   HALAL MARKET  |  script.js  v4 final
+   HALAL MARKET  |  script.js  v5 — with live server
 ═══════════════════════════════════════════════ */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -323,12 +323,6 @@ function st(id, v){ const e=$(id); if(e) e.textContent=v }
   });
 })();
 
-/* ── Why-us items stagger ─────────────────────── */
-gsap.from('.wu-item', {
-  y: 30, opacity: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out',
-  scrollTrigger: { trigger: '.why-us', start: 'top 88%', toggleActions: 'play none none none' },
-});
-
 /* ── About image clip-path wipe ─────────────── */
 (function(){
   const img = $qs('.about-img');
@@ -362,8 +356,7 @@ document.querySelectorAll('.sec-bar').forEach(bar => {
 });
 
 /* ════════════════════════════════════════════════
-   REVIEW SCORE  0 → 4.9  ★ CORRECT VERSION
-   Proxy object animated with gsap.to()
+   REVIEW SCORE  0 → 4.9
 ════════════════════════════════════════════════ */
 (function(){
   const el = $('rev-score-el');
@@ -409,7 +402,7 @@ document.querySelectorAll('.rbf').forEach(bar => {
 })();
 
 /* ════════════════════════════════════════════════
-   LIKE BUTTON + CONFETTI
+   LIKE BUTTON + CONFETTI (reviews section)
 ════════════════════════════════════════════════ */
 function handleLike(e) {
   if (liked) return;
@@ -484,8 +477,6 @@ function handleOvClick(e) { if (e.target === $('drw-ov')) closeDrawer() }
 
 /* ════════════════════════════════════════════════
    LANGUAGE SWITCHER
-   Kurdish default. Button shows "عربي" (next choice).
-   Click → 3-option dropdown.
 ════════════════════════════════════════════════ */
 function toggleLang() {
   langOpen = !langOpen;
@@ -507,7 +498,6 @@ function setLang(l) {
   document.documentElement.lang = l;
   document.documentElement.dir  = l === 'en' ? 'ltr' : 'rtl';
 
-  // Update hero side overlay for LTR
   const side = $qs('.hero-ov-side');
   if (side) {
     side.style.background = l === 'en'
@@ -515,7 +505,6 @@ function setLang(l) {
       : 'linear-gradient(to right,rgba(4,3,8,.5) 0%,transparent 50%)';
   }
 
-  // Checkmarks
   ['ckb','ar','en'].forEach(x => {
     const opt = $(`lo-${x}`);
     const ck  = $(`lck-${x}`);
@@ -537,61 +526,42 @@ function setLang(l) {
 function applyTranslations() {
   const t = TX[lang];
 
-  // Hero
   st('h-eyebrow', t.eyebrow);
   st('h-sub',     t.sub);
   st('h-btn1',    t.btn1);
   st('h-btn2',    t.btn2);
 
-  // Lang button label
   st('lang-label', t.langLabel);
 
-  // Why-us
-  st('wu1-title', t.wu1t); st('wu1-sub', t.wu1s);
-  st('wu2-title', t.wu2t); st('wu2-sub', t.wu2s);
-  st('wu3-title', t.wu3t); st('wu3-sub', t.wu3s);
-  st('wu4-title', t.wu4t); st('wu4-sub', t.wu4s);
-
-  // Promo
   st('promo-title', t.promoTitle); st('promo-sub', t.promoSub);
-  st('b1-tag', t.b1tag); st('b2-tag', t.b2tag);
-  st('map-btn1', t.map1); st('map-btn2', t.map2);
 
-  // About
   st('about-title',  t.aboutTitle); st('about-sub',  t.aboutSub);
   st('about-pill',   t.aboutPill);
   st('about-cap-h',  t.aboutCapH);  st('about-cap-p', t.aboutCapP);
 
-  // Locations
   st('locs-title',  t.locsTitle); st('locs-sub',   t.locsSub);
   st('loc1-name',   t.loc1);      st('loc1-addr',  t.loc1addr);
   st('loc2-name',   t.loc2);      st('loc2-addr',  t.loc2addr);
   st('lopen1', t.open); st('lopen2', t.open);
 
-  // Reviews
   st('rev-title',    t.revTitle);  st('rev-sub',    t.revSub);
   st('rev-count',    t.revCount);
   st('rev-cta-lbl',  t.revCtaLbl);
   if (!liked) { st('like-text', t.likeText); st('like-count', t.likeCount) }
 
-  // Worker
   st('worker-title', t.workerTitle); st('worker-sub', t.workerSub);
   st('wc1-tag',  t.wc1tag); st('wc1-title', t.wc1h); st('wc1-txt', t.wc1p);
   st('wc2-tag',  t.wc2tag); st('wc2-title', t.wc2h); st('wc2-txt', t.wc2p);
   st('wc1-wa', t.waBtn);    st('wc2-wa', t.waBtn);
 
-  // Footer
   st('footer-copy', t.copy);
 
-  // Mobile nav
   st('mn-home',  t.navHome); st('mn-disc',  t.navDisc);
   st('mn-locs',  t.navLocs); st('mn-work',  t.navWork); st('mn-about', t.navAbout);
 
-  // Drawer
   st('di-home',  t.drHome); st('di-promo', t.drDisc);
   st('di-locs',  t.drLocs); st('di-work',  t.drWork); st('di-about', t.drAbout);
 
-  // Desktop nav
   st('dn-home-t',  t.dnHome); st('dn-promo-t', t.dnDisc);
   st('dn-locs-t',  t.dnLocs); st('dn-work-t',  t.dnWork); st('dn-about-t', t.dnAbout);
 
@@ -648,7 +618,534 @@ function buildReviews() {
   });
 })();
 
-/* ════════════════════════════════════════════════
-   INIT
-════════════════════════════════════════════════ */
 applyTranslations();
+
+
+/* ═══════════════════════════════════════════════════════════════
+   ═══════════════════════════════════════════════════════════════
+   LIVE SERVER — Supabase + Cloudflare R2
+   Fill in the two placeholders below, then everything works.
+   ═══════════════════════════════════════════════════════════════
+   ═══════════════════════════════════════════════════════════════ */
+const SUPABASE_URL = 'https://xtgdiugwygvijcurcnxb.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_RpfYTbJQOXWVzmKIWNro9Q_ATKgPEOA';
+const UPLOAD_WORKER_URL = 'PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE'; // e.g. https://halal-image-upload.yourname.workers.dev
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ── APP STATE ────────────────────────────────── */
+let currentUser = null;
+let currentProfile = null;
+let isAdmin = false;
+let authMode = 'login';
+let allPosts = [];
+let marketFilter = 'all';
+let feedExpanded = false;
+let selectedAdminFiles = [];
+let lightboxPost = null;
+let lightboxIndex = 0;
+let countdownTimer = null;
+let replyingTo = null;
+const MAX_RAW_MB = 15;
+
+/* ════════════════════════════════════════════════
+   AUTH
+════════════════════════════════════════════════ */
+async function initAuth() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (session) await onLoggedIn(session);
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (session) onLoggedIn(session);
+    else onLoggedOut();
+  });
+}
+
+async function onLoggedIn(session) {
+  currentUser = session.user;
+  const { data: profile } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+  currentProfile = profile;
+  const { data: adminCheck } = await supabase.rpc('is_admin');
+  isAdmin = adminCheck === true;
+  updateAccountUI();
+  loadFeed();
+}
+
+function onLoggedOut() {
+  currentUser = null;
+  currentProfile = null;
+  isAdmin = false;
+  updateAccountUI();
+  loadFeed();
+}
+
+function updateAccountUI() {
+  const icon = $('acc-icon');
+  const newPostBtn = $('admin-newpost-btn');
+  if (icon) icon.className = currentUser ? 'fas fa-user-check' : 'fas fa-user';
+  if (newPostBtn) newPostBtn.style.display = isAdmin ? 'inline-flex' : 'none';
+}
+
+function handleAccountClick() {
+  if (currentUser) openProfileModal();
+  else openAuthModal();
+}
+
+function openAuthModal() { $('auth-modal-ov').classList.add('open'); }
+function closeAuthModal() { $('auth-modal-ov').classList.remove('open'); $('auth-error').textContent=''; }
+
+function setAuthMode(mode) {
+  authMode = mode;
+  $('auth-tab-login').classList.toggle('active', mode === 'login');
+  $('auth-tab-signup').classList.toggle('active', mode === 'signup');
+  st('auth-submit-txt', mode === 'login' ? 'چوونەژوورەوە' : 'خۆتۆمارکردن');
+}
+
+async function submitAuth() {
+  const email = $('auth-email').value.trim();
+  const password = $('auth-password').value;
+  const errEl = $('auth-error');
+  errEl.textContent = '';
+  if (!email || !password) { errEl.textContent = 'ئیمەیل و وشەی نهێنی پێویستە'; return; }
+
+  const { error } = authMode === 'login'
+    ? await supabase.auth.signInWithPassword({ email, password })
+    : await supabase.auth.signUp({ email, password });
+
+  if (error) { errEl.textContent = error.message; return; }
+  closeAuthModal();
+}
+
+async function doLogout() {
+  await supabase.auth.signOut();
+  closeProfileModal();
+}
+
+/* ════════════════════════════════════════════════
+   PROFILE
+════════════════════════════════════════════════ */
+function openProfileModal() {
+  $('profile-avatar-img').src = currentProfile?.avatar_url || ('https://api.dicebear.com/7.x/thumbs/svg?seed=' + currentUser.id);
+  $('profile-name-input').value = currentProfile?.display_name || '';
+  const changedAt = currentProfile?.name_changed_at ? new Date(currentProfile.name_changed_at) : null;
+  const daysLeft = changedAt ? 30 - Math.floor((Date.now() - changedAt.getTime()) / 86400000) : 0;
+  $('profile-name-note').textContent = daysLeft > 0 ? `دەتوانیت ناو بگۆڕیت دوای ${daysLeft} ڕۆژی تر` : '';
+  $('profile-modal-ov').classList.add('open');
+}
+function closeProfileModal() { $('profile-modal-ov').classList.remove('open'); }
+
+async function saveProfileName() {
+  const newName = $('profile-name-input').value.trim();
+  if (!newName) return;
+  const changedAt = currentProfile?.name_changed_at ? new Date(currentProfile.name_changed_at) : null;
+  const daysLeft = changedAt ? 30 - Math.floor((Date.now() - changedAt.getTime()) / 86400000) : 0;
+  if (daysLeft > 0) { alert(`دەتوانیت ناو بگۆڕیت دوای ${daysLeft} ڕۆژی تر`); return; }
+
+  const { error } = await supabase.from('profiles')
+    .update({ display_name: newName, name_changed_at: new Date().toISOString() })
+    .eq('id', currentUser.id);
+  if (!error) {
+    currentProfile.display_name = newName;
+    currentProfile.name_changed_at = new Date().toISOString();
+    closeProfileModal();
+  }
+}
+
+async function handleAvatarChange(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const blob = await compressImage(file, 400, 0.85);
+    const url = await uploadImageToR2(blob);
+    await supabase.from('profiles').update({ avatar_url: url }).eq('id', currentUser.id);
+    currentProfile.avatar_url = url;
+    $('profile-avatar-img').src = url;
+  } catch (err) {
+    alert('کێشەیەک ڕوویدا لە بارکردنی وێنە');
+  }
+}
+
+/* ════════════════════════════════════════════════
+   IMAGE COMPRESSION + UPLOAD TO R2 (via Worker)
+════════════════════════════════════════════════ */
+function compressImage(file, maxWidth = 1600, quality = 0.8) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxWidth / img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('compress failed')), 'image/webp', quality);
+      };
+      img.onerror = () => reject(new Error('image load failed'));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error('file read failed'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImageToR2(blob) {
+  const { data: { session } } = await supabase.auth.getSession();
+  const fd = new FormData();
+  fd.append('file', blob, 'image.webp');
+  const res = await fetch(UPLOAD_WORKER_URL, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${session.access_token}` },
+    body: fd,
+  });
+  if (!res.ok) throw new Error('upload failed: ' + (await res.text()));
+  const data = await res.json();
+  return data.url;
+}
+
+/* ════════════════════════════════════════════════
+   ADMIN — NEW POST
+════════════════════════════════════════════════ */
+function openAdminModal() {
+  selectedAdminFiles = [];
+  $('admin-title').value = '';
+  $('admin-detail').value = '';
+  $('admin-days').value = 7;
+  $('admin-images').value = '';
+  $('admin-image-preview').innerHTML = '';
+  $('admin-error').textContent = '';
+  $('admin-modal-ov').classList.add('open');
+}
+function closeAdminModal() { $('admin-modal-ov').classList.remove('open'); }
+
+function handleAdminImagesChange(e) {
+  const files = Array.from(e.target.files);
+  const errEl = $('admin-error');
+  errEl.textContent = '';
+  for (const f of files) {
+    if (f.size > MAX_RAW_MB * 1024 * 1024) {
+      errEl.textContent = `وێنەی "${f.name}" زۆر گەورەیە. تکایە وێنەکە بچووک بکەوە یان وێنەیەکی تر هەڵبژێرە.`;
+      continue;
+    }
+    selectedAdminFiles.push(f);
+  }
+  renderAdminPreview();
+}
+
+function renderAdminPreview() {
+  const wrap = $('admin-image-preview');
+  wrap.innerHTML = selectedAdminFiles.map((f, i) => `
+    <div class="admin-thumb" data-i="${i}">
+      <img src="${URL.createObjectURL(f)}">
+      <button onclick="removeAdminImage(${i})">×</button>
+      ${i > 0 ? `<button class="thumb-move" onclick="moveAdminImage(${i},-1)">↑</button>` : ''}
+      ${i < selectedAdminFiles.length - 1 ? `<button class="thumb-move" onclick="moveAdminImage(${i},1)">↓</button>` : ''}
+    </div>`).join('');
+}
+function removeAdminImage(i) { selectedAdminFiles.splice(i, 1); renderAdminPreview(); }
+function moveAdminImage(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= selectedAdminFiles.length) return;
+  [selectedAdminFiles[i], selectedAdminFiles[j]] = [selectedAdminFiles[j], selectedAdminFiles[i]];
+  renderAdminPreview();
+}
+
+async function submitNewPost() {
+  const errEl = $('admin-error');
+  const title = $('admin-title').value.trim();
+  const detail = $('admin-detail').value.trim();
+  const days = parseInt($('admin-days').value, 10) || 7;
+  const ratio = $('admin-ratio').value;
+  const marketId = parseInt($('admin-market').value, 10);
+
+  if (!title) { errEl.textContent = 'ناونیشان پێویستە'; return; }
+  if (selectedAdminFiles.length === 0) { errEl.textContent = 'لانیکەم یەک وێنە پێویستە'; return; }
+
+  const btn = $('admin-submit-btn');
+  btn.disabled = true;
+  st('admin-submit-txt', 'بارکردن...');
+
+  try {
+    const urls = [];
+    for (const file of selectedAdminFiles) {
+      const blob = await compressImage(file, 1600, 0.8);
+      const url = await uploadImageToR2(blob);
+      urls.push(url);
+    }
+
+    const discountEnd = new Date(Date.now() + days * 86400000).toISOString();
+    const { data: post, error: postErr } = await supabase.from('posts').insert({
+      location_id: marketId,
+      title, detail,
+      discount_days: days,
+      discount_end: discountEnd,
+      gallery_ratio: ratio,
+      created_by: currentUser.id,
+    }).select().single();
+    if (postErr) throw postErr;
+
+    const imageRows = urls.map((url, i) => ({ post_id: post.id, image_url: url, sort_order: i }));
+    const { error: imgErr } = await supabase.from('post_images').insert(imageRows);
+    if (imgErr) throw imgErr;
+
+    closeAdminModal();
+    loadFeed();
+  } catch (err) {
+    errEl.textContent = 'هەڵەیەک ڕوویدا: ' + err.message;
+  } finally {
+    btn.disabled = false;
+    st('admin-submit-txt', 'بڵاوکردنەوە');
+  }
+}
+
+async function deleteCurrentPost() {
+  if (!lightboxPost) return;
+  if (!confirm('دڵنیایت لە سڕینەوە؟')) return;
+  await supabase.from('posts').delete().eq('id', lightboxPost.id);
+  closeLightbox();
+  loadFeed();
+}
+
+/* ════════════════════════════════════════════════
+   FEED
+════════════════════════════════════════════════ */
+async function loadFeed() {
+  const { data: posts, error } = await supabase
+    .from('posts')
+    .select('*, locations(name), post_images(image_url, sort_order), likes(user_id)')
+    .order('created_at', { ascending: false });
+
+  if (error) { console.error(error); return; }
+
+  const now = Date.now();
+  allPosts = (posts || []).filter(p => {
+    const endPlus3 = new Date(p.discount_end).getTime() + 3 * 86400000;
+    return endPlus3 > now;
+  });
+
+  const hasActive = allPosts.some(p => new Date(p.discount_end).getTime() > now);
+  const dnDot = $('dn-hot-dot');
+  const mnbDot = $('mnb-hot-dot');
+  if (dnDot) dnDot.style.display = hasActive ? 'inline-block' : 'none';
+  if (mnbDot) mnbDot.style.display = hasActive ? 'block' : 'none';
+
+  renderFeed();
+}
+
+function setMarketFilter(m) {
+  marketFilter = m;
+  document.querySelectorAll('.mtab').forEach(t => t.classList.toggle('active', t.dataset.market === m));
+  renderFeed();
+}
+
+function renderFeed() {
+  const filtered = marketFilter === 'all'
+    ? allPosts
+    : allPosts.filter(p => String(p.location_id) === marketFilter);
+
+  const wrap = $('discount-feed');
+  const emptyMsg = $('feed-empty');
+  const moreBtn = $('feed-more-btn');
+  if (!wrap) return;
+
+  if (filtered.length === 0) {
+    wrap.innerHTML = '';
+    if (emptyMsg) emptyMsg.style.display = 'block';
+    if (moreBtn) moreBtn.style.display = 'none';
+    return;
+  }
+  if (emptyMsg) emptyMsg.style.display = 'none';
+
+  const visible = feedExpanded ? filtered : filtered.slice(0, 3);
+  wrap.innerHTML = visible.map(postCardHtml).join('');
+  if (moreBtn) {
+    moreBtn.style.display = filtered.length > 3 ? 'inline-flex' : 'none';
+    st('feed-more-txt', feedExpanded ? 'کەمتری پیشان بدە' : 'زیاتر ببینە');
+  }
+
+  startCountdowns();
+}
+
+function toggleFeedExpand() { feedExpanded = !feedExpanded; renderFeed(); }
+
+function postCardHtml(p) {
+  const cover = (p.post_images || []).slice().sort((a,b)=>a.sort_order-b.sort_order)[0];
+  const coverUrl = cover ? cover.image_url : '';
+  const ended = new Date(p.discount_end).getTime() < Date.now();
+  const likeCount = (p.likes || []).length;
+  const marketName = p.locations?.name || '';
+  return `
+    <article class="post-card" data-id="${p.id}" onclick="openLightbox('${p.id}')">
+      ${ended ? '<span class="post-ended-badge">داشکاندن تەواو بوو</span>' : ''}
+      <div class="post-cover"><img src="${coverUrl}" loading="lazy"></div>
+      <div class="post-body">
+        <h4 class="post-title">${escapeHtml(p.title)}</h4>
+        <p class="post-countdown" data-end="${p.discount_end}"></p>
+        <div class="post-meta">
+          <span>${escapeHtml(marketName)}</span>
+          <span><i class="fas fa-heart"></i> ${likeCount}</span>
+        </div>
+      </div>
+    </article>`;
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function startCountdowns() {
+  if (countdownTimer) clearInterval(countdownTimer);
+  updateCountdowns();
+  countdownTimer = setInterval(updateCountdowns, 1000);
+}
+function updateCountdowns() {
+  document.querySelectorAll('.post-countdown').forEach(el => {
+    const end = new Date(el.dataset.end).getTime();
+    const diff = end - Date.now();
+    if (diff <= 0) { el.textContent = 'داشکاندن تەواو بوو'; el.classList.add('ended'); return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    el.textContent = d > 0 ? `${d} ڕۆژ و ${h} کاژێر ماوە` : `${h} کاژێر و ${m} خولەک ماوە`;
+  });
+}
+
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.mtab');
+  if (tab) setMarketFilter(tab.dataset.market);
+});
+
+/* ════════════════════════════════════════════════
+   LIGHTBOX
+════════════════════════════════════════════════ */
+async function openLightbox(postId) {
+  lightboxPost = allPosts.find(p => p.id === postId);
+  if (!lightboxPost) return;
+  lightboxIndex = 0;
+
+  st('lb-title', lightboxPost.title);
+  st('lb-detail', lightboxPost.detail || '');
+  const delBtn = $('lb-admin-delete');
+  if (delBtn) delBtn.style.display = isAdmin ? 'inline-flex' : 'none';
+
+  renderLightboxImages();
+  renderLightboxLike();
+  await loadComments(postId);
+
+  $('lightbox-ov').classList.add('open');
+}
+function closeLightbox() {
+  $('lightbox-ov').classList.remove('open');
+  lightboxPost = null;
+}
+
+function renderLightboxImages() {
+  const imgs = (lightboxPost.post_images || []).slice().sort((a,b)=>a.sort_order-b.sort_order);
+  const ratio = lightboxPost.gallery_ratio || '1:1';
+  const box = $('lb-imgs');
+  box.parentElement.style.setProperty('--ratio', ratio.replace(':', '/'));
+  box.innerHTML = imgs.map((img, i) => `<img src="${img.image_url}" class="${i===lightboxIndex?'active':''}">`).join('');
+}
+function lbPrev() {
+  const imgs = $('lb-imgs').children;
+  if (imgs.length === 0) return;
+  lightboxIndex = (lightboxIndex - 1 + imgs.length) % imgs.length;
+  Array.from(imgs).forEach((im,i)=>im.classList.toggle('active', i===lightboxIndex));
+}
+function lbNext() {
+  const imgs = $('lb-imgs').children;
+  if (imgs.length === 0) return;
+  lightboxIndex = (lightboxIndex + 1) % imgs.length;
+  Array.from(imgs).forEach((im,i)=>im.classList.toggle('active', i===lightboxIndex));
+}
+
+function renderLightboxLike() {
+  const likes = lightboxPost.likes || [];
+  st('lb-like-count', likes.length);
+  const likedNow = currentUser && likes.some(l => l.user_id === currentUser.id);
+  $('lb-like-btn').classList.toggle('liked', !!likedNow);
+}
+
+async function toggleLike() {
+  if (!currentUser) { openAuthModal(); return; }
+  const likes = lightboxPost.likes || [];
+  const already = likes.find(l => l.user_id === currentUser.id);
+  if (already) {
+    await supabase.from('likes').delete().eq('post_id', lightboxPost.id).eq('user_id', currentUser.id);
+    lightboxPost.likes = likes.filter(l => l.user_id !== currentUser.id);
+  } else {
+    await supabase.from('likes').insert({ post_id: lightboxPost.id, user_id: currentUser.id });
+    lightboxPost.likes = [...likes, { user_id: currentUser.id }];
+  }
+  renderLightboxLike();
+}
+
+/* ════════════════════════════════════════════════
+   COMMENTS
+════════════════════════════════════════════════ */
+async function loadComments(postId) {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('*, profiles(display_name, avatar_url)')
+    .eq('post_id', postId)
+    .order('created_at', { ascending: true });
+  if (error) { console.error(error); return; }
+  renderComments(data || []);
+}
+
+function renderComments(comments) {
+  const top = comments.filter(c => !c.parent_comment_id);
+  const replies = comments.filter(c => c.parent_comment_id);
+  const box = $('lb-comments');
+  box.innerHTML = top.map(c => {
+    const myReplies = replies.filter(r => r.parent_comment_id === c.id);
+    return `
+      <div class="comment-row">
+        <img class="comment-av" src="${c.profiles?.avatar_url || ('https://api.dicebear.com/7.x/thumbs/svg?seed=' + c.user_id)}">
+        <div class="comment-body">
+          <span class="comment-name">${escapeHtml(c.profiles?.display_name || 'بەکارهێنەر')}</span>
+          <p class="comment-text">${escapeHtml(c.content)}</p>
+          ${myReplies.map(r => `
+            <div class="comment-reply">
+              <span class="comment-name admin-tag">ئەدمین</span>
+              <p class="comment-text">${escapeHtml(r.content)}</p>
+            </div>`).join('')}
+          ${isAdmin ? `<button class="comment-reply-btn" onclick="replyTo('${c.id}')">وەڵام</button>` : ''}
+          ${(isAdmin || (currentUser && currentUser.id === c.user_id)) ? `<button class="comment-del-btn" onclick="deleteComment('${c.id}')">سڕینەوە</button>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function replyTo(commentId) {
+  replyingTo = commentId;
+  const input = $('lb-comment-input');
+  input.placeholder = 'وەڵامدانەوە...';
+  input.focus();
+}
+
+async function submitComment() {
+  if (!currentUser) { openAuthModal(); return; }
+  const input = $('lb-comment-input');
+  const content = input.value.trim();
+  if (!content) return;
+  const row = { post_id: lightboxPost.id, user_id: currentUser.id, content };
+  if (replyingTo) row.parent_comment_id = replyingTo;
+  const { error } = await supabase.from('comments').insert(row);
+  if (!error) {
+    input.value = '';
+    replyingTo = null;
+    input.placeholder = 'کۆمێنتێک بنووسە...';
+    await loadComments(lightboxPost.id);
+  }
+}
+
+async function deleteComment(id) {
+  await supabase.from('comments').delete().eq('id', id);
+  await loadComments(lightboxPost.id);
+}
+
+/* ════════════════════════════════════════════════
+   BACKEND INIT
+════════════════════════════════════════════════ */
+initAuth();
+loadFeed();
