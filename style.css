@@ -414,3 +414,10 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 
 @media(min-width:641px){.mnav{display:none!important}.fab-wa{bottom:20px}}
 @media(max-width:640px){.desk-nav{display:none!important}}
+
+/* ═══════════════════════════════════════════ GOOGLE AUTH BUTTON ═══════════════════════════════════════════ */
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;padding:11px;border-radius:10px;background:#fff;color:#1a1a1a;font-weight:700;font-size:13px;border:1px solid transparent;transition:transform .16s,box-shadow .16s;margin-bottom:12px}
+.google-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.google-btn svg{flex-shrink:0}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--mute);font-size:11px}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--brd2)}
