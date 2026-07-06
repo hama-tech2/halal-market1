@@ -24,9 +24,7 @@
   <div class="ticker-track" id="ticker-track"></div>
 </div>
 
-<!-- ══════════════════════════
-     HEADER
-══════════════════════════ -->
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
 <header class="hdr" id="hdr">
   <div class="hdr-row">
 
@@ -127,9 +125,7 @@
   </nav>
 </div>
 
-<!-- ══════════════════════════
-  ★  HERO
-══════════════════════════ -->
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
 <section id="hero" class="hero">
   <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
 
@@ -143,12 +139,10 @@
   <div class="hero-grain"      aria-hidden="true"></div>
   <div class="hero-ov-light"   aria-hidden="true"></div>
   <div class="hero-ov-bottom"  aria-hidden="true"></div>
-
   <div class="hero-corner tl"  aria-hidden="true"></div>
   <div class="hero-corner br"  aria-hidden="true"></div>
 
   <div class="hero-body">
-
     <p class="hero-eyebrow">
       <span class="eb-line"></span>
       <span id="h-eyebrow">هەولێر · کوردستان</span>
@@ -165,7 +159,6 @@
       تازەترین کاڵا · باشترین نرخ · کوردستان
     </p>
 
-    <!-- 3 small action buttons -->
     <div class="hero-ctas" id="hero-ctas">
       <button class="cta-btn cta-gold" onclick="go('promo')">
         <i class="fas fa-tags"></i>
@@ -180,7 +173,6 @@
         <i class="fab fa-whatsapp"></i>
       </a>
     </div>
-
   </div>
 
   <div class="scroll-hint" aria-hidden="true">
@@ -191,9 +183,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════
-     PROMO / DISCOUNT FEED (server-backed)
-══════════════════════════ -->
+<!-- ══════════════════════════ PROMO / DISCOUNT FEED ══════════════════════════ -->
 <section id="promo" class="section bg-surf">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -205,17 +195,17 @@
     </header>
 
     <div class="market-tabs" id="market-tabs" data-reveal data-delay="0.06">
-      <button class="mtab active" data-market="all">هەموو</button>
-      <button class="mtab" data-market="1">مارکێت یەکەم</button>
-      <button class="mtab" data-market="2">مارکێت دووەم</button>
+      <button class="mtab active" data-market="all" id="mtab-all">هەموو</button>
+      <button class="mtab" data-market="1" id="mtab-1">مارکێت یەکەم</button>
+      <button class="mtab" data-market="2" id="mtab-2">مارکێت دووەم</button>
     </div>
 
     <button class="admin-newpost-btn" id="admin-newpost-btn" style="display:none" onclick="openAdminModal()">
-      <i class="fas fa-plus"></i> <span>داشکاندنێکی نوێ</span>
+      <i class="fas fa-plus"></i> <span id="admin-newpost-txt">داشکاندنێکی نوێ</span>
     </button>
 
     <div class="discount-feed" id="discount-feed" data-reveal data-delay="0.1"></div>
-    <p class="feed-empty" id="feed-empty" style="display:none">هیچ داشکاندنێک نییە لە ئێستادا</p>
+    <p class="feed-empty" id="feed-empty" style="display:none">هێشتا هیچ داشکاندنێک نییە</p>
 
     <div class="feed-more-wrap">
       <button class="feed-more-btn" id="feed-more-btn" onclick="toggleFeedExpand()" style="display:none">
@@ -227,9 +217,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════
-     ABOUT
-══════════════════════════ -->
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
 <section id="about" class="section bg-base">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -259,9 +247,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════
-     LOCATIONS
-══════════════════════════ -->
+<!-- ══════════════════════════ LOCATIONS ══════════════════════════ -->
 <section id="locs" class="section bg-surf">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -315,9 +301,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════
-     REVIEWS
-══════════════════════════ -->
+<!-- ══════════════════════════ REVIEWS ══════════════════════════ -->
 <section id="reviews" class="section bg-base">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -353,9 +337,7 @@
 
 <div class="rule"></div>
 
-<!-- ══════════════════════════
-     JOBS
-══════════════════════════ -->
+<!-- ══════════════════════════ JOBS ══════════════════════════ -->
 <section id="worker" class="section bg-surf">
   <div class="c">
     <header class="sec-head" data-reveal>
@@ -438,7 +420,7 @@
     <input type="email" id="auth-email" class="auth-input" placeholder="ئیمەیل">
     <input type="password" id="auth-password" class="auth-input" placeholder="وشەی نهێنی">
     <p class="auth-error" id="auth-error"></p>
-    <button class="auth-submit" onclick="submitAuth()"><span id="auth-submit-txt">چوونەژوورەوە</span></button>
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()"><span id="auth-submit-txt">چوونەژوورەوە</span></button>
   </div>
 </div>
 
@@ -482,11 +464,11 @@
     <label class="field-label">چەند ڕۆژ داشکاندنەکە بەردەوامە؟</label>
     <input type="number" id="admin-days" class="auth-input" value="7" min="1">
 
-    <label class="field-label">شێوازی وێنە لە ناو پۆست</label>
+    <label class="field-label">شێوازی وێنە لەناو پۆست</label>
     <select id="admin-ratio" class="auth-input">
-      <option value="1:1" selected>١:١</option>
-      <option value="3:4">٣:٤</option>
-      <option value="9:16">٩:١٦</option>
+      <option value="1:1" selected>١:١ (چوارگۆشە)</option>
+      <option value="3:4">٣:٤ (درێژ)</option>
+      <option value="9:16">٩:١٦ (ستۆری)</option>
     </select>
 
     <label class="field-label">وێنەکان (دەتوانیت زیاتر لە یەک هەڵبژێریت)</label>
