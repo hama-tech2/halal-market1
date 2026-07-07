@@ -31,21 +31,21 @@ const REVIEWS = [
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · دووکانی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
     promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە',
-    aboutTitle:'دەربارەمان', aboutSub:'کێین و چییین', aboutPill:'دەربارە', aboutCapH:'حلال مارکێت', aboutCapP:'دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخ خزمەتی کڕیارەکانی هەولێر دەکات. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکەیە.',
+    aboutTitle:'دەربارەمان', aboutSub:'کێین و چییین', aboutEyebrow:'کوالێتی کە متمانەی پێدەکەیت', aboutHead:'حلال مارکێت', aboutPara:'دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخی گونجاو خزمەتی کڕیارەکانی هەولێر دەکات. هەموو هەفتەیەک داشکاندنی نوێ، بەرهەمی تازە، و خزمەتگوزاری متمانەپێکراو. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکە.', statL1:'لق لە هەولێر', statL2:'حەلاڵ و سەلامەت', statL3:'کڕیاری دڵخۆش', ab1:'تازە و پاک', ab2:'کوالێتی باش', ab3:'متمانە و دڵنیایی',
     locsTitle:'شوێنەکانمان', locsSub:'هەر دوو لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
     promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل',
-    aboutTitle:'عن هلال ماركت', aboutSub:'من نحن وماذا نقدم', aboutPill:'عنّا', aboutCapH:'هلال ماركت', aboutCapP:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.',
+    aboutTitle:'عن هلال ماركت', aboutSub:'من نحن وماذا نقدم', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', statL1:'فرعان في أربيل', statL2:'حلال وآمن', statL3:'عميل سعيد', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'كلا الفرعين', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
     promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less',
-    aboutTitle:'About Us', aboutSub:'Who we are', aboutPill:'About', aboutCapH:'Halal Market', aboutCapP:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. Branch One in Binaslawa, Branch Two in Baharka.',
+    aboutTitle:'About Us', aboutSub:'Who we are', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', statL1:'Branches in Erbil', statL2:'Halal & Safe', statL3:'Happy Customers', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'Both our branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
     workerTitle:'We Are Hiring', workerSub:'If you want to work with us, get in touch', wc1tag:'Branch One', wc1h:'Halal Market 1', wc1p:'If you want to work at Halal Market Branch One, send us a message or call us.', wc2tag:'Branch Two', wc2h:'Halal Market 2', wc2p:'If you want to work at Halal Market Branch Two, send us a message or call us.', waBtn:'Send Message',
@@ -244,7 +244,9 @@ function applyTranslations(){
   st('mtab-all',t.mAll); st('mtab-1',t.m1); st('mtab-2',t.m2);
   st('admin-newpost-txt',t.newPost); st('feed-empty',t.feedEmpty);
   st('dn-home-t',t.navHome); st('dn-promo-t',t.navDisc); st('dn-locs-t',t.navLocs); st('dn-about-t',t.navAbout);
-  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-pill',t.aboutPill); st('about-cap-h',t.aboutCapH); st('about-cap-p',t.aboutCapP);
+  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead); st('about-para',t.aboutPara);
+  st('stat-l1',t.statL1); st('stat-l2',t.statL2); st('stat-l3',t.statL3);
+  st('ab1',t.ab1); st('ab2',t.ab2); st('ab3',t.ab3);
   st('locs-title',t.locsTitle); st('locs-sub',t.locsSub); st('loc1-name',t.loc1); st('loc1-addr',t.loc1addr); st('loc2-name',t.loc2); st('loc2-addr',t.loc2addr); st('lopen1',t.open); st('lopen2',t.open);
   st('rev-title',t.revTitle); st('rev-sub',t.revSub); st('rev-count',t.revCount); st('rev-cta-lbl',t.revCtaLbl);
   if(!liked){st('like-text',t.likeText);st('like-count',t.likeCount)}
