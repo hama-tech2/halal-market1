@@ -30,21 +30,21 @@ const REVIEWS = [
 /* ── TRANSLATIONS ── */
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · دووکانی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
-    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'مارکێت یەکەم', m2:'مارکێت دووەم', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە',
+    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە',
     aboutTitle:'دەربارەمان', aboutSub:'کێین و چییین', aboutPill:'دەربارە', aboutCapH:'حلال مارکێت', aboutCapP:'دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخ خزمەتی کڕیارەکانی هەولێر دەکات. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکەیە.',
     locsTitle:'شوێنەکانمان', locsSub:'هەر دوو لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
-    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'ماركت ١', m2:'ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل',
+    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل',
     aboutTitle:'عن هلال ماركت', aboutSub:'من نحن وماذا نقدم', aboutPill:'عنّا', aboutCapH:'هلال ماركت', aboutCapP:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.',
     locsTitle:'فروعنا', locsSub:'كلا الفرعين', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
-    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Market 1', m2:'Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less',
+    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less',
     aboutTitle:'About Us', aboutSub:'Who we are', aboutPill:'About', aboutCapH:'Halal Market', aboutCapP:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. Branch One in Binaslawa, Branch Two in Baharka.',
     locsTitle:'Our Locations', locsSub:'Both our branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
@@ -353,10 +353,9 @@ async function onLoggedIn(session, event){
   updateAccountUI();
   loadFeed();
 
-  // First real sign-in (not a page refresh): show the profile so they can set name/photo.
+  // Just close the login popup. Do NOT auto-open profile — site opens normally.
   if(event==='SIGNED_IN'){
     closeAuthModal();
-    openProfileModal();
   }
 }
 
@@ -530,7 +529,7 @@ async function deleteCurrentPost(){
 async function loadFeed(){
   if(!SERVER_READY)return;
   const { data:posts, error } = await sb.from('posts')
-    .select('*, locations(name), post_images(image_url,sort_order), likes(user_id)')
+    .select('*, locations(name), post_images(image_url,sort_order), likes(user_id), comments(content,user_id,created_at,profiles(display_name,avatar_url))')
     .order('created_at',{ascending:false});
   if(error){console.error(error);return}
   const now=Date.now();
@@ -559,27 +558,93 @@ function renderFeed(){
 }
 function toggleFeedExpand(){ feedExpanded=!feedExpanded; renderFeed() }
 function postCardHtml(p){
-  const cover=(p.post_images||[]).slice().sort((a,b)=>a.sort_order-b.sort_order)[0];
+  const imgs=(p.post_images||[]).slice().sort((a,b)=>a.sort_order-b.sort_order);
   const ended=new Date(p.discount_end).getTime()<Date.now();
+  const likeCount=(p.likes||[]).length;
+  const commentCount=(p.comments||[]).length;
+  const likedByMe=currentUser&&(p.likes||[]).some(l=>l.user_id===currentUser.id);
+  const newest=(p.comments||[]).slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at))[0];
+
+  // Build the image slider (auto-slides if more than one image)
+  const slides=imgs.length?imgs.map((im,i)=>`<img src="${im.image_url}" class="ps-img ${i===0?'active':''}" loading="lazy">`).join(''):'<div class="ps-noimg"><i class="fas fa-image"></i></div>';
+  const dots=imgs.length>1?`<div class="ps-dots">${imgs.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join('')}</div>`:'';
+
+  // Comment preview (newest only) + count
+  let commentPreview='';
+  if(newest){
+    const nm=escapeHtml(newest.profiles?.display_name||'بەکارهێنەر');
+    const av=newest.profiles?.avatar_url||('https://api.dicebear.com/7.x/thumbs/svg?seed='+newest.user_id);
+    commentPreview=`<div class="ps-comment">
+      <img src="${av}" class="ps-cav">
+      <div class="ps-ctext"><b>${nm}</b> ${escapeHtml((newest.content||'').slice(0,60))}</div>
+    </div>${commentCount>1?`<div class="ps-cmore">${commentCount} کۆمێنت</div>`:''}`;
+  }
+
   return `<article class="post-card" onclick="openLightbox('${p.id}')">
     ${ended?'<span class="post-ended-badge">داشکاندن تەواو بوو</span>':''}
-    <div class="post-cover"><img src="${cover?cover.image_url:''}" loading="lazy"></div>
+    <div class="post-cover" data-count="${imgs.length}">${slides}${dots}</div>
     <div class="post-body">
       <h4 class="post-title">${escapeHtml(p.title)}</h4>
-      <p class="post-countdown" data-end="${p.discount_end}"></p>
-      <div class="post-meta"><span>${escapeHtml(p.locations?.name||'')}</span><span><i class="fas fa-heart"></i> ${(p.likes||[]).length}</span></div>
+      <div class="post-countdown-pill ${ended?'ended':''}" data-end="${p.discount_end}">
+        <i class="fas fa-clock"></i><span class="pc-text"></span>
+      </div>
+      ${commentPreview}
+      <div class="post-actions">
+        <button class="pa-like ${likedByMe?'on':''}" onclick="event.stopPropagation();cardLike('${p.id}')">
+          <i class="fas fa-heart"></i><span>${likeCount}</span>
+        </button>
+        <button class="pa-comment" onclick="event.stopPropagation();openLightbox('${p.id}')">
+          <i class="fas fa-comment"></i><span>${commentCount}</span>
+        </button>
+        <span class="pa-market">${escapeHtml(p.locations?.name||'')}</span>
+      </div>
     </div></article>`;
+}
+
+// Like directly from the card (guards login, doesn't open the post)
+async function cardLike(postId){
+  if(!currentUser){ openAuthModal(); return; }
+  const post=allPosts.find(p=>p.id===postId); if(!post)return;
+  const likes=post.likes||[];
+  const already=likes.find(l=>l.user_id===currentUser.id);
+  if(already){
+    await sb.from('likes').delete().eq('post_id',postId).eq('user_id',currentUser.id);
+    post.likes=likes.filter(l=>l.user_id!==currentUser.id);
+  }else{
+    await sb.from('likes').insert({post_id:postId,user_id:currentUser.id});
+    post.likes=[...likes,{user_id:currentUser.id}];
+  }
+  renderFeed();
+}
+
+// Auto-slide images on cards every 4.5s
+let cardSlideTimer=null;
+function startCardSliders(){
+  if(cardSlideTimer)clearInterval(cardSlideTimer);
+  cardSlideTimer=setInterval(()=>{
+    document.querySelectorAll('.post-cover').forEach(cover=>{
+      const imgs=cover.querySelectorAll('.ps-img');
+      if(imgs.length<2)return;
+      let cur=0; imgs.forEach((im,i)=>{ if(im.classList.contains('active'))cur=i; });
+      const next=(cur+1)%imgs.length;
+      imgs[cur].classList.remove('active'); imgs[next].classList.add('active');
+      const dots=cover.querySelectorAll('.ps-dots span');
+      if(dots.length){ dots[cur]?.classList.remove('on'); dots[next]?.classList.add('on'); }
+    });
+  },4500);
 }
 function startCountdowns(){
   if(countdownTimer)clearInterval(countdownTimer);
   updateCountdowns(); countdownTimer=setInterval(updateCountdowns,1000);
+  startCardSliders();
 }
 function updateCountdowns(){
-  document.querySelectorAll('.post-countdown').forEach(el=>{
+  document.querySelectorAll('.post-countdown-pill').forEach(el=>{
+    const txt=el.querySelector('.pc-text'); if(!txt)return;
     const diff=new Date(el.dataset.end).getTime()-Date.now();
-    if(diff<=0){el.textContent='داشکاندن تەواو بوو';el.classList.add('ended');return}
+    if(diff<=0){txt.textContent='داشکاندن تەواو بوو';el.classList.add('ended');return}
     const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000);
-    el.textContent=d>0?`${d} ڕۆژ و ${h} کاژێر ماوە`:`${h} کاژێر و ${m} خولەک ماوە`;
+    txt.textContent=d>0?`${d} ڕۆژ ${h} کاژێر`:`${h} کاژێر ${m} خولەک`;
   });
 }
 document.addEventListener('click',e=>{
