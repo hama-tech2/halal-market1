@@ -4,10 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#07060a">
-<title>حلال مارکێت | Halal Market</title>
-<link rel="icon"             type="image/png" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
-<link rel="shortcut icon"                     href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
-<link rel="apple-touch-icon"                  href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/favicon.png">
+
+<!-- ═══════════ SEO / GOOGLE SEARCH ═══════════ -->
+<title>حلال مارکێت | Halal Market Erbil — تازەترین کاڵا و باشترین نرخ لە هەولێر</title>
+<meta name="description" content="حلال مارکێت لە هەولێری کوردستان — یەکێک لە باشترین و ناودارترین مارکێتەکان. هەموو هەفتەیەک داشکاندنی نوێ، کاڵای تازە، باشترین نرخ، و خزمەتگوزاری متمانەپێکراو. دوو لق: بنصڵاوە و بەحرکە.">
+<meta name="keywords" content="حلال مارکێت, Halal Market, مارکێت هەولێر, market erbil, داشکاندن, discount erbil, سوپەرمارکێت کوردستان, supermarket kurdistan, بنصڵاوە, بەحرکە, کاڵای تازە, offers erbil">
+<meta name="author" content="Halal Market">
+<link rel="canonical" href="https://hama-tech2.github.io/halal-market1/">
+
+<!-- Favicon / logo in search + browser tab -->
+<link rel="icon"             type="image/png" href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png">
+<link rel="shortcut icon"                     href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png">
+<link rel="apple-touch-icon"                  href="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png">
+
+<!-- ═══════════ SHARE PREVIEW (WhatsApp / Facebook / Google) ═══════════ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="حلال مارکێت | Halal Market Erbil">
+<meta property="og:description" content="یەکێک لە باشترین مارکێتەکانی هەولێر — هەموو هەفتەیەک داشکاندنی نوێ، کاڵای تازە، باشترین نرخ.">
+<meta property="og:image" content="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png">
+<meta property="og:url" content="https://hama-tech2.github.io/halal-market1/">
+<meta property="og:locale" content="ckb_IQ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="حلال مارکێت | Halal Market Erbil">
+<meta name="twitter:description" content="یەکێک لە باشترین مارکێتەکانی هەولێر — داشکاندنی هەفتانە، کاڵای تازە، باشترین نرخ.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png">
+
+<!-- ═══════════ LOCAL BUSINESS DATA (rich Google result) ═══════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "name": "Halal Market — حلال مارکێت",
+  "image": "https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png",
+  "description": "یەکێک لە باشترین مارکێتەکانی هەولێر بۆ کاڵای تازە و داشکاندنی هەفتانە.",
+  "url": "https://hama-tech2.github.io/halal-market1/",
+  "telephone": "+9647517985971",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Erbil",
+    "addressRegion": "Kurdistan",
+    "addressCountry": "IQ"
+  },
+  "openingHours": "Mo-Su 08:00-24:00",
+  "priceRange": "$$"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -18,11 +60,6 @@
 <div class="cur-dot"  id="cur-dot"  aria-hidden="true"></div>
 <div class="cur-ring" id="cur-ring" aria-hidden="true"></div>
 <div class="scroll-prog" id="scroll-prog" aria-hidden="true"></div>
-
-<!-- TICKER -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track" id="ticker-track"></div>
-</div>
 
 <!-- ══════════════════════════ HEADER ══════════════════════════ -->
 <header class="hdr" id="hdr">
@@ -43,12 +80,12 @@
     </div>
 
     <!-- CENTER: logo emblem -->
-    <button class="logo-btn" onclick="go('hero')" aria-label="Home">
+    <button class="logo-btn" onclick="go('hero')" aria-label="Halal Market Home">
       <img src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
-           alt="" class="logo-img" aria-hidden="true" onerror="this.style.display='none'">
+           alt="Halal Market" class="logo-img" onerror="this.style.display='none'">
       <span class="logo-text">
         <span class="logo-name">حلال مارکێت</span>
-        <span class="logo-sub">ERBIL · KURDISTAN</span>
+        <span class="logo-sub">HALAL MARKET · ERBIL</span>
       </span>
     </button>
 
@@ -443,7 +480,7 @@
     </div>
     <input type="text" id="profile-name-input" class="auth-input" placeholder="ناو">
     <p class="profile-name-note" id="profile-name-note"></p>
-    <button class="auth-submit" onclick="saveProfileName()">پاشەکەوتکردن</button>
+    <button class="auth-submit" onclick="saveProfileName()">تۆمارکردن</button>
     <button class="logout-btn" onclick="doLogout()">چوونەدەرەوە</button>
   </div>
 </div>
