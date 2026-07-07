@@ -264,19 +264,44 @@
         <p  class="sec-sub"   id="about-sub">کێین و چییین</p>
       </div>
     </header>
-    <div class="about-card" data-reveal data-delay="0.1">
-      <div class="about-img-clip">
-        <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg.png?raw=true"
-             alt="About" class="about-img" loading="lazy"
-             onerror="this.style.minHeight='200px';this.style.background='#111'">
-      </div>
-      <div class="about-grad"></div>
-      <div class="about-caption">
-        <span class="about-pill" id="about-pill">دەربارە</span>
-        <h3 class="about-cap-h" id="about-cap-h">حلال مارکێت</h3>
-        <p  class="about-cap-p" id="about-cap-p">
-          دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخ خزمەتی کڕیارەکانی هەولێر دەکات. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکەیە.
+
+    <div class="about-wrap">
+      <!-- LEFT: text + stats -->
+      <div class="about-content" data-reveal>
+        <span class="about-eyebrow" id="about-eyebrow">کوالێتی کە متمانەی پێدەکەیت</span>
+        <h3 class="about-head" id="about-head">حلال مارکێت</h3>
+        <p class="about-para" id="about-para">
+          دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخی گونجاو خزمەتی کڕیارەکانی هەولێر دەکات. هەموو هەفتەیەک داشکاندنی نوێ، بەرهەمی تازە، و خزمەتگوزاری متمانەپێکراو. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکە.
         </p>
+        <div class="about-stats">
+          <div class="stat-box" data-reveal data-delay="0.05">
+            <div class="stat-n" data-target="2"  id="stat-branches">٢</div>
+            <div class="stat-l" id="stat-l1">لق لە هەولێر</div>
+          </div>
+          <div class="stat-box" data-reveal data-delay="0.12">
+            <div class="stat-n" data-target="100" id="stat-halal">٪١٠٠</div>
+            <div class="stat-l" id="stat-l2">حەلاڵ و سەلامەت</div>
+          </div>
+          <div class="stat-box" data-reveal data-delay="0.19">
+            <div class="stat-n" data-target="5000" id="stat-cust">+٥٠٠٠</div>
+            <div class="stat-l" id="stat-l3">کڕیاری دڵخۆش</div>
+          </div>
+        </div>
+        <div class="about-badges">
+          <span class="ab-badge"><i class="fas fa-leaf"></i> <span id="ab1">تازە و پاک</span></span>
+          <span class="ab-badge"><i class="fas fa-award"></i> <span id="ab2">کوالێتی باش</span></span>
+          <span class="ab-badge"><i class="fas fa-shield-halved"></i> <span id="ab3">متمانە و دڵنیایی</span></span>
+        </div>
+      </div>
+
+      <!-- RIGHT: framed image -->
+      <div class="about-visual" data-reveal data-delay="0.15">
+        <div class="about-frame">
+          <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg.png?raw=true"
+               alt="Halal Market" class="about-photo" loading="lazy"
+               onerror="this.style.minHeight='260px';this.style.background='#111'">
+        </div>
+        <div class="about-glow"></div>
       </div>
     </div>
   </div>
