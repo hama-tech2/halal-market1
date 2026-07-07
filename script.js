@@ -290,7 +290,7 @@ applyTranslations();
 ═══════════════════════════════════════════════════════════════ */
 const SUPABASE_URL = 'https://xtgdiugwygvijcurcnxb.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_RpfYTbJQOXWVzmKIWNro9Q_ATKgPEOA';
-const UPLOAD_WORKER_URL = 'PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE';
+const UPLOAD_WORKER_URL = 'https://halal-market.mahmadmajed149.workers.dev';
 
 const SERVER_READY = (typeof window.supabase !== 'undefined');
 let sb = null;
@@ -418,7 +418,7 @@ async function saveProfileName(){
 async function handleAvatarChange(e){
   const file=e.target.files[0]; if(!file)return;
   try{
-    const blob=await compressImage(file,400,.85);
+    const blob=await compressImage(file,400,120);
     const url=await uploadImageToR2(blob);
     await sb.from('profiles').update({avatar_url:url}).eq('id',currentUser.id);
     currentProfile.avatar_url=url; $('profile-avatar-img').src=url;
@@ -426,7 +426,9 @@ async function handleAvatarChange(e){
 }
 
 /* ── IMAGE COMPRESS + UPLOAD ── */
-function compressImage(file,maxWidth=1600,quality=.8){
+// Compress toward a target max file size (default ~500KB) while keeping quality high.
+// Starts at high quality/large size; only steps down if the result exceeds targetKB.
+function compressImage(file, maxWidth=2000, targetKB=500){
   return new Promise((resolve,reject)=>{
     const reader=new FileReader();
     reader.onload=e=>{
@@ -434,9 +436,21 @@ function compressImage(file,maxWidth=1600,quality=.8){
       img.onload=()=>{
         const scale=Math.min(1,maxWidth/img.width);
         const canvas=document.createElement('canvas');
-        canvas.width=Math.round(img.width*scale); canvas.height=Math.round(img.height*scale);
+        canvas.width=Math.round(img.width*scale);
+        canvas.height=Math.round(img.height*scale);
         canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
-        canvas.toBlob(b=>b?resolve(b):reject(new Error('compress failed')),'image/webp',quality);
+        const targetBytes=targetKB*1024;
+        // Try qualities from high to lower until it fits under the target size.
+        const qualities=[0.92,0.86,0.8,0.74,0.68,0.6];
+        let idx=0;
+        const tryQ=()=>{
+          canvas.toBlob(blob=>{
+            if(!blob){ reject(new Error('compress failed')); return; }
+            if(blob.size<=targetBytes || idx>=qualities.length-1){ resolve(blob); return; }
+            idx++; tryQ();
+          },'image/webp',qualities[idx]);
+        };
+        tryQ();
       };
       img.onerror=()=>reject(new Error('image load failed'));
       img.src=e.target.result;
@@ -494,7 +508,7 @@ async function submitNewPost(){
   const btn=$('admin-submit-btn'); btn.disabled=true; st('admin-submit-txt','بارکردن...');
   try{
     const urls=[];
-    for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,1600,.8))); }
+    for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,2000,500))); }
     const discountEnd=new Date(Date.now()+days*86400000).toISOString();
     const { data:post, error:pErr } = await sb.from('posts').insert({location_id:marketId,title,detail,discount_days:days,discount_end:discountEnd,gallery_ratio:ratio,created_by:currentUser.id}).select().single();
     if(pErr)throw pErr;
