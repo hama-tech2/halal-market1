@@ -31,21 +31,21 @@ const REVIEWS = [
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · دووکانی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
     promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️',
-    aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'کوالێتی کە متمانەی پێدەکەیت', aboutHead:'حلال مارکێت', aboutPara:'دووکانێکی تازەیی و سەلامەتی خواردنە کە بە باشترین کوالێتی و نرخی گونجاو خزمەتی کڕیارەکانی هەولێر دەکات. هەموو هەفتەیەک داشکاندنی نوێ، بەرهەمی تازە، و خزمەتگوزاری متمانەپێکراو. لقی یەکەم لە بنصڵاوە، لقی دووەم لە بەحرکە.', statL1:'لق لە هەولێر', statL2:'حەلاڵ و سەلامەت', statL3:'کڕیاری دڵخۆش', ab1:'تازە و پاک', ab2:'کوالێتی باش', ab3:'متمانە و دڵنیایی',
+    aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
     locsTitle:'شوێنەکانمان', locsSub:'هەر دوو لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
     promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️',
-    aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', statL1:'فرعان في أربيل', statL2:'حلال وآمن', statL3:'عميل سعيد', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
+    aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'كلا الفرعين', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
     promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Ended', commented:'commented', notifNew:'New discount added! 🏷️',
-    aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', statL1:'Branches in Erbil', statL2:'Halal & Safe', statL3:'Happy Customers', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
+    aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'Both our branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
     workerTitle:'We Are Hiring', workerSub:'If you want to work with us, get in touch', wc1tag:'Branch One', wc1h:'Halal Market 1', wc1p:'If you want to work at Halal Market Branch One, send us a message or call us.', wc2tag:'Branch Two', wc2h:'Halal Market 2', wc2p:'If you want to work at Halal Market Branch Two, send us a message or call us.', waBtn:'Send Message',
@@ -245,7 +245,6 @@ function applyTranslations(){
   st('admin-newpost-txt',t.newPost); st('feed-empty',t.feedEmpty); st('collapse-fab-txt',t.seeLess);
   st('dn-home-t',t.navHome); st('dn-promo-t',t.navDisc); st('dn-locs-t',t.navLocs); st('dn-about-t',t.navAbout);
   st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead); st('about-para',t.aboutPara);
-  st('stat-l1',t.statL1); st('stat-l2',t.statL2); st('stat-l3',t.statL3);
   st('ab1',t.ab1); st('ab2',t.ab2); st('ab3',t.ab3);
   st('locs-title',t.locsTitle); st('locs-sub',t.locsSub); st('loc1-name',t.loc1); st('loc1-addr',t.loc1addr); st('loc2-name',t.loc2); st('loc2-addr',t.loc2addr); st('lopen1',t.open); st('lopen2',t.open);
   st('rev-title',t.revTitle); st('rev-sub',t.revSub); st('rev-count',t.revCount); st('rev-cta-lbl',t.revCtaLbl);
@@ -285,6 +284,15 @@ function buildReviews(){
 })();
 
 applyTranslations();
+
+// Trigger luxury About animations when the section enters view
+(function(){
+  const about=document.getElementById('about'); if(!about)return;
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ about.classList.add('about-visible'); obs.disconnect(); } });
+  },{threshold:.2});
+  obs.observe(about);
+})();
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -443,7 +451,7 @@ function compressImage(file, maxWidth=2000, targetKB=500){
         canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
         const targetBytes=targetKB*1024;
         // Try qualities from high to lower until it fits under the target size.
-        const qualities=[0.92,0.86,0.8,0.74,0.68,0.6];
+        const qualities=[0.95,0.9,0.85,0.8,0.75,0.7,0.62];
         let idx=0;
         const tryQ=()=>{
           canvas.toBlob(blob=>{
@@ -510,7 +518,7 @@ async function submitNewPost(){
   const btn=$('admin-submit-btn'); btn.disabled=true; st('admin-submit-txt','بارکردن...');
   try{
     const urls=[];
-    for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,2000,500))); }
+    for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,2200,700))); }
     const discountEnd=new Date(Date.now()+days*86400000).toISOString();
     const { data:post, error:pErr } = await sb.from('posts').insert({location_id:marketId,title,detail,discount_days:days,discount_end:discountEnd,gallery_ratio:ratio,created_by:currentUser.id}).select().single();
     if(pErr)throw pErr;
