@@ -61,6 +61,13 @@
 <div class="cur-ring" id="cur-ring" aria-hidden="true"></div>
 <div class="scroll-prog" id="scroll-prog" aria-hidden="true"></div>
 
+<!-- New-discount notification toast -->
+<div class="notif-toast" id="notif-toast" onclick="go('promo');hideNotifToast()">
+  <i class="fas fa-tags"></i>
+  <span id="notif-toast-txt">داشکاندنی نوێ زیادکرا!</span>
+  <i class="fas fa-chevron-left notif-toast-arrow"></i>
+</div>
+
 <!-- ══════════════════════════ HEADER ══════════════════════════ -->
 <header class="hdr" id="hdr">
   <div class="hdr-row">
@@ -95,6 +102,11 @@
         <button class="dn" id="dn-locs"  onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
         <button class="dn" id="dn-about" onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
       </nav>
+
+      <button class="notif-btn" id="notif-btn" onclick="go('promo')" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="notif-dot" id="notif-dot" style="display:none"></span>
+      </button>
 
       <button class="acc-btn" id="acc-btn" onclick="handleAccountClick()" aria-label="Account">
         <i class="fas fa-user" id="acc-icon"></i>
