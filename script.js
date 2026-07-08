@@ -274,6 +274,7 @@ function buildReviews(){
     entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
       const m=map[entry.target.id]; if(!m)return;
+      if(entry.target.id==='promo' && typeof markDiscountsSeen==='function'){ markDiscountsSeen(); }
       document.querySelectorAll('.mnb').forEach(b=>b.classList.remove('act'));
       document.querySelectorAll('.dn').forEach(b=>b.classList.remove('act'));
       if(m.mnb)$(m.mnb)?.classList.add('act');
@@ -540,14 +541,29 @@ async function loadFeed(){
   const dnDot=$('dn-hot-dot'), mnbDot=$('mnb-hot-dot'), notifDot=$('notif-dot');
   if(dnDot)dnDot.style.display=hasActive?'inline-block':'none';
   if(mnbDot)mnbDot.style.display=hasActive?'block':'none';
-  if(notifDot)notifDot.style.display=hasActive?'block':'none';
+  // Notification: only show dot/toast if there's an UNSEEN newest discount
+  const newestId = allPosts.length ? allPosts[0].id : null;
+  let lastSeen = null;
+  try{ lastSeen = localStorage.getItem('hm_lastSeenPost'); }catch(e){}
+  const hasUnseen = hasActive && newestId && newestId !== lastSeen;
 
-  // Show the notification toast once per visit if there's a fresh active discount
-  if(hasActive && !window.__notifShown){
+  if(notifDot)notifDot.style.display=hasUnseen?'block':'none';
+  if(dnDot)dnDot.style.display=hasUnseen?'inline-block':'none';
+  if(mnbDot)mnbDot.style.display=hasUnseen?'block':'none';
+
+  if(hasUnseen && !window.__notifShown){
     window.__notifShown=true;
     setTimeout(showNotifToast, 2500);
   }
   renderFeed();
+}
+
+// Call this when user views discounts — clears the unseen dot
+function markDiscountsSeen(){
+  const newestId = allPosts.length ? allPosts[0].id : null;
+  if(newestId){ try{ localStorage.setItem('hm_lastSeenPost', newestId); }catch(e){} }
+  ['notif-dot','dn-hot-dot','mnb-hot-dot'].forEach(id=>{ const e=$(id); if(e)e.style.display='none'; });
+  hideNotifToast();
 }
 
 let notifToastTimer=null;
@@ -718,7 +734,10 @@ async function openLightbox(postId){
   st('lb-title',lightboxPost.title); st('lb-detail',lightboxPost.detail||'');
   const del=$('lb-admin-delete'); if(del)del.style.display=isAdmin?'inline-flex':'none';
   renderLightboxImages(); renderLightboxLike(); await loadComments(postId);
-  $('lightbox-ov').classList.add('open');
+  const ov=$('lightbox-ov'); ov.classList.add('open');
+  // gentle zoom-in highlight on open
+  const box=ov.querySelector('.lightbox');
+  if(box){ box.classList.remove('lb-pop'); void box.offsetWidth; box.classList.add('lb-pop'); }
 }
 function closeLightbox(){ $('lightbox-ov').classList.remove('open'); lightboxPost=null }
 function renderLightboxImages(){
@@ -726,6 +745,16 @@ function renderLightboxImages(){
   const ratio=(lightboxPost.gallery_ratio||'1:1').replace(':','/');
   const box=$('lb-imgs'); box.parentElement.style.setProperty('--ratio',ratio);
   box.innerHTML=imgs.map((img,i)=>`<img src="${img.image_url}" class="${i===lightboxIndex?'active':''}">`).join('');
+  // Click left half = prev, right half = next
+  box.onclick=(e)=>{
+    if(imgs.length<2)return;
+    const r=box.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    const isRTL=document.documentElement.dir==='rtl';
+    const clickedRight = x > r.width/2;
+    // In RTL, right side = previous (natural reading direction)
+    if(clickedRight){ isRTL?lbPrev():lbNext(); } else { isRTL?lbNext():lbPrev(); }
+  };
 }
 function lbPrev(){ const imgs=$('lb-imgs').children; if(!imgs.length)return; lightboxIndex=(lightboxIndex-1+imgs.length)%imgs.length; Array.from(imgs).forEach((im,i)=>im.classList.toggle('active',i===lightboxIndex)); }
 function lbNext(){ const imgs=$('lb-imgs').children; if(!imgs.length)return; lightboxIndex=(lightboxIndex+1)%imgs.length; Array.from(imgs).forEach((im,i)=>im.classList.toggle('active',i===lightboxIndex)); }
