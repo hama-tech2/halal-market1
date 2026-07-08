@@ -294,14 +294,12 @@
         </div>
       </div>
 
-      <!-- RIGHT: framed image -->
+      <!-- RIGHT: transparent curved PNG (no rectangle frame — the image has its own gold curve) -->
       <div class="about-visual" data-reveal data-delay="0.15">
-        <div class="about-frame">
-          <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg.png?raw=true"
-               alt="Halal Market" class="about-photo" loading="lazy"
-               onerror="this.style.minHeight='260px';this.style.background='#111'">
-        </div>
         <div class="about-glow"></div>
+        <img src="https://github.com/hama-tech2/halal-market1/blob/main/about-halal-market.jpg..png?raw=true"
+             alt="حلال مارکێت" class="about-photo" loading="lazy"
+             onerror="this.style.minHeight='260px';this.style.opacity='.5'">
       </div>
     </div>
   </div>
@@ -470,6 +468,12 @@
 <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="fab-wa" id="fab-wa">
   <i class="fab fa-whatsapp"></i>
 </a>
+
+<!-- Floating collapse button (shows when discount feed is expanded) -->
+<button class="feed-collapse-fab" id="feed-collapse-fab" onclick="collapseFeed()" style="display:none">
+  <i class="fas fa-chevron-up"></i>
+  <span id="collapse-fab-txt">کەمتر پیشان بدە</span>
+</button>
 
 <!-- ══════════════════════════ AUTH MODAL ══════════════════════════ -->
 <div class="modal-ov" id="auth-modal-ov" onclick="if(event.target===this) closeAuthModal()">
