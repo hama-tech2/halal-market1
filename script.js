@@ -395,24 +395,37 @@ function setAuthMode(m){
 }
 async function submitAuth(){
   const email=$('auth-email').value.trim(), password=$('auth-password').value, err=$('auth-error');
+  const btn=$('auth-submit-btn');
+  err.style.color='var(--red)';
   err.textContent='';
+  if(!SERVER_READY){ err.textContent='سێرڤەر ئامادە نییە'; return; }
   if(!email||!password){err.textContent='ئیمەیل و وشەی نهێنی پێویستە';return}
   if(password.length<6){err.textContent='وشەی نهێنی دەبێت لانیکەم ٦ پیت بێت';return}
 
-  if(authMode==='login'){
-    const { error } = await sb.auth.signInWithPassword({email,password});
-    if(error){ err.textContent=error.message; return; }
-    closeAuthModal();
-  } else {
-    const { data, error } = await sb.auth.signUp({email,password});
-    if(error){ err.textContent=error.message; return; }
-    // If Supabase requires email confirmation, no session comes back yet.
-    if(data && data.user && !data.session){
-      err.style.color='var(--gold-lt)';
-      err.textContent='ئیمەیلێکمان بۆ ناردیت — تکایە ئیمەیلەکەت پشکنین بکە بۆ پشتڕاستکردنەوە.';
-      return;
+  if(btn) btn.disabled=true;
+  try{
+    if(authMode==='login'){
+      const { data, error } = await sb.auth.signInWithPassword({email,password});
+      console.log('LOGIN result:', { data, error });
+      if(error){ err.textContent=error.message; return; }
+      if(!data.session){ err.textContent='هیچ سێشنێک نەگەڕایەوە — ئیمەیل پشتڕاست نەکراوەتەوە'; return; }
+      closeAuthModal();
+    } else {
+      const { data, error } = await sb.auth.signUp({email,password});
+      console.log('SIGNUP result:', { data, error });
+      if(error){ err.textContent=error.message; return; }
+      if(data && data.user && !data.session){
+        err.style.color='var(--gold-lt)';
+        err.textContent='ئەکاونت دروستکرا. پێویستە ئیمەیلەکەت پشتڕاست بکەیتەوە — یان "Confirm email" لە Supabase بکوژێنەوە.';
+        return;
+      }
+      closeAuthModal();
     }
-    closeAuthModal();
+  }catch(e){
+    console.error('AUTH threw:', e);
+    err.textContent='هەڵە: '+(e.message||e);
+  }finally{
+    if(btn) btn.disabled=false;
   }
 }
 async function signInWithGoogle(){
