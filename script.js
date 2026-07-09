@@ -30,21 +30,21 @@ const REVIEWS = [
 /* ── TRANSLATIONS ── */
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · دووکانی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
-    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️',
+    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓',
     aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
     locsTitle:'شوێنەکانمان', locsSub:'هەر دوو لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
-    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️',
+    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓',
     aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'كلا الفرعين', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
-    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️',
+    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓',
     aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'Both our branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
@@ -133,13 +133,13 @@ if(GSAP_OK){
 
   document.querySelectorAll('[data-reveal]').forEach(el=>{
     const d=parseFloat(el.getAttribute('data-delay')||0);
-    gsap.to(el,{opacity:1,y:0,duration:.78,delay:d,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
+    gsap.to(el,{opacity:1,y:0,duration:1.4,delay:d,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
   });
   document.querySelectorAll('.loc-card').forEach((el,i)=>{
-    gsap.from(el,{y:46,opacity:0,duration:.72,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:'.locs-grid',start:'top 84%',toggleActions:'play none none none'}});
+    gsap.from(el,{y:46,opacity:0,duration:1.3,delay:i*.22,ease:'power3.out',scrollTrigger:{trigger:'.locs-grid',start:'top 84%',toggleActions:'play none none none'}});
   });
   document.querySelectorAll('.wc-card').forEach((el,i)=>{
-    gsap.from(el,{y:46,opacity:0,duration:.72,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:'.worker-grid',start:'top 84%',toggleActions:'play none none none'}});
+    gsap.from(el,{y:46,opacity:0,duration:1.3,delay:i*.22,ease:'power3.out',scrollTrigger:{trigger:'.worker-grid',start:'top 84%',toggleActions:'play none none none'}});
   });
   document.querySelectorAll('.sec-bar').forEach(bar=>{
     gsap.from(bar,{scaleY:0,transformOrigin:'top center',duration:.55,ease:'power3.out',scrollTrigger:{trigger:bar.closest('.sec-head'),start:'top 87%',toggleActions:'play none none none'}});
@@ -596,6 +596,15 @@ async function loadFeed(){
     setTimeout(showNotifToast, 2500);
   }
   renderFeed();
+
+  // If someone opened a shared link (?post=id), open that post
+  try{
+    const sharedId=new URL(window.location.href).searchParams.get('post');
+    if(sharedId && !window.__sharedOpened && allPosts.some(p=>p.id===sharedId)){
+      window.__sharedOpened=true;
+      setTimeout(()=>openLightbox(sharedId), 600);
+    }
+  }catch(e){}
 }
 
 // Call this when user views discounts — clears the unseen dot
@@ -695,9 +704,41 @@ function postCardHtml(p){
         <button class="pa-comment" onclick="event.stopPropagation();cardComment('${p.id}')">
           <i class="fas fa-comment"></i><span>${commentCount}</span>
         </button>
+        <button class="pa-share" onclick="event.stopPropagation();sharePost('${p.id}')" aria-label="Share">
+          <i class="fas fa-share-nodes"></i>
+        </button>
         <span class="pa-market">${escapeHtml(p.locations?.name||'')}</span>
       </div>
     </div></article>`;
+}
+
+// Share a post: native share sheet on mobile, copy link on desktop
+async function sharePost(postId){
+  const post=allPosts.find(p=>p.id===postId);
+  const url=`${window.location.origin}${window.location.pathname}?post=${postId}`;
+  const title=post?post.title:'حلال مارکێت';
+  const text=TX[lang].shareText||'سەیری ئەم داشکاندنە بکە!';
+  try{
+    if(navigator.share){
+      await navigator.share({ title, text, url });
+    }else{
+      await navigator.clipboard.writeText(url);
+      showShareToast();
+    }
+  }catch(e){
+    // user cancelled the share sheet — not an error
+    if(e && e.name!=='AbortError'){
+      try{ await navigator.clipboard.writeText(url); showShareToast(); }catch(_){}
+    }
+  }
+}
+let shareToastTimer=null;
+function showShareToast(){
+  const t=$('notif-toast'); if(!t)return;
+  st('notif-toast-txt', TX[lang].linkCopied||'لینک کۆپی کرا!');
+  t.classList.add('show');
+  clearTimeout(shareToastTimer);
+  shareToastTimer=setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
 // Like from card — login gate if guest
