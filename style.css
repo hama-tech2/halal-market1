@@ -307,10 +307,12 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .cd-timer.ended .cd-cell{background:var(--brd2);border-color:var(--brd2)}
 /* ACTIONS */
 .post-actions{display:flex;align-items:center;gap:7px;margin-top:10px;padding-top:10px;border-top:1px solid var(--brd2)}
-.pa-like,.pa-comment{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:var(--brd2);color:var(--mute);font-size:11.5px;font-weight:700;transition:all .18s;cursor:pointer}
+.pa-like,.pa-comment,.pa-share{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:var(--brd2);color:var(--mute);font-size:11.5px;font-weight:700;transition:all .18s;cursor:pointer}
 .pa-like:hover{color:var(--red);background:rgba(224,90,74,.1)}
 .pa-like.on{color:var(--red);background:rgba(224,90,74,.14)}
 .pa-comment:hover{color:var(--gold-lt);background:var(--gold-bg)}
+.pa-share:hover{color:var(--gold-lt);background:var(--gold-bg)}
+.pa-share:active{transform:scale(.94)}
 .pa-market{margin-inline-start:auto;font-size:10px;color:var(--mute);font-weight:600}
 .post-ended-badge{position:absolute;top:8px;inset-inline-start:8px;background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;z-index:3}
 .feed-more-wrap{display:flex;justify-content:center;margin-top:20px}
@@ -375,6 +377,9 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .lb-meta{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-size:12px}
 #lb-countdown{color:var(--gold);font-weight:700}
 .lb-like-btn{display:flex;align-items:center;gap:5px;color:var(--mute);font-weight:700}
+.lb-share-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--gold-bg);color:var(--gold);font-size:13px;transition:all .18s;cursor:pointer}
+.lb-share-btn:hover{background:rgba(212,168,67,.18);color:var(--gold-lt)}
+.lb-share-btn:active{transform:scale(.92)}
 .lb-like-btn.liked{color:var(--red)}
 .admin-delete-post-btn{margin-inline-start:auto;color:var(--red);font-size:14px}
 .lb-comments{display:flex;flex-direction:column;gap:12px;margin-bottom:14px;max-height:220px;overflow-y:auto}
@@ -424,13 +429,13 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 /* ── LUXURY STAGGERED FADE-INS (calm, slow, no bounce) ── */
 .lux-in{opacity:0;transform:translateY(18px)}
 .reveal-armed .lux-in{opacity:0;transform:translateY(18px)}
-.about-visible .lux-in{animation:luxFade 1.3s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
+.about-visible .lux-in{animation:luxFade 2.2s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
 @keyframes luxFade{to{opacity:1;transform:translateY(0)}}
 .lux-line{transform-origin:right center;transform:scaleX(0);opacity:0}
-.about-visible .lux-line{animation:luxLine 1.4s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
+.about-visible .lux-line{animation:luxLine 2.4s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
 @keyframes luxLine{to{transform:scaleX(1);opacity:1}}
 .lux-img{opacity:0;transform:scale(.96)}
-.about-visible .lux-img{animation:luxImg 1.6s cubic-bezier(.16,1,.3,1) forwards,aboutFloat 7s ease-in-out 1.6s infinite}
+.about-visible .lux-img{animation:luxImg 2.6s cubic-bezier(.16,1,.3,1) .5s forwards,aboutFloat 8s ease-in-out 3.1s infinite}
 @keyframes luxImg{to{opacity:1;transform:scale(1)}}
 @keyframes aboutFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1)}}
 
