@@ -380,6 +380,12 @@ function handleAccountClick(){
   currentUser?openProfileModal():openAuthModal();
 }
 function openAuthModal(){ $('auth-modal-ov').classList.add('open') }
+// Guest tries to type a comment → open login/signup immediately
+function requireAuth(e){
+  if(currentUser)return;
+  if(e){ e.preventDefault(); e.target.blur(); }
+  openAuthModal();
+}
 function closeAuthModal(){ $('auth-modal-ov').classList.remove('open'); $('auth-error').textContent='' }
 function setAuthMode(m){
   authMode=m;
@@ -391,11 +397,23 @@ async function submitAuth(){
   const email=$('auth-email').value.trim(), password=$('auth-password').value, err=$('auth-error');
   err.textContent='';
   if(!email||!password){err.textContent='ئیمەیل و وشەی نهێنی پێویستە';return}
-  const { error } = authMode==='login'
-    ? await sb.auth.signInWithPassword({email,password})
-    : await sb.auth.signUp({email,password});
-  if(error){err.textContent=error.message;return}
-  closeAuthModal();
+  if(password.length<6){err.textContent='وشەی نهێنی دەبێت لانیکەم ٦ پیت بێت';return}
+
+  if(authMode==='login'){
+    const { error } = await sb.auth.signInWithPassword({email,password});
+    if(error){ err.textContent=error.message; return; }
+    closeAuthModal();
+  } else {
+    const { data, error } = await sb.auth.signUp({email,password});
+    if(error){ err.textContent=error.message; return; }
+    // If Supabase requires email confirmation, no session comes back yet.
+    if(data && data.user && !data.session){
+      err.style.color='var(--gold-lt)';
+      err.textContent='ئیمەیلێکمان بۆ ناردیت — تکایە ئیمەیلەکەت پشکنین بکە بۆ پشتڕاستکردنەوە.';
+      return;
+    }
+    closeAuthModal();
+  }
 }
 async function signInWithGoogle(){
   if(!SERVER_READY){ alert('پەیوەندی سێرڤەر هێشتا ئامادە نییە'); return; }
