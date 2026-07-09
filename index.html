@@ -274,16 +274,16 @@
     <div class="about-wrap">
       <!-- LEFT: text -->
       <div class="about-content">
-        <span class="about-eyebrow lux-in" id="about-eyebrow" style="--d:.1s">تازەیی، کوالێتی و متمانە</span>
-        <h3 class="about-head lux-in" id="about-head" style="--d:.35s">حلال مارکێت</h3>
-        <div class="about-line lux-line" style="--d:.6s"><span class="al-dot"></span></div>
-        <p class="about-para lux-in" id="about-para" style="--d:.85s">
+        <span class="about-eyebrow lux-in" id="about-eyebrow" style="--d:.2s">تازەیی، کوالێتی و متمانە</span>
+        <h3 class="about-head lux-in" id="about-head" style="--d:.9s">حلال مارکێت</h3>
+        <div class="about-line lux-line" style="--d:1.6s"><span class="al-dot"></span></div>
+        <p class="about-para lux-in" id="about-para" style="--d:2.2s">
           لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.
         </p>
         <div class="about-badges">
-          <span class="ab-badge lux-in" style="--d:1.1s"><i class="fas fa-leaf"></i> <span id="ab1">تازە و پاک</span></span>
-          <span class="ab-badge lux-in" style="--d:1.25s"><i class="fas fa-star"></i> <span id="ab2">کوالێتی بەرز</span></span>
-          <span class="ab-badge lux-in" style="--d:1.4s"><i class="fas fa-shield-halved"></i> <span id="ab3">متمانە و دڵنیایی</span></span>
+          <span class="ab-badge lux-in" style="--d:3s"><i class="fas fa-leaf"></i> <span id="ab1">تازە و پاک</span></span>
+          <span class="ab-badge lux-in" style="--d:3.3s"><i class="fas fa-star"></i> <span id="ab2">کوالێتی بەرز</span></span>
+          <span class="ab-badge lux-in" style="--d:3.6s"><i class="fas fa-shield-halved"></i> <span id="ab3">متمانە و دڵنیایی</span></span>
         </div>
       </div>
 
@@ -557,6 +557,7 @@
       <div class="lb-meta">
         <span id="lb-countdown"></span>
         <button class="lb-like-btn" id="lb-like-btn" onclick="toggleLike()"><i class="fas fa-heart"></i> <span id="lb-like-count">0</span></button>
+        <button class="lb-share-btn" onclick="if(lightboxPost)sharePost(lightboxPost.id)" aria-label="Share"><i class="fas fa-share-nodes"></i></button>
         <button class="admin-delete-post-btn" id="lb-admin-delete" style="display:none" onclick="deleteCurrentPost()">
           <i class="fas fa-trash"></i>
         </button>
