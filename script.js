@@ -443,7 +443,7 @@ function openProfileModal(){
   $('profile-avatar-img').src=currentProfile?.avatar_url||('https://api.dicebear.com/7.x/thumbs/svg?seed='+currentUser.id);
   $('profile-name-input').value=currentProfile?.display_name||'';
   const changed=currentProfile?.name_changed_at?new Date(currentProfile.name_changed_at):null;
-  const daysLeft=changed?30-Math.floor((Date.now()-changed.getTime())/86400000):0;
+  const daysLeft=(isAdmin||!changed)?0:30-Math.floor((Date.now()-changed.getTime())/86400000);
   $('profile-name-note').textContent=daysLeft>0?`دەتوانیت ناو بگۆڕیت دوای ${daysLeft} ڕۆژ`:'';
   $('profile-modal-ov').classList.add('open');
 }
@@ -451,7 +451,8 @@ function closeProfileModal(){ $('profile-modal-ov').classList.remove('open') }
 async function saveProfileName(){
   const newName=$('profile-name-input').value.trim(); if(!newName)return;
   const changed=currentProfile?.name_changed_at?new Date(currentProfile.name_changed_at):null;
-  const daysLeft=changed?30-Math.floor((Date.now()-changed.getTime())/86400000):0;
+  // Admins can rename anytime; normal users once every 30 days
+  const daysLeft=(isAdmin||!changed)?0:30-Math.floor((Date.now()-changed.getTime())/86400000);
   if(daysLeft>0){alert(`دەتوانیت ناو بگۆڕیت دوای ${daysLeft} ڕۆژ`);return}
   const { error } = await sb.from('profiles').update({display_name:newName,name_changed_at:new Date().toISOString()}).eq('id',currentUser.id);
   if(!error){currentProfile.display_name=newName;currentProfile.name_changed_at=new Date().toISOString();closeProfileModal()}
