@@ -72,44 +72,10 @@
 <header class="hdr" id="hdr">
   <div class="hdr-row">
 
-    <!-- START group: hamburger (mobile) + left nav (desktop) -->
+    <!-- START group: hamburger (mobile) + controls (desktop) -->
     <div class="hdr-group hdr-group-start">
       <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
         <span></span><span></span><span></span>
-      </button>
-      <nav class="desk-nav" role="navigation">
-        <button class="dn act" id="dn-hero" onclick="go('hero')"><span id="dn-home-t">سەرەکی</span></button>
-        <button class="dn dn-promo-btn" id="dn-promo" onclick="go('promo')">
-          <span id="dn-promo-t">داشکاندن</span>
-          <span class="dn-hot-dot" id="dn-hot-dot" style="display:none"></span>
-        </button>
-      </nav>
-    </div>
-
-    <!-- CENTER: logo emblem -->
-    <button class="logo-btn" onclick="go('hero')" aria-label="Halal Market Home">
-      <img src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
-           alt="Halal Market" class="logo-img" onerror="this.style.display='none'">
-      <span class="logo-text">
-        <span class="logo-name">حلال مارکێت</span>
-        <span class="logo-sub">HALAL MARKET · ERBIL</span>
-      </span>
-    </button>
-
-    <!-- END group: right nav (desktop) + account + language -->
-    <div class="hdr-group hdr-group-end">
-      <nav class="desk-nav" role="navigation">
-        <button class="dn" id="dn-locs"  onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
-        <button class="dn" id="dn-about" onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
-      </nav>
-
-      <button class="notif-btn" id="notif-btn" onclick="markDiscountsSeen();go('promo')" aria-label="Notifications">
-        <i class="fas fa-bell"></i>
-        <span class="notif-dot" id="notif-dot" style="display:none"></span>
-      </button>
-
-      <button class="acc-btn" id="acc-btn" onclick="handleAccountClick()" aria-label="Account">
-        <i class="fas fa-user" id="acc-icon"></i>
       </button>
 
       <div class="lang-wrap" id="lang-wrap">
@@ -130,6 +96,38 @@
           </button>
         </div>
       </div>
+
+      <button class="acc-btn" id="acc-btn" onclick="handleAccountClick()" aria-label="Account">
+        <i class="fas fa-user" id="acc-icon"></i>
+      </button>
+
+      <button class="notif-btn" id="notif-btn" onclick="markDiscountsSeen();go('promo')" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="notif-dot" id="notif-dot" style="display:none"></span>
+      </button>
+    </div>
+
+    <!-- CENTER: logo emblem -->
+    <button class="logo-btn" onclick="go('hero')" aria-label="Halal Market Home">
+      <img src="https://raw.githubusercontent.com/hama-tech2/halal-market1/main/halal-market-logo2.png"
+           alt="Halal Market" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">
+        <span class="logo-name">حلال مارکێت</span>
+        <span class="logo-sub">HALAL MARKET · ERBIL</span>
+      </span>
+    </button>
+
+    <!-- END group: all 4 nav links together -->
+    <div class="hdr-group hdr-group-end">
+      <nav class="desk-nav" role="navigation">
+        <button class="dn act" id="dn-hero" onclick="go('hero')"><span id="dn-home-t">سەرەکی</span></button>
+        <button class="dn dn-promo-btn" id="dn-promo" onclick="go('promo')">
+          <span id="dn-promo-t">داشکاندن</span>
+          <span class="dn-hot-dot" id="dn-hot-dot" style="display:none"></span>
+        </button>
+        <button class="dn" id="dn-locs"  onclick="go('locs')">  <span id="dn-locs-t">شوێن</span></button>
+        <button class="dn" id="dn-about" onclick="go('about')"> <span id="dn-about-t">دەربارە</span></button>
+      </nav>
     </div>
 
   </div>
@@ -565,7 +563,7 @@
       </div>
       <div class="lb-comments" id="lb-comments"></div>
       <div class="lb-comment-input-wrap">
-        <input type="text" id="lb-comment-input" placeholder="کۆمێنتێک بنووسە...">
+        <input type="text" id="lb-comment-input" placeholder="کۆمێنتێک بنووسە..." onfocus="requireAuth(event)" onclick="requireAuth(event)">
         <button onclick="submitComment()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
