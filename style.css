@@ -404,7 +404,7 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .about-visual{order:2}
 .about-content{display:flex;flex-direction:column;direction:rtl;order:1}
 .about-eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:3px;color:var(--gold);margin-bottom:14px}
-.about-head{font-family:var(--f-dis);font-weight:900;font-size:clamp(30px,6vw,52px);line-height:1;margin-bottom:0;background:linear-gradient(120deg,var(--gold-lt) 0%,var(--gold) 50%,var(--gold-dk) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 20px rgba(212,168,67,.25))}
+.about-head{font-family:var(--f-dis);font-weight:900;font-size:clamp(30px,6vw,52px);line-height:1.25;padding-top:6px;margin-bottom:0;background:linear-gradient(120deg,var(--gold-lt) 0%,var(--gold) 50%,var(--gold-dk) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 20px rgba(212,168,67,.25))}
 .about-line{position:relative;height:1px;width:180px;margin:20px 0;background:linear-gradient(90deg,var(--gold),transparent)}
 .al-dot{position:absolute;top:50%;inset-inline-start:0;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:var(--gold-lt);box-shadow:0 0 10px var(--gold)}
 .about-para{font-family:var(--f-ara);font-size:14px;color:var(--soft);line-height:2.1;margin-bottom:24px;max-width:480px}
@@ -545,3 +545,24 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .google-btn svg{flex-shrink:0}
 .auth-divider{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:var(--mute);font-size:11px}
 .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--brd2)}
+
+/* ── MOBILE: compact location & worker cards (they were too big) ── */
+@media(max-width:560px){
+  .loc-card{padding:14px;border-radius:14px}
+  .loc-num{font-size:34px;top:12px;inset-inline-end:12px}
+  .loc-icon{width:38px;height:38px;font-size:14px}
+  .loc-name{font-size:15px}
+  .loc-info{gap:5px;margin:8px 0 12px}
+  .loc-row{font-size:10.5px}
+  .loc-btns{gap:4px}
+  .lbtn{padding:8px 4px;font-size:11px}
+  .locs-grid{gap:10px}
+
+  .wc-card{padding:14px;gap:8px;border-radius:14px}
+  .wc-emoji{font-size:22px}
+  .wc-name{font-size:15px}
+  .wc-body{font-size:11.5px;line-height:1.6}
+  .wc-tag{font-size:10px;padding:4px 10px}
+  .wc-btn{padding:10px;font-size:12px}
+  .worker-grid{gap:10px}
+}
