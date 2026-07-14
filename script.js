@@ -1,10 +1,13 @@
 /* ═══════════════════════════════════════════════
-   HALAL MARKET | script.js v7 — crash-safe + live server
+   HALAL MARKET | script.js v6 — crash-safe + live server
 ═══════════════════════════════════════════════ */
 
+/* GSAP is optional. If it fails to load, the site still works fully;
+   it just loses the entrance animations. Content is NEVER hidden without it. */
 const GSAP_OK = (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined');
 if (GSAP_OK) {
   gsap.registerPlugin(ScrollTrigger);
+  // Arm the hidden start-states only now that we know GSAP can un-hide them.
   document.documentElement.classList.add('reveal-armed');
 }
 
@@ -15,41 +18,6 @@ function go(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}
 function st(id, v){ const e=$(id); if(e) e.textContent=v }
 function escapeHtml(s){ return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
 
-/* ── KURDISH DAY NAMES ── */
-const KRD_DAYS = ['یەک شەممە','دوو شەممە','سێ شەممە','چوار شەممە','پێنجشەممە','هەینی','شەممە'];
-const ARB_DAYS = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-const ENG_DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-function getDayNames(date){
-  const d = date ? new Date(date) : new Date();
-  const i = d.getDay();
-  // Kurdish week starts with Sunday = یەک شەممە
-  return { ckb: KRD_DAYS[i], ar: ARB_DAYS[i], en: ENG_DAYS[i] };
-}
-function formatDateMulti(dateStr){
-  if(!dateStr) return '';
-  const d = new Date(dateStr);
-  const dn = getDayNames(d);
-  const day = d.getDate();
-  const months = {
-    ckb: ['کانوونی دووەم','شوبات','ئازار','نیسان','ئایار','حوزەیران','تەممووز','ئاب','ئەیلوول','تشرینی یەکەم','تشرینی دووەم','کانوونی یەکەم'],
-    ar: ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
-    en: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  };
-  const m = d.getMonth();
-  return {
-    ckb: `${dn.ckb}، ${day} ${months.ckb[m]}`,
-    ar: `${dn.ar}، ${day} ${months.ar[m]}`,
-    en: `${dn.en}, ${day} ${months.en[m]}`
-  };
-}
-
-/* ── SITE ENTRY TIME (for smart sliding) ── */
-const SITE_ENTRY = Date.now();
-function getSlideInterval(){
-  const elapsed = (Date.now() - SITE_ENTRY) / 1000;
-  return elapsed < 120 ? 20000 : 7000;
-}
-
 /* ── REVIEW DATA ── */
 const REVIEWS = [
   { name:'ئاکۆ عومەر', ckb:'کاڵاکانی تازە و نرخەکانی زۆر باشن. دووکانی پێویستم بۆ مانگی کرد!', ar:'المنتجات طازجة والأسعار ممتازة. أصبح متجري المفضل!', en:'Fresh products and great prices. My go-to store every week!', stars:5 },
@@ -59,56 +27,37 @@ const REVIEWS = [
   { name:'دلاور ئەحمەد', ckb:'هەموو ئەوەی پێویستمە لێرەدا دەدۆزمەوە. زۆر سوپاس.', ar:'أجد كل ما أحتاجه هنا. شكراً جزيلاً.', en:'I find everything I need here. Thank you so much.', stars:5 },
 ];
 
-/* ── TRANSLATIONS (UPDATED) ── */
+/* ── TRANSLATIONS ── */
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · بازاڕی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
-    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'بازاڕی ناوەندی حلال', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓',
-    soonBadge:'بەم زووانە', soonStarts:'دەستپێ دەکات لە',
-    aboutTitle:'دەربارەمان', aboutSub:'کێین و چییین', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
-    featQ:'کوالێتی', featD:'داشکاندن', featT:'متمانە',
-    featQD:'هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت', featDD:'هەموو هەفتەیەک ئۆفەری نوێ بۆ تۆ', featTD:'خزمەتگوزاری متمانەپێکراوی کوردستان',
-    featQT:'Quality First', featDT:'Weekly Offers', featTT:'Trusted Service',
-    locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت ١', loc2:'حلال مارکێت ٢', loc3:'بازاڕی ناوەندی حلال', loc4:'حلال مارکێت ٤', loc4Soon:'لە داهاتوودا', open:'کراوەیە',
-    revTitle:'نرخاندنی کڕیارەکان', revSub:'بۆچی کڕیارەکانمان حەزیان لێیە', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
-    workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'بازاڕی ناوەندی حلال', wc3p:'ئەگەر دەتەوێت کارمەندی بازاڕی ناوەندی حلال بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
-    copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي',
-    atypeD:'داشکاندن', atypeS:'بەم زووانە', dateHint:'ئەگەر بەروار دیاری بکەیت، ژمارەی ڕۆژ پشتگوێ دەخرێت',
-  },
+    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'حلال مارکێت ناوەند', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓',
+    aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
+    locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', loc3:'حلال مارکێت – لقی ناوەند', loc3addr:'هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی', loc4:'حلال مارکێت – لقی چوارەم', loc4addr:'جووت سایدی کۆنی بنەسڵاوە، تەنیشت بەنزینخانەی ئاسک', open:'کراوەیە',
+    revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
+    workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'حلال مارکێت ناوەند', wc3p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی ناوەند بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
+    copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
     promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓',
-    soonBadge:'قريباً', soonStarts:'يبدأ في',
-    aboutTitle:'عنّا', aboutSub:'من نحن وماذا نقدم', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
-    featQ:'الجودة', featD:'العروض', featT:'الثقة',
-    featQD:'كل منتج يتم اختياره بعناية فائقة', featDD:'عروض جديدة كل أسبوع لك', featTD:'خدمة موثوقة في كوردستان',
-    featQT:'Quality First', featDT:'Weekly Offers', featTT:'Trusted Service',
-    locsTitle:'فروعنا', locsSub:'فروعنا الأربعة', loc1:'هلال ماركت ١', loc2:'هلال ماركت ٢', loc3:'هلال ماركت الأوسط', loc4:'هلال ماركت ٤', loc4Soon:'قريباً', open:'مفتوح',
+    aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
+    locsTitle:'فروعنا', locsSub:'فروعنا الأربعة', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', loc3:'هلال ماركت – الفرع الأوسط', loc3addr:'أربيل، شارع 120 متر، قرب شقق كامەران', loc4:'هلال ماركت – الفرع الرابع', loc4addr:'جوت سايد القديم بنسلاوة، بجانب محطة وقود آسك', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
-    workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', wc3tag:'الفرع الأوسط', wc3h:'هلال ماركت الأوسط', wc3p:'إذا أردت العمل في هلال ماركت الأوسط، أرسل رسالة أو اتصل بنا.', wc4tag:'الفرع الرابع', wc4h:'هلال ماركت ٤', wc4p:'إذا أردت العمل في هلال ماركت الرابع، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
-    copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'EN',
-    atypeD:'عرض', atypeS:'قريباً', dateHint:'إذا حددت تاريخاً، سيتم تجاهل عدد الأيام',
-  },
+    workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', wc3tag:'الفرع الأوسط', wc3h:'هلال ماركت الأوسط', wc3p:'إذا أردت العمل في هلال ماركت الفرع الأوسط، أرسل رسالة أو اتصل بنا.', wc4tag:'الفرع الرابع', wc4h:'هلال ماركت ٤', wc4p:'إذا أردت العمل في هلال ماركت الفرع الرابع، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
+    copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
     promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓',
-    soonBadge:'Coming Soon', soonStarts:'Starts on',
-    aboutTitle:'About Us', aboutSub:'Who we are', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
-    featQ:'Quality', featD:'Discounts', featT:'Trust',
-    featQD:'Every product is selected with utmost care', featDD:'New offers every week for you', featTD:'Trusted service in Kurdistan',
-    featQT:'Quality First', featDT:'Weekly Offers', featTT:'Trusted Service',
-    locsTitle:'Our Locations', locsSub:'All four branches', loc1:'Halal Market 1', loc2:'Halal Market 2', loc3:'Halal Market Middle', loc4:'Halal Market 4', loc4Soon:'Coming Soon', open:'Open Now',
+    aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
+    locsTitle:'Our Locations', locsSub:'All four branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', loc3:'Halal Market – Middle Branch', loc3addr:'Erbil, 120m Street, near Kamaran Apartments', loc4:'Halal Market – Branch Four', loc4addr:'Old Binaslawa Two-Way, next to Ask Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
-    workerTitle:'We Are Hiring', workerSub:'If you want to work with us, get in touch', wc1tag:'Branch One', wc1h:'Halal Market 1', wc1p:'If you want to work at Halal Market Branch One, send us a message or call us.', wc2tag:'Branch Two', wc2h:'Halal Market 2', wc2p:'If you want to work at Halal Market Branch Two, send us a message or call us.', wc3tag:'Middle Branch', wc3h:'Halal Market Middle', wc3p:'If you want to work at Halal Market Middle, send us a message or call us.', wc4tag:'Branch Four', wc4h:'Halal Market 4', wc4p:'If you want to work at Halal Market Branch Four, send us a message or call us.', waBtn:'Send Message',
-    copy:'© 2025 Halal Market · Erbil', navHome:'Home', navDisc:'Deals', navLocs:'Locations', navWork:'Jobs', navAbout:'About', langLabel:'عربي',
-    atypeD:'Discount', atypeS:'Coming Soon', dateHint:'If you set a date, the day count will be ignored',
-  },
+    workerTitle:'We Are Hiring', workerSub:'If you want to work with us, get in touch', wc1tag:'Branch One', wc1h:'Halal Market 1', wc1p:'If you want to work at Halal Market Branch One, send us a message or call us.', wc2tag:'Branch Two', wc2h:'Halal Market 2', wc2p:'If you want to work at Halal Market Branch Two, send us a message or call us.', wc3tag:'Middle Branch', wc3h:'Halal Market Middle', wc3p:'If you want to work at Halal Market Middle Branch, send us a message or call us.', wc4tag:'Branch Four', wc4h:'Halal Market 4', wc4p:'If you want to work at Halal Market Branch Four, send us a message or call us.', waBtn:'Send Message',
+    copy:'© 2025 Halal Market · Erbil', navHome:'Home', navDisc:'Deals', navLocs:'Locations', navWork:'Jobs', navAbout:'About', langLabel:'EN' },
 };
 
 /* ── STATE ── */
 let lang='ckb', drwOpen=false, langOpen=false, liked=false;
-let adminPostType = 'discount'; // 'discount' or 'soon'
 
 /* ════ TICKER ════ */
 (function(){
-  const items=['حلال مارکێت · Halal Market','کاڵای تازە · Fresh Daily','باشترین نرخ · Best Prices','هەولێر · Erbil Kurdistan','٠٧٥٠ ٣٦٢ ٢٦٢٧','٠٧٥١ ٤٦٦ ٥٣٥٤'];
+  const items=['حلال مارکێت · Halal Market','کاڵای تازە · Fresh Daily','باشترین نرخ · Best Prices','هەولێر · Erbil Kurdistan','٠٧٥١ ٧٩٨ ٥٩٧١','٠٧٥٠ ٧٣٦ ٤٦١٥'];
   const track=$('ticker-track'); if(!track)return;
   let h=''; for(let i=0;i<4;i++) items.forEach(x=>{h+=`<span>${x}</span>`}); track.innerHTML=h;
 })();
@@ -139,7 +88,7 @@ let adminPostType = 'discount'; // 'discount' or 'soon'
   },{passive:true});
 })();
 
-/* ════ CUSTOM CURSOR ════ */
+/* ════ CUSTOM CURSOR (desktop, needs GSAP) ════ */
 (function(){
   if(window.innerWidth<=640||!GSAP_OK)return;
   const dot=$('cur-dot'),ring=$('cur-ring'); if(!dot||!ring)return;
@@ -147,7 +96,7 @@ let adminPostType = 'discount'; // 'discount' or 'soon'
   let rx=0,ry=0,mx=0,my=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;gsap.to(dot,{x:mx,y:my,duration:.08,ease:'none'})});
   (function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;gsap.set(ring,{x:rx,y:ry});requestAnimationFrame(raf)})();
-  document.querySelectorAll('a,button,.loc-card,.wc-card,.rev-card,.feat-card').forEach(el=>{
+  document.querySelectorAll('a,button,.loc-card,.wc-card,.rev-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
     el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
   });
@@ -171,7 +120,7 @@ let adminPostType = 'discount'; // 'discount' or 'soon'
   window.addEventListener('resize',init,{passive:true});
 })();
 
-/* ════ HERO ENTRANCE + SCROLL REVEAL ════ */
+/* ════ HERO ENTRANCE + SCROLL REVEAL (only if GSAP) ════ */
 if(GSAP_OK){
   const tl=gsap.timeline({delay:.2});
   tl.to('.hero-eyebrow',{opacity:1,y:0,duration:.7,ease:'power3.out'},0);
@@ -192,21 +141,19 @@ if(GSAP_OK){
   document.querySelectorAll('.wc-card').forEach((el,i)=>{
     gsap.from(el,{y:46,opacity:0,duration:1.3,delay:i*.22,ease:'power3.out',scrollTrigger:{trigger:'.worker-grid',start:'top 84%',toggleActions:'play none none none'}});
   });
-  document.querySelectorAll('.feat-card').forEach((el,i)=>{
-    gsap.from(el,{y:40,opacity:0,duration:1.2,delay:i*.18,ease:'power3.out',scrollTrigger:{trigger:'.features-grid',start:'top 85%',toggleActions:'play none none none'}});
-  });
   document.querySelectorAll('.sec-bar').forEach(bar=>{
     gsap.from(bar,{scaleY:0,transformOrigin:'top center',duration:.55,ease:'power3.out',scrollTrigger:{trigger:bar.closest('.sec-head'),start:'top 87%',toggleActions:'play none none none'}});
   });
   const scoreEl=$('rev-score-el');
   if(scoreEl){
     const proxy={val:0};
-    ScrollTrigger.create({trigger:'.rev-summary',start:'top 85%',once:true,onEnter(){gsap.to(proxy,{val:4.9,duration:1.8,ease:'power3.out',onUpdate(){scoreEl.textContent=proxy.val.toFixed(1)},onComplete:{scoreEl.textContent='4.9'}})}});
+    ScrollTrigger.create({trigger:'.rev-summary',start:'top 85%',once:true,onEnter(){gsap.to(proxy,{val:4.9,duration:1.8,ease:'power3.out',onUpdate(){scoreEl.textContent=proxy.val.toFixed(1)},onComplete(){scoreEl.textContent='4.9'}})}});
   }
   document.querySelectorAll('.rbf').forEach(bar=>{
     gsap.to(bar,{width:bar.getAttribute('data-w')+'%',duration:1.3,ease:'power3.out',scrollTrigger:{trigger:bar,start:'top 88%',toggleActions:'play none none none'}});
   });
 } else {
+  // No GSAP: still fill the review bars and score so nothing looks broken.
   const scoreEl=$('rev-score-el'); if(scoreEl)scoreEl.textContent='4.9';
   document.querySelectorAll('.rbf').forEach(bar=>{bar.style.width=bar.getAttribute('data-w')+'%'});
 }
@@ -282,24 +229,8 @@ function setLang(l){
   });
   langOpen=false; $('lang-menu').classList.remove('open'); $('lang-chev').classList.remove('open');
   applyTranslations();
-  splitAboutWords(); // re-split for new language text
   if(GSAP_OK)ScrollTrigger.refresh();
 }
-
-/* ════ WORD-BY-WORD ANIMATION ════ */
-function splitAboutWords(){
-  const para = $('about-para');
-  if(!para) return;
-  const t = TX[lang];
-  const text = t.aboutPara;
-  // Split by spaces, keeping punctuation attached
-  const words = text.split(/\s+/);
-  para.innerHTML = words.map((w,i) =>
-    `<span class="wbw" style="transition-delay:${2.2 + i * 0.08}s">${escapeHtml(w)} </span>`
-  ).join('');
-}
-// Run once on load
-splitAboutWords();
 
 /* ════ APPLY TRANSLATIONS ════ */
 function applyTranslations(){
@@ -313,36 +244,17 @@ function applyTranslations(){
   st('mtab-all',t.mAll); st('mtab-1',t.m1); st('mtab-2',t.m2); st('mtab-3',t.m3); st('mtab-4',t.m4);
   st('admin-newpost-txt',t.newPost); st('feed-empty',t.feedEmpty); st('collapse-fab-txt',t.seeLess);
   st('dn-home-t',t.navHome); st('dn-promo-t',t.navDisc); st('dn-locs-t',t.navLocs); st('dn-about-t',t.navAbout);
-  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead);
-  // aboutPara is handled by splitAboutWords()
+  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead); st('about-para',t.aboutPara);
   st('ab1',t.ab1); st('ab2',t.ab2); st('ab3',t.ab3);
-  // Features
-  st('feat-q-title',t.featQ); st('feat-d-title',t.featD); st('feat-t-title',t.featT);
-  const fqd=$('feat-q-desc'); if(fqd) fqd.innerHTML=`<p>${t.featQD}</p><span class="feat-hover-tag">${t.featQT}</span>`;
-  const fdd=$('feat-d-desc'); if(fdd) fdd.innerHTML=`<p>${t.featDD}</p><span class="feat-hover-tag">${t.featDT}</span>`;
-  const ftd=$('feat-t-desc'); if(ftd) ftd.innerHTML=`<p>${t.featTD}</p><span class="feat-hover-tag">${t.featTT}</span>`;
-  // Locations
-  st('locs-title',t.locsTitle); st('locs-sub',t.locsSub);
-  st('loc1-name',t.loc1); st('loc2-name',t.loc2); st('loc3-name',t.loc3); st('loc4-name',t.loc4);
-  st('loc4-soon',t.loc4Soon);
-  st('lopen1',t.open); st('lopen2',t.open); st('lopen3',t.open);
-  // Reviews
+  st('locs-title',t.locsTitle); st('locs-sub',t.locsSub); st('loc1-name',t.loc1); st('loc1-addr',t.loc1addr); st('loc2-name',t.loc2); st('loc2-addr',t.loc2addr); st('loc3-name',t.loc3); st('loc3-addr',t.loc3addr); st('loc4-name',t.loc4); st('loc4-addr',t.loc4addr); st('lopen1',t.open); st('lopen2',t.open); st('lopen3',t.open); st('lopen4',t.open);
   st('rev-title',t.revTitle); st('rev-sub',t.revSub); st('rev-count',t.revCount); st('rev-cta-lbl',t.revCtaLbl);
   if(!liked){st('like-text',t.likeText);st('like-count',t.likeCount)}
-  // Worker
   st('worker-title',t.workerTitle); st('worker-sub',t.workerSub);
-  st('wc1-tag',t.wc1tag); st('wc1-title',t.wc1h); st('wc1-txt',t.wc1p);
-  st('wc2-tag',t.wc2tag); st('wc2-title',t.wc2h); st('wc2-txt',t.wc2p);
-  st('wc3-tag',t.wc3tag); st('wc3-title',t.wc3h); st('wc3-txt',t.wc3p);
-  st('wc4-tag',t.wc4tag); st('wc4-title',t.wc4h); st('wc4-txt',t.wc4p);
-  st('wc1-wa',t.waBtn); st('wc2-wa',t.waBtn); st('wc3-wa',t.waBtn); st('wc4-wa',t.waBtn);
+  st('wc1-tag',t.wc1tag); st('wc1-title',t.wc1h); st('wc1-txt',t.wc1p); st('wc2-tag',t.wc2tag); st('wc2-title',t.wc2h); st('wc2-txt',t.wc2p); st('wc3-tag',t.wc3tag); st('wc3-title',t.wc3h); st('wc3-txt',t.wc3p); st('wc4-tag',t.wc4tag); st('wc4-title',t.wc4h); st('wc4-txt',t.wc4p); st('wc1-wa',t.waBtn); st('wc2-wa',t.waBtn); st('wc3-wa',t.waBtn); st('wc4-wa',t.waBtn);
   st('footer-copy',t.copy);
   st('mn-home',t.navHome); st('mn-disc',t.navDisc); st('mn-locs',t.navLocs); st('mn-about',t.navAbout);
   st('di-home',t.navHome); st('di-promo',t.navDisc); st('di-locs',t.navLocs); st('di-work',t.navWork); st('di-about',t.navAbout);
-  // Admin modal
-  st('atype-d-txt',t.atypeD); st('atype-s-txt',t.atypeS); st('admin-date-hint',t.dateHint);
   buildReviews();
-  renderFeed(); // re-render to update "coming soon" badges etc
 }
 
 /* ════ BUILD REVIEWS ════ */
@@ -368,12 +280,12 @@ function buildReviews(){
       if(m.dn)$(m.dn)?.classList.add('act');
     });
   },{threshold:.22});
-  ['hero','promo','about','locs','reviews','worker','features'].forEach(id=>{const el=$(id);if(el)obs.observe(el)});
+  ['hero','promo','about','locs','reviews','worker'].forEach(id=>{const el=$(id);if(el)obs.observe(el)});
 })();
 
 applyTranslations();
 
-// Trigger luxury About animations
+// Trigger luxury About animations when the section enters view
 (function(){
   const about=document.getElementById('about'); if(!about)return;
   const obs=new IntersectionObserver((entries)=>{
@@ -385,6 +297,7 @@ applyTranslations();
 
 /* ═══════════════════════════════════════════════════════════════
    LIVE SERVER — Supabase + Cloudflare R2
+   UPLOAD_WORKER_URL gets filled in during the Cloudflare step.
 ═══════════════════════════════════════════════════════════════ */
 const SUPABASE_URL = 'https://xtgdiugwygvijcurcnxb.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_RpfYTbJQOXWVzmKIWNro9Q_ATKgPEOA';
@@ -393,7 +306,12 @@ const UPLOAD_WORKER_URL = 'https://halal-market.mahmadmajed149.workers.dev';
 const SERVER_READY = (typeof window.supabase !== 'undefined');
 let sb = null;
 if (SERVER_READY) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-  auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true }
+  auth: {
+    flowType: 'pkce',
+    detectSessionInUrl: true,
+    persistSession: true,
+    autoRefreshToken: true
+  }
 });
 
 let currentUser=null, currentProfile=null, isAdmin=false, authMode='login';
@@ -404,26 +322,34 @@ const MAX_RAW_MB=15;
 /* ── AUTH ── */
 async function initAuth(){
   if(!SERVER_READY)return;
+
+  // Listen FIRST so we never miss the login event.
   sb.auth.onAuthStateChange((event,s)=>{
     if(s){ onLoggedIn(s, event); } else { onLoggedOut(); }
   });
+
+  // If Google just sent us back with ?code=..., exchange it for a real session.
   const url=new URL(window.location.href);
   if(url.searchParams.get('code')){
     try{ await sb.auth.exchangeCodeForSession(window.location.href); }
     catch(e){ console.warn('code exchange failed',e); }
-    history.replaceState(null,'',window.location.pathname);
+    history.replaceState(null,'',window.location.pathname); // clean the ?code=... after
   }
+
   const { data:{ session } } = await sb.auth.getSession();
   if(session) await onLoggedIn(session,'INITIAL');
 }
 
 async function onLoggedIn(session, event){
   currentUser=session.user;
+  // maybeSingle() returns null instead of throwing when the row isn't there yet.
   let profile=null;
   try{
     const res=await sb.from('profiles').select('*').eq('id',currentUser.id).maybeSingle();
     profile=res.data;
-  }catch(e){ console.warn('profile fetch failed',e); }
+  }catch(e){ console.warn('profile fetch failed, will retry',e); }
+
+  // Brand-new Google user: the trigger may not have finished. Wait briefly + retry once.
   if(!profile){
     await new Promise(r=>setTimeout(r,900));
     try{
@@ -432,10 +358,16 @@ async function onLoggedIn(session, event){
     }catch(e){ console.warn('profile retry failed',e); }
   }
   currentProfile=profile;
+
   try{ const { data:ok } = await sb.rpc('is_admin'); isAdmin=ok===true; }catch{ isAdmin=false; }
+
   updateAccountUI();
   loadFeed();
-  if(event==='SIGNED_IN') closeAuthModal();
+
+  // Just close the login popup. Do NOT auto-open profile — site opens normally.
+  if(event==='SIGNED_IN'){
+    closeAuthModal();
+  }
 }
 
 function onLoggedOut(){ currentUser=null;currentProfile=null;isAdmin=false;updateAccountUI();loadFeed(); }
@@ -448,6 +380,7 @@ function handleAccountClick(){
   currentUser?openProfileModal():openAuthModal();
 }
 function openAuthModal(){ $('auth-modal-ov').classList.add('open') }
+// Guest tries to type a comment → open login/signup immediately
 function requireAuth(e){
   if(currentUser)return;
   if(e){ e.preventDefault(); e.target.blur(); }
@@ -463,29 +396,37 @@ function setAuthMode(m){
 async function submitAuth(){
   const email=$('auth-email').value.trim(), password=$('auth-password').value, err=$('auth-error');
   const btn=$('auth-submit-btn');
-  err.style.color='var(--red)'; err.textContent='';
+  err.style.color='var(--red)';
+  err.textContent='';
   if(!SERVER_READY){ err.textContent='سێرڤەر ئامادە نییە'; return; }
   if(!email||!password){err.textContent='ئیمەیل و وشەی نهێنی پێویستە';return}
   if(password.length<6){err.textContent='وشەی نهێنی دەبێت لانیکەم ٦ پیت بێت';return}
+
   if(btn) btn.disabled=true;
   try{
     if(authMode==='login'){
       const { data, error } = await sb.auth.signInWithPassword({email,password});
+      console.log('LOGIN result:', { data, error });
       if(error){ err.textContent=error.message; return; }
-      if(!data.session){ err.textContent='هیچ سێشنێک نەگەڕایەوە'; return; }
+      if(!data.session){ err.textContent='هیچ سێشنێک نەگەڕایەوە — ئیمەیل پشتڕاست نەکراوەتەوە'; return; }
       closeAuthModal();
     } else {
       const { data, error } = await sb.auth.signUp({email,password});
+      console.log('SIGNUP result:', { data, error });
       if(error){ err.textContent=error.message; return; }
       if(data && data.user && !data.session){
         err.style.color='var(--gold-lt)';
-        err.textContent='ئەکاونت دروستکرا. پێویستە ئیمەیلەکەت پشتڕاست بکەیتەوە.';
+        err.textContent='ئەکاونت دروستکرا. پێویستە ئیمەیلەکەت پشتڕاست بکەیتەوە — یان "Confirm email" لە Supabase بکوژێنەوە.';
         return;
       }
       closeAuthModal();
     }
-  }catch(e){ err.textContent='هەڵە: '+(e.message||e); }
-  finally{ if(btn) btn.disabled=false; }
+  }catch(e){
+    console.error('AUTH threw:', e);
+    err.textContent='هەڵە: '+(e.message||e);
+  }finally{
+    if(btn) btn.disabled=false;
+  }
 }
 async function signInWithGoogle(){
   if(!SERVER_READY){ alert('پەیوەندی سێرڤەر هێشتا ئامادە نییە'); return; }
@@ -510,6 +451,7 @@ function closeProfileModal(){ $('profile-modal-ov').classList.remove('open') }
 async function saveProfileName(){
   const newName=$('profile-name-input').value.trim(); if(!newName)return;
   const changed=currentProfile?.name_changed_at?new Date(currentProfile.name_changed_at):null;
+  // Admins can rename anytime; normal users once every 30 days
   const daysLeft=(isAdmin||!changed)?0:30-Math.floor((Date.now()-changed.getTime())/86400000);
   if(daysLeft>0){alert(`دەتوانیت ناو بگۆڕیت دوای ${daysLeft} ڕۆژ`);return}
   const { error } = await sb.from('profiles').update({display_name:newName,name_changed_at:new Date().toISOString()}).eq('id',currentUser.id);
@@ -526,6 +468,8 @@ async function handleAvatarChange(e){
 }
 
 /* ── IMAGE COMPRESS + UPLOAD ── */
+// Compress toward a target max file size (default ~500KB) while keeping quality high.
+// Starts at high quality/large size; only steps down if the result exceeds targetKB.
 function compressImage(file, maxWidth=2000, targetKB=500){
   return new Promise((resolve,reject)=>{
     const reader=new FileReader();
@@ -538,6 +482,7 @@ function compressImage(file, maxWidth=2000, targetKB=500){
         canvas.height=Math.round(img.height*scale);
         canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
         const targetBytes=targetKB*1024;
+        // Try qualities from high to lower until it fits under the target size.
         const qualities=[0.95,0.9,0.85,0.8,0.75,0.7,0.62];
         let idx=0;
         const tryQ=()=>{
@@ -565,40 +510,18 @@ async function uploadImageToR2(blob){
   return (await res.json()).url;
 }
 
-/* ── ADMIN POST TYPE TOGGLE ── */
-function setAdminType(type){
-  adminPostType = type;
-  $('atype-discount').classList.toggle('active', type==='discount');
-  $('atype-soon').classList.toggle('active', type==='soon');
-  // Show/hide date sections
-  $('admin-date-section').style.display = type==='discount' ? '' : 'none';
-  $('admin-start-section').style.display = type==='soon' ? '' : 'none';
-  // Update modal title
-  const t = TX[lang];
-  st('admin-modal-title', type==='discount' ? t.newPost : t.atypeS);
-}
-
 /* ── ADMIN NEW POST ── */
 function openAdminModal(){
   selectedAdminFiles=[];
-  adminPostType='discount';
   $('admin-title').value=''; $('admin-detail').value=''; $('admin-days').value=7;
-  $('admin-end-date').value=''; $('admin-start-date').value='';
   $('admin-images').value=''; $('admin-image-preview').innerHTML=''; $('admin-error').textContent='';
-  // Reset ratio to 3:4 (default)
-  $('admin-ratio').value='3:4';
-  // Reset type
-  setAdminType('discount');
   $('admin-modal-ov').classList.add('open');
 }
 function closeAdminModal(){ $('admin-modal-ov').classList.remove('open') }
 function handleAdminImagesChange(e){
   const files=Array.from(e.target.files), err=$('admin-error'); err.textContent='';
   for(const f of files){
-    if(f.size>MAX_RAW_MB*1024*1024){ err.textContent=`وێنەی "${f.name}" زۆر گەورەیە.`; continue; }
-    // Prevent exact duplicate files
-    const isDup = selectedAdminFiles.some(ef => ef.name===f.name && ef.size===f.size);
-    if(isDup){ continue; }
+    if(f.size>MAX_RAW_MB*1024*1024){ err.textContent=`وێنەی "${f.name}" زۆر گەورەیە. تکایە بچووکتری بکەوە.`; continue; }
     selectedAdminFiles.push(f);
   }
   renderAdminPreview();
@@ -621,58 +544,19 @@ function moveAdminImage(i,dir){
 async function submitNewPost(){
   const err=$('admin-error');
   const title=$('admin-title').value.trim(), detail=$('admin-detail').value.trim();
-  const days=parseInt($('admin-days').value,10)||7;
-  const ratio=$('admin-ratio').value;
-  const marketId=parseInt($('admin-market').value,10);
-  const endDateVal=$('admin-end-date').value;
-  const startDateVal=$('admin-start-date').value;
-
-  // For "coming soon": title or detail is required. For discount: detail is required.
-  if(adminPostType==='discount' && !detail){err.textContent='وردەکاری پێویستە';return}
-  if(adminPostType==='soon' && !title && !detail){err.textContent='ناونیشان یان وردەکاری پێویستە';return}
+  const days=parseInt($('admin-days').value,10)||7, ratio=$('admin-ratio').value, marketId=parseInt($('admin-market').value,10);
+  if(!title){err.textContent='ناونیشان پێویستە';return}
   if(selectedAdminFiles.length===0){err.textContent='لانیکەم یەک وێنە پێویستە';return}
-
-  const btn=$('admin-submit-btn'); btn.disabled=true;
-  st('admin-submit-txt','بارکردن...');
-
+  const btn=$('admin-submit-btn'); btn.disabled=true; st('admin-submit-txt','بارکردن...');
   try{
     const urls=[];
-    for(const file of selectedAdminFiles){
-      urls.push(await uploadImageToR2(await compressImage(file,2200,700)));
-    }
-
-    // Calculate discount_end
-    let discountEnd;
-    if(adminPostType==='discount'){
-      if(endDateVal){
-        discountEnd = new Date(endDateVal + 'T23:59:59').toISOString();
-      } else {
-        discountEnd = new Date(Date.now() + days*86400000).toISOString();
-      }
-    } else {
-      // Coming soon: set far future end so it doesn't show as "ended"
-      discountEnd = new Date(Date.now() + 365*86400000).toISOString();
-    }
-
-    const insertData = {
-      location_id: marketId,
-      title: title || null,
-      detail: detail || null,
-      discount_days: adminPostType==='discount' ? days : 0,
-      discount_end: discountEnd,
-      gallery_ratio: ratio,
-      post_type: adminPostType,
-      start_date: adminPostType==='soon' && startDateVal ? startDateVal : null,
-      created_by: currentUser.id
-    };
-
-    const { data:post, error:pErr } = await sb.from('posts').insert(insertData).select().single();
-    if(pErr) throw pErr;
-
+    for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,2200,700))); }
+    const discountEnd=new Date(Date.now()+days*86400000).toISOString();
+    const { data:post, error:pErr } = await sb.from('posts').insert({location_id:marketId,title,detail,discount_days:days,discount_end:discountEnd,gallery_ratio:ratio,created_by:currentUser.id}).select().single();
+    if(pErr)throw pErr;
     const rows=urls.map((url,i)=>({post_id:post.id,image_url:url,sort_order:i}));
     const { error:iErr } = await sb.from('post_images').insert(rows);
-    if(iErr) throw iErr;
-
+    if(iErr)throw iErr;
     closeAdminModal(); loadFeed();
   }catch(e){ err.textContent='هەڵە: '+e.message; }
   finally{ btn.disabled=false; st('admin-submit-txt','بڵاوکردنەوە'); }
@@ -692,19 +576,17 @@ async function loadFeed(){
     .order('created_at',{ascending:false});
   if(error){console.error(error);return}
   const now=Date.now();
-  // Keep posts that haven't ended (discount) or all "soon" posts
-  allPosts=(posts||[]).filter(p=>{
-    if(p.post_type==='soon') return true;
-    return new Date(p.discount_end).getTime()+3*86400000>now;
-  });
-
-  const hasActive=allPosts.some(p=>p.post_type==='discount' && new Date(p.discount_end).getTime()>now);
+  allPosts=(posts||[]).filter(p=>new Date(p.discount_end).getTime()+3*86400000>now);
+  const hasActive=allPosts.some(p=>new Date(p.discount_end).getTime()>now);
+  const dnDot=$('dn-hot-dot'), mnbDot=$('mnb-hot-dot'), notifDot=$('notif-dot');
+  if(dnDot)dnDot.style.display=hasActive?'inline-block':'none';
+  if(mnbDot)mnbDot.style.display=hasActive?'block':'none';
+  // Notification: only show dot/toast if there's an UNSEEN newest discount
   const newestId = allPosts.length ? allPosts[0].id : null;
   let lastSeen = null;
   try{ lastSeen = localStorage.getItem('hm_lastSeenPost'); }catch(e){}
   const hasUnseen = hasActive && newestId && newestId !== lastSeen;
 
-  const dnDot=$('dn-hot-dot'), mnbDot=$('mnb-hot-dot'), notifDot=$('notif-dot');
   if(notifDot)notifDot.style.display=hasUnseen?'block':'none';
   if(dnDot)dnDot.style.display=hasUnseen?'inline-block':'none';
   if(mnbDot)mnbDot.style.display=hasUnseen?'block':'none';
@@ -715,6 +597,7 @@ async function loadFeed(){
   }
   renderFeed();
 
+  // If someone opened a shared link (?post=id), open that post
   try{
     const sharedId=new URL(window.location.href).searchParams.get('post');
     if(sharedId && !window.__sharedOpened && allPosts.some(p=>p.id===sharedId)){
@@ -724,6 +607,7 @@ async function loadFeed(){
   }catch(e){}
 }
 
+// Call this when user views discounts — clears the unseen dot
 function markDiscountsSeen(){
   const newestId = allPosts.length ? allPosts[0].id : null;
   if(newestId){ try{ localStorage.setItem('hm_lastSeenPost', newestId); }catch(e){} }
@@ -734,7 +618,7 @@ function markDiscountsSeen(){
 let notifToastTimer=null;
 function showNotifToast(){
   const t=$('notif-toast'); if(!t)return;
-  st('notif-toast-txt', TX[lang].notifNew);
+  st('notif-toast-txt', TX[lang].notifNew || 'داشکاندنی نوێ!');
   t.classList.add('show');
   clearTimeout(notifToastTimer);
   notifToastTimer=setTimeout(hideNotifToast, 4500);
@@ -769,65 +653,49 @@ function collapseFeed(){
   const fab=$('feed-collapse-fab'); if(fab)fab.style.display='none';
   document.getElementById('promo')?.scrollIntoView({behavior:'smooth'});
 }
-
 function postCardHtml(p){
   const imgs=(p.post_images||[]).slice().sort((a,b)=>a.sort_order-b.sort_order);
-  const isSoon = p.post_type === 'soon';
-  const ended = !isSoon && new Date(p.discount_end).getTime()<Date.now();
+  const ended=new Date(p.discount_end).getTime()<Date.now();
   const likeCount=(p.likes||[]).length;
   const cmts=(p.comments||[]);
   const commentCount=cmts.length;
   const likedByMe=currentUser&&(p.likes||[]).some(l=>l.user_id===currentUser.id);
 
-  // Aspect ratio from post or default 3:4
-  const ratio = (p.gallery_ratio || '3:4').replace(':','/');
-
-  // Images
+  // images (auto-slide if >1)
   const slides=imgs.length?imgs.map((im,i)=>`<img src="${im.image_url}" class="ps-img ${i===0?'active':''}" loading="lazy">`).join(''):'<div class="ps-noimg"><i class="fas fa-image"></i></div>';
   const dots=imgs.length>1?`<div class="ps-dots">${imgs.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join('')}</div>`:'';
 
-  // Badge: coming soon or ended
-  const badge = isSoon
-    ? `<div class="post-ended-badge" style="background:var(--gold)">${TX[lang].soonBadge}</div>`
-    : ended
-      ? `<div class="ended-overlay"><span class="ended-text">${TX[lang].cdEnded}</span></div>`
-      : '';
-
-  // Title
+  // TITLE: one line, inline see-more if long
   const title=escapeHtml(p.title||'');
   const titleLong=(p.title||'').length>30;
-  const titleHtml=title?`<div class="post-titrow"><h4 class="post-title">${title}</h4>${titleLong?`<button class="see-more-t" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${TX[lang].seeMore}</button>`:''}</div>`:'';
+  const titleHtml=`<h4 class="post-title">${title}</h4>${titleLong?`<button class="see-more-t" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${TX[lang].seeMore}</button>`:''}`;
 
-  // Detail
+  // DETAIL: one line, inline see-more if long
   const detail=escapeHtml(p.detail||'');
   const detailLong=(p.detail||'').length>42;
   const detailHtml=detail?`<div class="post-detrow"><p class="post-detail">${detail}</p>${detailLong?`<button class="see-more-d" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${TX[lang].seeMore}</button>`:''}</div>`:'';
 
-  // Countdown: only for discount type, not for "coming soon"
-  const cd = isSoon ? '' : `
-    <div class="cd-timer ${ended?'ended':''}" data-end="${p.discount_end}">
-      <div class="cd-cell"><span class="cd-num" data-u="d">00</span><span class="cd-lbl">${TX[lang].cdD}</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-cell"><span class="cd-num" data-u="h">00</span><span class="cd-lbl">${TX[lang].cdH}</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-cell"><span class="cd-num" data-u="m">00</span><span class="cd-lbl">${TX[lang].cdM}</span></div>
-      <span class="cd-sep">:</span>
-      <div class="cd-cell"><span class="cd-num" data-u="s">00</span><span class="cd-lbl">${TX[lang].cdS}</span></div>
-    </div>`;
+  // RED 4-CELL DIGITAL COUNTDOWN
+  const cd=`<div class="cd-timer ${ended?'ended':''}" data-end="${p.discount_end}">
+    <div class="cd-cell"><span class="cd-num" data-u="d">00</span><span class="cd-lbl">${TX[lang].cdD}</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-cell"><span class="cd-num" data-u="h">00</span><span class="cd-lbl">${TX[lang].cdH}</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-cell"><span class="cd-num" data-u="m">00</span><span class="cd-lbl">${TX[lang].cdM}</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-cell"><span class="cd-num" data-u="s">00</span><span class="cd-lbl">${TX[lang].cdS}</span></div>
+  </div>`;
 
-  // Start date for "coming soon"
-  const startDateHtml = isSoon && p.start_date
-    ? `<p style="font-size:11px;color:var(--gold-lt);margin:6px 0 0;font-weight:600">${TX[lang].soonStarts}: ${formatDateMulti(p.start_date)[lang]}</p>`
-    : '';
+  // (comment avatar stack removed — only counts shown in actions)
 
   return `<article class="post-card${ended?' is-ended':''}" onclick="openLightbox('${p.id}')">
-    <div class="post-cover" style="aspect-ratio:${ratio}" data-count="${imgs.length}">
-      ${slides}${dots}${badge}
+    <div class="post-cover" data-count="${imgs.length}">
+      ${slides}${dots}
+      ${ended?`<div class="ended-overlay"><span class="ended-text">${TX[lang].cdEnded}</span></div>`:''}
     </div>
     <div class="post-body">
-      ${titleHtml}
+      <div class="post-titrow">${titleHtml}</div>
       ${detailHtml}
-      ${startDateHtml}
       ${cd}
       <div class="post-actions">
         <button class="pa-like ${likedByMe?'on':''}" onclick="event.stopPropagation();cardLike('${p.id}')">
@@ -844,15 +712,21 @@ function postCardHtml(p){
     </div></article>`;
 }
 
+// Share a post: native share sheet on mobile, copy link on desktop
 async function sharePost(postId){
   const post=allPosts.find(p=>p.id===postId);
   const url=`${window.location.origin}${window.location.pathname}?post=${postId}`;
   const title=post?post.title:'حلال مارکێت';
-  const text=TX[lang].shareText;
+  const text=TX[lang].shareText||'سەیری ئەم داشکاندنە بکە!';
   try{
-    if(navigator.share){ await navigator.share({ title, text, url }); }
-    else{ await navigator.clipboard.writeText(url); showShareToast(); }
+    if(navigator.share){
+      await navigator.share({ title, text, url });
+    }else{
+      await navigator.clipboard.writeText(url);
+      showShareToast();
+    }
   }catch(e){
+    // user cancelled the share sheet — not an error
     if(e && e.name!=='AbortError'){
       try{ await navigator.clipboard.writeText(url); showShareToast(); }catch(_){}
     }
@@ -861,12 +735,13 @@ async function sharePost(postId){
 let shareToastTimer=null;
 function showShareToast(){
   const t=$('notif-toast'); if(!t)return;
-  st('notif-toast-txt', TX[lang].linkCopied);
+  st('notif-toast-txt', TX[lang].linkCopied||'لینک کۆپی کرا!');
   t.classList.add('show');
   clearTimeout(shareToastTimer);
   shareToastTimer=setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
+// Like from card — login gate if guest
 async function cardLike(postId){
   if(!currentUser){ openAuthModal(); return; }
   const post=allPosts.find(p=>p.id===postId); if(!post)return;
@@ -881,39 +756,27 @@ async function cardLike(postId){
   }
   renderFeed();
 }
+// Comment from card — login gate if guest, else open the post
 function cardComment(postId){
   if(!currentUser){ openAuthModal(); return; }
   openLightbox(postId);
 }
 
-/* ── SMART IMAGE SLIDING ── */
-/* First 2 minutes: 20 seconds. After 2 minutes: 7 seconds. */
+// Auto-slide card images every 4.5s
 let cardSlideTimer=null;
 function startCardSliders(){
-  if(cardSlideTimer) clearInterval(cardSlideTimer);
-  // Use dynamic interval
-  function doSlide(){
+  if(cardSlideTimer)clearInterval(cardSlideTimer);
+  cardSlideTimer=setInterval(()=>{
     document.querySelectorAll('.post-cover').forEach(cover=>{
       const imgs=cover.querySelectorAll('.ps-img');
       if(imgs.length<2)return;
-      // Only slide if at least the current image is loaded
-      let cur=0;
-      imgs.forEach((im,i)=>{ if(im.classList.contains('active'))cur=i; });
-      if(!imgs[cur].complete && imgs[cur].naturalWidth===0) return;
+      let cur=0; imgs.forEach((im,i)=>{ if(im.classList.contains('active'))cur=i; });
       const next=(cur+1)%imgs.length;
       imgs[cur].classList.remove('active'); imgs[next].classList.add('active');
       const dots=cover.querySelectorAll('.ps-dots span');
       if(dots.length){ dots[cur]?.classList.remove('on'); dots[next]?.classList.add('on'); }
     });
-  }
-  function scheduleNext(){
-    const interval = getSlideInterval();
-    cardSlideTimer = setTimeout(()=>{
-      doSlide();
-      scheduleNext(); // re-schedule with potentially new interval
-    }, interval);
-  }
-  scheduleNext();
+  },4500);
 }
 function startCountdowns(){
   if(countdownTimer)clearInterval(countdownTimer);
@@ -942,25 +805,28 @@ document.addEventListener('click',e=>{
 async function openLightbox(postId){
   lightboxPost=allPosts.find(p=>p.id===postId); if(!lightboxPost)return;
   lightboxIndex=0;
-  st('lb-title',lightboxPost.title||''); st('lb-detail',lightboxPost.detail||'');
+  st('lb-title',lightboxPost.title); st('lb-detail',lightboxPost.detail||'');
   const del=$('lb-admin-delete'); if(del)del.style.display=isAdmin?'inline-flex':'none';
   renderLightboxImages(); renderLightboxLike(); await loadComments(postId);
   const ov=$('lightbox-ov'); ov.classList.add('open');
+  // gentle zoom-in highlight on open
   const box=ov.querySelector('.lightbox');
   if(box){ box.classList.remove('lb-pop'); void box.offsetWidth; box.classList.add('lb-pop'); }
 }
 function closeLightbox(){ $('lightbox-ov').classList.remove('open'); lightboxPost=null }
 function renderLightboxImages(){
   const imgs=(lightboxPost.post_images||[]).slice().sort((a,b)=>a.sort_order-b.sort_order);
-  const ratio=(lightboxPost.gallery_ratio||'3:4').replace(':','/');
+  const ratio=(lightboxPost.gallery_ratio||'1:1').replace(':','/');
   const box=$('lb-imgs'); box.parentElement.style.setProperty('--ratio',ratio);
   box.innerHTML=imgs.map((img,i)=>`<img src="${img.image_url}" class="${i===lightboxIndex?'active':''}">`).join('');
+  // Click left half = prev, right half = next
   box.onclick=(e)=>{
     if(imgs.length<2)return;
     const r=box.getBoundingClientRect();
     const x=e.clientX-r.left;
     const isRTL=document.documentElement.dir==='rtl';
     const clickedRight = x > r.width/2;
+    // In RTL, right side = previous (natural reading direction)
     if(clickedRight){ isRTL?lbPrev():lbNext(); } else { isRTL?lbNext():lbPrev(); }
   };
 }
@@ -979,7 +845,7 @@ async function toggleLike(){
   renderLightboxLike();
 }
 
-/* ── COMMENTS (COMPLETE — was cut off in original) ── */
+/* ── COMMENTS ── */
 async function loadComments(postId){
   const { data, error } = await sb.from('comments').select('*, profiles(display_name,avatar_url)').eq('post_id',postId).order('created_at',{ascending:true});
   if(error){console.error(error);return}
@@ -989,74 +855,28 @@ function renderComments(comments){
   const top=comments.filter(c=>!c.parent_comment_id), replies=comments.filter(c=>c.parent_comment_id);
   $('lb-comments').innerHTML=top.map(c=>{
     const mine=replies.filter(r=>r.parent_comment_id===c.id);
-    const isOwn = currentUser && currentUser.id === c.user_id;
     return `<div class="comment-row">
       <img class="comment-av" src="${c.profiles?.avatar_url||('https://api.dicebear.com/7.x/thumbs/svg?seed='+c.user_id)}">
       <div class="comment-body">
-        <span class="comment-name ${isAdmin?'admin-tag':''}">${escapeHtml(c.profiles?.display_name||'بەکارهێنەر')}</span>
+        <span class="comment-name">${escapeHtml(c.profiles?.display_name||'بەکارهێنەر')}</span>
         <p class="comment-text">${escapeHtml(c.content)}</p>
         ${mine.map(r=>`<div class="comment-reply"><span class="comment-name admin-tag">ئەدمین</span><p class="comment-text">${escapeHtml(r.content)}</p></div>`).join('')}
         ${isAdmin?`<button class="comment-reply-btn" onclick="replyTo('${c.id}')">وەڵام</button>`:''}
-        ${(isAdmin||isOwn)?`<button class="comment-del-btn" onclick="deleteComment('${c.id}')">سڕینەوە</button>`:''}
+        ${(isAdmin||(currentUser&&currentUser.id===c.user_id))?`<button class="comment-del-btn" onclick="deleteComment('${c.id}')">سڕینەوە</button>`:''}
       </div></div>`;
   }).join('');
 }
 function replyTo(id){ replyingTo=id; const i=$('lb-comment-input'); i.placeholder='وەڵامدانەوە...'; i.focus(); }
 async function submitComment(){
   if(!currentUser){openAuthModal();return}
-  const input=$('lb-comment-input');
-  const text=input.value.trim();
-  if(!text) return;
-
-  const commentData = {
-    post_id: lightboxPost.id,
-    user_id: currentUser.id,
-    content: text
-  };
-
-  // If replying to a comment, set parent
-  if(replyingTo){
-    commentData.parent_comment_id = replyingTo;
-  }
-
-  try{
-    const { error } = await sb.from('comments').insert(commentData);
-    if(error) throw error;
-
-    // Reset
-    input.value = '';
-    replyingTo = null;
-    input.placeholder = 'کۆمێنتێک بنووسە...';
-
-    // Reload comments
-    await loadComments(lightboxPost.id);
-
-    // Update post's comment count in local data
-    if(!lightboxPost.comments) lightboxPost.comments = [];
-    lightboxPost.comments.push({
-      content: text,
-      user_id: currentUser.id,
-      created_at: new Date().toISOString()
-    });
-    renderFeed();
-  }catch(e){
-    console.error('Comment failed:', e);
-  }
+  const input=$('lb-comment-input'), content=input.value.trim(); if(!content)return;
+  const row={post_id:lightboxPost.id,user_id:currentUser.id,content};
+  if(replyingTo)row.parent_comment_id=replyingTo;
+  const { error } = await sb.from('comments').insert(row);
+  if(!error){input.value='';replyingTo=null;input.placeholder='کۆمێنتێک بنووسە...';await loadComments(lightboxPost.id)}
 }
-async function deleteComment(commentId){
-  if(!confirm('سڕینەوەی کۆمێنت؟')) return;
-  try{
-    await sb.from('comments').delete().eq('id', commentId);
-    await loadComments(lightboxPost.id);
-    // Update local count
-    if(lightboxPost.comments){
-      lightboxPost.comments = lightboxPost.comments.filter(c => c.id !== commentId);
-    }
-    renderFeed();
-  }catch(e){
-    console.error('Delete comment failed:', e);
-  }
-}
+async function deleteComment(id){ await sb.from('comments').delete().eq('id',id); await loadComments(lightboxPost.id); }
 
-/* ════ INIT ════ */
+/* ── START ── */
 initAuth();
+loadFeed();
