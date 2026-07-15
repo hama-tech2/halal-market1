@@ -155,6 +155,22 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .lo-ck{color:var(--gold);font-size:9px;opacity:0}
 .lang-opt.active .lo-ck{opacity:1}
 
+/* ── MOBILE HEADER (≤640): controls on the LEFT, bigger buttons, clean logo ── */
+@media(max-width:640px){
+  .hdr-row{justify-content:space-between;padding:9px 12px;gap:8px}
+  .hdr-group{display:flex;align-items:center;gap:6px}
+  .hdr-group-start{order:2}                 /* RTL: this lands on the LEFT */
+  .logo-btn{order:1;flex:0 1 auto;min-width:0;justify-content:flex-start;padding:2px;gap:7px}
+  .hdr-group-end{display:none}              /* desktop nav not used on mobile */
+  .ham{width:38px;height:38px;border-radius:11px;gap:4.2px}
+  .ham span{width:16px;height:1.7px}
+  .acc-btn,.notif-btn{width:38px;height:38px;font-size:15px;margin:0}
+  .lang-btn{height:38px;padding:0 11px;font-size:12px;border-radius:12px;gap:5px}
+  .lang-chev{font-size:8px}
+  .logo-img{width:40px;height:40px;border-radius:10px}
+  .logo-name{font-size:16px;overflow:hidden;text-overflow:ellipsis}
+  .logo-sub{display:none}                   /* hide tiny "HALAL MARKET · ERBIL" line */
+}
 @media(min-width:641px){
   .ham{display:none}
   .logo-img{display:block}  .logo-btn{flex:0;padding:3px 4px}
@@ -459,24 +475,23 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .about-visible .about-para .aw{animation:awIn .55s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--wd,0s)}
 @keyframes awIn{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── PREMIUM FEATURE CARDS (Quality / Discount / Trust) ── */
-.feat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-.feat-card{position:relative;background:linear-gradient(160deg,var(--card),rgba(212,168,67,.03));border:1px solid var(--brd);border-radius:14px;padding:16px 12px 14px;text-align:center;cursor:default;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s}
-.feat-card:hover{transform:translateY(-5px);border-color:rgba(212,168,67,.5);box-shadow:0 14px 34px rgba(0,0,0,.42),0 0 22px rgba(212,168,67,.12),inset 0 0 18px rgba(212,168,67,.05)}
-.feat-ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:var(--gold-bg);border:1px solid rgba(212,168,67,.2);color:var(--gold);font-size:15px;margin-bottom:9px;transition:transform .3s,box-shadow .3s}
-.feat-card:hover .feat-ic{transform:scale(1.08);box-shadow:0 0 18px rgba(212,168,67,.35)}
-.feat-title{font-family:var(--f-dis);font-weight:800;font-size:14px;color:var(--tx)}
-.feat-reveal{max-height:0;opacity:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:7px;transition:max-height .35s ease,opacity .35s ease,margin-top .35s ease;margin-top:0}
-.feat-card:hover .feat-reveal{max-height:90px;opacity:1;margin-top:9px}
-.feat-line{font-family:var(--f-ara);font-size:10.5px;color:var(--soft);line-height:1.5}
-.feat-pill{display:inline-block;padding:3px 11px;border-radius:20px;background:linear-gradient(135deg,var(--gold-lt),var(--gold));color:#190f00;font-size:9.5px;font-weight:800;letter-spacing:.3px}
-@media(max-width:520px){
-  .feat-row{gap:7px;margin-top:18px}
-  .feat-card{padding:13px 7px 11px;border-radius:12px}
-  .feat-ic{width:34px;height:34px;font-size:13px}
-  .feat-title{font-size:12.5px}
-  /* On touch (no hover) reveal is always shown so the tags aren't hidden */
-  .feat-reveal{max-height:90px;opacity:1;margin-top:8px}
+/* ── PREMIUM FEATURE CARDS (Quality / Discount / Trust) ──
+   Compact. Laptop: reveal on hover. Mobile: reveal on TAP (.open). */
+.feat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.feat-card{position:relative;background:linear-gradient(160deg,var(--card),rgba(212,168,67,.03));border:1px solid var(--brd);border-radius:12px;padding:12px 8px 11px;text-align:center;cursor:pointer;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s}
+.feat-card:hover,.feat-card.open{transform:translateY(-4px);border-color:rgba(212,168,67,.5);box-shadow:0 12px 28px rgba(0,0,0,.4),0 0 18px rgba(212,168,67,.12),inset 0 0 16px rgba(212,168,67,.05)}
+.feat-ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9px;background:var(--gold-bg);border:1px solid rgba(212,168,67,.2);color:var(--gold);font-size:13px;margin-bottom:7px;transition:transform .3s,box-shadow .3s}
+.feat-card:hover .feat-ic,.feat-card.open .feat-ic{transform:scale(1.08);box-shadow:0 0 16px rgba(212,168,67,.35)}
+.feat-title{font-family:var(--f-dis);font-weight:800;font-size:12.5px;color:var(--tx)}
+.feat-reveal{max-height:0;opacity:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:6px;transition:max-height .35s ease,opacity .35s ease,margin-top .35s ease;margin-top:0}
+.feat-card:hover .feat-reveal,.feat-card.open .feat-reveal{max-height:80px;opacity:1;margin-top:7px}
+.feat-line{font-family:var(--f-ara);font-size:9.5px;color:var(--soft);line-height:1.45}
+.feat-pill{display:inline-block;padding:2px 9px;border-radius:20px;background:linear-gradient(135deg,var(--gold-lt),var(--gold));color:#190f00;font-size:8.5px;font-weight:800;letter-spacing:.2px}
+@media(min-width:641px){
+  .feat-row{gap:10px;margin-top:22px}
+  .feat-card{padding:15px 11px 13px;border-radius:14px}
+  .feat-ic{width:36px;height:36px;font-size:14px;margin-bottom:8px}
+  .feat-title{font-size:13.5px}
   .feat-line{font-size:10px}
 }
 
@@ -540,21 +555,35 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .like-btn.liked .like-count{color:rgba(25,15,0,.65);opacity:1}
 
 /* ═══════════════════════════════════════════ JOBS ═══════════════════════════════════════════ */
-.worker-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;direction:ltr}
-@media(max-width:460px){.worker-grid{grid-template-columns:1fr}}
-.wc-card{background:var(--card);border:1px solid var(--brd);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:11px;position:relative;overflow:hidden;transition:border-color .22s,box-shadow .22s,transform .22s}
-.wc-card:hover{border-color:rgba(212,168,67,.26);box-shadow:0 12px 34px rgba(0,0,0,.46);transform:translateY(-3px)}
+/* Laptop: 2×2 grid (slides collapse via display:contents). Mobile: swipe carousel. */
+.worker-slider{display:grid;grid-template-columns:1fr 1fr;gap:14px;direction:ltr}
+.worker-slide{display:contents}
+.worker-dots{display:none}
+.wc-card{background:linear-gradient(165deg,var(--card),rgba(212,168,67,.03));border:1px solid var(--brd);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:11px;position:relative;overflow:hidden;transition:border-color .22s,box-shadow .22s,transform .22s}
+.wc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-lt),var(--gold));opacity:0;transition:opacity .28s}
+.wc-card:hover{border-color:rgba(212,168,67,.3);box-shadow:0 14px 36px rgba(0,0,0,.48);transform:translateY(-4px)}
+.wc-card:hover::before{opacity:1}
 .wc-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;background:var(--gold-bg);border:1px solid rgba(212,168,67,.18);font-size:9.5px;font-weight:700;color:var(--gold);width:fit-content}
-.wc-emoji{font-size:26px;margin-top:2px}
+/* Gold icon badge (premium, replaces the flat emoji) */
+.wc-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(150deg,var(--gold-bg),rgba(212,168,67,.14));border:1px solid rgba(212,168,67,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:19px;margin-top:2px;box-shadow:inset 0 0 14px rgba(212,168,67,.08)}
 .wc-name{font-family:var(--f-dis);font-weight:800;font-size:14.5px;line-height:1.3}
 .wc-body{font-family:var(--f-ara);font-size:11.5px;color:var(--soft);line-height:1.8;flex:1}
-.wc-actions{display:flex;flex-direction:column;gap:6px;margin-top:2px}
-.wc-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 11px;border-radius:9px;font-size:11.5px;font-weight:700;transition:all .16s;text-decoration:none;font-family:var(--f-bod)}
+.wc-actions{display:flex;flex-direction:column;gap:7px;margin-top:2px}
+.wc-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 11px;border-radius:10px;font-size:12px;font-weight:800;transition:all .16s;text-decoration:none;font-family:var(--f-bod)}
 .wc-btn:hover{transform:translateY(-2px)}
-.wc-wa{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:var(--wa)}
-.wc-wa:hover{background:rgba(37,211,102,.2)}
-.wc-tel{background:var(--gold-bg);border:1px solid rgba(212,168,67,.2);color:var(--gold)}
-.wc-tel:hover{background:rgba(212,168,67,.14)}
+.wc-wa{background:linear-gradient(135deg,rgba(37,211,102,.18),rgba(37,211,102,.1));border:1px solid rgba(37,211,102,.32);color:var(--wa)}
+.wc-wa:hover{background:rgba(37,211,102,.24)}
+.wc-tel{background:linear-gradient(135deg,var(--gold-bg),rgba(212,168,67,.12));border:1px solid rgba(212,168,67,.3);color:var(--gold-lt)}
+.wc-tel:hover{background:rgba(212,168,67,.18)}
+/* Mobile carousel: 2 cards per slide, swipe between slides + dots */
+@media(max-width:640px){
+  .worker-slider{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;-ms-overflow-style:none;scrollbar-width:none}
+  .worker-slider::-webkit-scrollbar{display:none}
+  .worker-slide{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:0 0 100%;scroll-snap-align:center;padding:2px 1px}
+  .worker-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+  .wdot{width:8px;height:8px;border-radius:50%;background:var(--brd2);border:1px solid var(--brd);padding:0;cursor:pointer;transition:all .25s}
+  .wdot.on{background:linear-gradient(135deg,var(--gold-lt),var(--gold));border-color:transparent;width:22px;border-radius:5px}
+}
 
 /* ═══════════════════════════════════════════ FOOTER ═══════════════════════════════════════════ */
 .footer{background:var(--surface);border-top:1px solid var(--brd);padding:34px 20px 62px;position:relative}
@@ -601,11 +630,11 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
   .lbtn{padding:8px 4px;font-size:11px}
   .locs-grid{gap:10px}
 
-  .wc-card{padding:14px;gap:8px;border-radius:14px}
-  .wc-emoji{font-size:22px}
-  .wc-name{font-size:15px}
-  .wc-body{font-size:11.5px;line-height:1.6}
-  .wc-tag{font-size:10px;padding:4px 10px}
-  .wc-btn{padding:10px;font-size:12px}
-  .worker-grid{gap:10px}
+  /* Worker cards are 2-per-slide on mobile — keep them compact */
+  .wc-card{padding:13px 12px;gap:8px;border-radius:14px}
+  .wc-icon{width:38px;height:38px;font-size:16px;border-radius:11px}
+  .wc-name{font-size:13px}
+  .wc-body{font-size:10.5px;line-height:1.55}
+  .wc-tag{font-size:9px;padding:3px 8px}
+  .wc-btn{padding:10px 6px;font-size:11px;gap:5px}
 }
