@@ -29,21 +29,21 @@ const REVIEWS = [
 
 /* ── TRANSLATIONS ── */
 const TX = {
-  ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · بازاڕی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
+  ckb:{ eyebrow:'هەولێر · کوردستان', sub:'هەموو پێداویستییەکانی ماڵ و ژیان بە باشترین نرخ، کوالێتی بەرز و داشکاندنی هەفتانە لە حلال مارکێت.', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
     promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'بازاڕی ناوەندی حلال', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓', soonBadge:'بەم زووانە', soonStart:'دەستپێدەکات', feat1t:'کوالێتی', feat1l:'هەڵبژاردەی وردی بەرهەم', feat1p:'تازە هەموو ڕۆژێک', feat2t:'داشکاندن', feat2l:'ئۆفەری نوێ هەموو هەفتەیەک', feat2p:'هەفتانە', feat3t:'متمانە', feat3l:'خزمەتگوزاری دڵنیا و پاک', feat3p:'متمانەپێکراو',
     aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
     locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', loc3:'بازاڕی ناوەندی حلال', loc3addr:'هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی', loc4:'حلال مارکێت – لقی چوارەم', loc4addr:'جووت سایدی کۆنی بنەسڵاوە، تەنیشت بەنزینخانەی ئاسک', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'بازاڕی ناوەندی حلال', wc3p:'ئەگەر دەتەوێت کارمەندی بازاڕی ناوەندی حلال بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
-  ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
+  ar:{ eyebrow:'أربيل · كوردستان', sub:'كل مستلزمات المنزل والحياة بأفضل الأسعار، جودة عالية وعروض أسبوعية في حلال ماركت.', btn1:'العروض', btn2:'فروعنا',
     promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓', soonBadge:'قريباً', soonStart:'يبدأ', feat1t:'الجودة', feat1l:'اختيار دقيق للمنتجات', feat1p:'طازج كل يوم', feat2t:'العروض', feat2l:'عروض جديدة كل أسبوع', feat2p:'أسبوعياً', feat3t:'الثقة', feat3l:'خدمة موثوقة ونظيفة', feat3p:'موثوق',
     aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'فروعنا الأربعة', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', loc3:'هلال ماركت – الفرع الأوسط', loc3addr:'أربيل، شارع 120 متر، قرب شقق كامەران', loc4:'هلال ماركت – الفرع الرابع', loc4addr:'جوت سايد القديم بنسلاوة، بجانب محطة وقود آسك', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', wc3tag:'الفرع الأوسط', wc3h:'هلال ماركت الأوسط', wc3p:'إذا أردت العمل في هلال ماركت الفرع الأوسط، أرسل رسالة أو اتصل بنا.', wc4tag:'الفرع الرابع', wc4h:'هلال ماركت ٤', wc4p:'إذا أردت العمل في هلال ماركت الفرع الرابع، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
-  en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
+  en:{ eyebrow:'Erbil · Kurdistan', sub:'All your home and daily essentials at the best prices, high quality and weekly discounts at Halal Market.', btn1:'View Deals', btn2:'Our Locations',
     promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓', soonBadge:'Coming Soon', soonStart:'Starts', feat1t:'Quality', feat1l:'Carefully selected products', feat1p:'Fresh Daily', feat2t:'Discounts', feat2l:'New offers every week', feat2p:'Weekly', feat3t:'Trust', feat3l:'Reliable & clean service', feat3p:'Trusted',
     aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'All four branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', loc3:'Halal Market – Middle Branch', loc3addr:'Erbil, 120m Street, near Kamaran Apartments', loc4:'Halal Market – Branch Four', loc4addr:'Old Binaslawa Two-Way, next to Ask Gas Station', open:'Open Now',
@@ -151,23 +151,24 @@ if(GSAP_OK){
     const d=parseFloat(el.getAttribute('data-delay')||0);
     gsap.to(el,{opacity:1,y:0,duration:1.4,delay:d,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
   });
-  // Location cards: reveal ONE BY ONE, then stagger the buttons inside each card
-  // in DOM order (Facebook → location → WhatsApp → phone).
-  document.querySelectorAll('.loc-card').forEach((el,i)=>{
-    const base=i*.18;
-    gsap.from(el,{y:40,opacity:0,duration:1,delay:base,ease:'power3.out',
-      scrollTrigger:{trigger:'.locs-grid',start:'top 85%',once:true}});
-    gsap.from(el.querySelectorAll('.loc-btns .lbtn'),{y:14,opacity:0,duration:.5,stagger:.09,delay:base+.45,ease:'power2.out',
-      scrollTrigger:{trigger:'.locs-grid',start:'top 85%',once:true}});
-  });
-  // Worker cards: same one-by-one reveal + staggered action buttons.
-  document.querySelectorAll('.wc-card').forEach((el,i)=>{
-    const base=i*.18;
-    gsap.from(el,{y:40,opacity:0,duration:1,delay:base,ease:'power3.out',
-      scrollTrigger:{trigger:'.worker-grid',start:'top 85%',once:true}});
-    gsap.from(el.querySelectorAll('.wc-actions .wc-btn'),{y:14,opacity:0,duration:.5,stagger:.1,delay:base+.45,ease:'power2.out',
-      scrollTrigger:{trigger:'.worker-grid',start:'top 85%',once:true}});
-  });
+  // Cards reveal ONE BY ONE, then the buttons inside stagger in DOM order.
+  // SAFE PATTERN: cards/buttons stay fully visible by default. We only run the
+  // gsap.from entrance INSIDE onEnter, so if the trigger never fires nothing is
+  // ever left hidden (this is what previously hid the worker buttons).
+  function revealCardsOneByOne(cardSel, gridSel, btnSel){
+    const cards=document.querySelectorAll(cardSel);
+    if(!cards.length)return;
+    cards.forEach((el,i)=>{
+      const base=i*.16;
+      const btns=el.querySelectorAll(btnSel);
+      ScrollTrigger.create({trigger:gridSel,start:'top 85%',once:true,onEnter(){
+        gsap.from(el,{y:38,opacity:0,duration:.9,delay:base,ease:'power3.out'});
+        if(btns.length) gsap.from(btns,{y:12,opacity:0,duration:.45,stagger:.09,delay:base+.4,ease:'power2.out'});
+      }});
+    });
+  }
+  revealCardsOneByOne('.loc-card','.locs-grid','.loc-btns .lbtn');
+  revealCardsOneByOne('.wc-card','.worker-grid','.wc-actions .wc-btn');
   document.querySelectorAll('.sec-bar').forEach(bar=>{
     gsap.from(bar,{scaleY:0,transformOrigin:'top center',duration:.55,ease:'power3.out',scrollTrigger:{trigger:bar.closest('.sec-head'),start:'top 87%',toggleActions:'play none none none'}});
   });
@@ -300,6 +301,41 @@ function renderAboutPara(text){
     `<span class="aw" style="--wd:${(i*0.08).toFixed(2)}s">${escapeHtml(w)}</span>`
   ).join(' ');
 }
+
+/* ════ FEATURE CARDS — tap to reveal on touch (hover still works on laptop) ════ */
+(function(){
+  const cards=document.querySelectorAll('.feat-card');
+  if(!cards.length)return;
+  cards.forEach(card=>{
+    card.addEventListener('click',()=>{
+      const wasOpen=card.classList.contains('open');
+      cards.forEach(c=>c.classList.remove('open'));
+      if(!wasOpen)card.classList.add('open');
+    });
+  });
+})();
+
+/* ════ WORKER CAROUSEL (mobile) — swipe between the two slides ════ */
+function workerSlideTo(i){
+  const s=$('worker-slider'); const slide=s&&s.children[i];
+  if(slide)slide.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+}
+(function(){
+  const s=$('worker-slider'); if(!s)return;
+  const slides=Array.from(s.querySelectorAll('.worker-slide'));
+  const dots=Array.from(document.querySelectorAll('#worker-dots .wdot'));
+  if(!dots.length)return;
+  // Highlight the dot for whichever slide is most in view (RTL-safe via IO).
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>=0.5){
+        const idx=slides.indexOf(e.target);
+        dots.forEach((d,k)=>d.classList.toggle('on',k===idx));
+      }
+    });
+  },{root:s,threshold:[0.5]});
+  slides.forEach(sl=>io.observe(sl));
+})();
 
 /* ════ BUILD REVIEWS ════ */
 function buildReviews(){
