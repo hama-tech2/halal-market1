@@ -30,27 +30,43 @@ const REVIEWS = [
 /* ── TRANSLATIONS ── */
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'تازەترین کاڵا · باشترین نرخ · بازاڕی متمانەپێکراوی کوردستان', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
-    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'حلال مارکێت ناوەند', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓',
+    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'بازاڕی ناوەندی حلال', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓', soonBadge:'بەم زووانە', soonStart:'دەستپێدەکات', feat1t:'کوالێتی', feat1l:'هەڵبژاردەی وردی بەرهەم', feat1p:'تازە هەموو ڕۆژێک', feat2t:'داشکاندن', feat2l:'ئۆفەری نوێ هەموو هەفتەیەک', feat2p:'هەفتانە', feat3t:'متمانە', feat3l:'خزمەتگوزاری دڵنیا و پاک', feat3p:'متمانەپێکراو',
     aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
-    locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', loc3:'حلال مارکێت – لقی ناوەند', loc3addr:'هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی', loc4:'حلال مارکێت – لقی چوارەم', loc4addr:'جووت سایدی کۆنی بنەسڵاوە، تەنیشت بەنزینخانەی ئاسک', open:'کراوەیە',
+    locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', loc3:'بازاڕی ناوەندی حلال', loc3addr:'هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی', loc4:'حلال مارکێت – لقی چوارەم', loc4addr:'جووت سایدی کۆنی بنەسڵاوە، تەنیشت بەنزینخانەی ئاسک', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
-    workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'حلال مارکێت ناوەند', wc3p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی ناوەند بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
+    workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'بازاڕی ناوەندی حلال', wc3p:'ئەگەر دەتەوێت کارمەندی بازاڕی ناوەندی حلال بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'أطازج المنتجات · أفضل الأسعار · متجرك الموثوق في كوردستان', btn1:'العروض', btn2:'فروعنا',
-    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓',
+    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓', soonBadge:'قريباً', soonStart:'يبدأ', feat1t:'الجودة', feat1l:'اختيار دقيق للمنتجات', feat1p:'طازج كل يوم', feat2t:'العروض', feat2l:'عروض جديدة كل أسبوع', feat2p:'أسبوعياً', feat3t:'الثقة', feat3l:'خدمة موثوقة ونظيفة', feat3p:'موثوق',
     aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'فروعنا الأربعة', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', loc3:'هلال ماركت – الفرع الأوسط', loc3addr:'أربيل، شارع 120 متر، قرب شقق كامەران', loc4:'هلال ماركت – الفرع الرابع', loc4addr:'جوت سايد القديم بنسلاوة، بجانب محطة وقود آسك', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', wc3tag:'الفرع الأوسط', wc3h:'هلال ماركت الأوسط', wc3p:'إذا أردت العمل في هلال ماركت الفرع الأوسط، أرسل رسالة أو اتصل بنا.', wc4tag:'الفرع الرابع', wc4h:'هلال ماركت ٤', wc4p:'إذا أردت العمل في هلال ماركت الفرع الرابع، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'Freshest products · Best prices · Your trusted supermarket in Kurdistan', btn1:'View Deals', btn2:'Our Locations',
-    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓',
+    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓', soonBadge:'Coming Soon', soonStart:'Starts', feat1t:'Quality', feat1l:'Carefully selected products', feat1p:'Fresh Daily', feat2t:'Discounts', feat2l:'New offers every week', feat2p:'Weekly', feat3t:'Trust', feat3l:'Reliable & clean service', feat3p:'Trusted',
     aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'All four branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', loc3:'Halal Market – Middle Branch', loc3addr:'Erbil, 120m Street, near Kamaran Apartments', loc4:'Halal Market – Branch Four', loc4addr:'Old Binaslawa Two-Way, next to Ask Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
     workerTitle:'We Are Hiring', workerSub:'If you want to work with us, get in touch', wc1tag:'Branch One', wc1h:'Halal Market 1', wc1p:'If you want to work at Halal Market Branch One, send us a message or call us.', wc2tag:'Branch Two', wc2h:'Halal Market 2', wc2p:'If you want to work at Halal Market Branch Two, send us a message or call us.', wc3tag:'Middle Branch', wc3h:'Halal Market Middle', wc3p:'If you want to work at Halal Market Middle Branch, send us a message or call us.', wc4tag:'Branch Four', wc4h:'Halal Market 4', wc4p:'If you want to work at Halal Market Branch Four, send us a message or call us.', waBtn:'Send Message',
     copy:'© 2025 Halal Market · Erbil', navHome:'Home', navDisc:'Deals', navLocs:'Locations', navWork:'Jobs', navAbout:'About', langLabel:'EN' },
 };
+
+/* ── DAY NAMES (index = JS Date.getDay(): 0=Sun … 6=Sat) ── */
+const DAYS = {
+  ckb:['یەکشەممە','دووشەممە','سێشەممە','چوارشەممە','پێنجشەممە','هەینی','شەممە'],
+  ar :['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
+  en :['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+};
+// Format a soon start date ("YYYY-MM-DD") -> "Weekday · DD/MM" in the active language.
+function formatSoonDate(dateStr){
+  if(!dateStr) return '';
+  const d=new Date(dateStr+'T00:00:00');
+  if(isNaN(d.getTime())) return '';
+  const day=(DAYS[lang]||DAYS.en)[d.getDay()];
+  const dd=String(d.getDate()).padStart(2,'0'), mm=String(d.getMonth()+1).padStart(2,'0');
+  return `${day} · ${dd}/${mm}`;
+}
 
 /* ── STATE ── */
 let lang='ckb', drwOpen=false, langOpen=false, liked=false;
@@ -135,11 +151,22 @@ if(GSAP_OK){
     const d=parseFloat(el.getAttribute('data-delay')||0);
     gsap.to(el,{opacity:1,y:0,duration:1.4,delay:d,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
   });
+  // Location cards: reveal ONE BY ONE, then stagger the buttons inside each card
+  // in DOM order (Facebook → location → WhatsApp → phone).
   document.querySelectorAll('.loc-card').forEach((el,i)=>{
-    gsap.from(el,{y:46,opacity:0,duration:1.3,delay:i*.22,ease:'power3.out',scrollTrigger:{trigger:'.locs-grid',start:'top 84%',toggleActions:'play none none none'}});
+    const base=i*.18;
+    gsap.from(el,{y:40,opacity:0,duration:1,delay:base,ease:'power3.out',
+      scrollTrigger:{trigger:'.locs-grid',start:'top 85%',once:true}});
+    gsap.from(el.querySelectorAll('.loc-btns .lbtn'),{y:14,opacity:0,duration:.5,stagger:.09,delay:base+.45,ease:'power2.out',
+      scrollTrigger:{trigger:'.locs-grid',start:'top 85%',once:true}});
   });
+  // Worker cards: same one-by-one reveal + staggered action buttons.
   document.querySelectorAll('.wc-card').forEach((el,i)=>{
-    gsap.from(el,{y:46,opacity:0,duration:1.3,delay:i*.22,ease:'power3.out',scrollTrigger:{trigger:'.worker-grid',start:'top 84%',toggleActions:'play none none none'}});
+    const base=i*.18;
+    gsap.from(el,{y:40,opacity:0,duration:1,delay:base,ease:'power3.out',
+      scrollTrigger:{trigger:'.worker-grid',start:'top 85%',once:true}});
+    gsap.from(el.querySelectorAll('.wc-actions .wc-btn'),{y:14,opacity:0,duration:.5,stagger:.1,delay:base+.45,ease:'power2.out',
+      scrollTrigger:{trigger:'.worker-grid',start:'top 85%',once:true}});
   });
   document.querySelectorAll('.sec-bar').forEach(bar=>{
     gsap.from(bar,{scaleY:0,transformOrigin:'top center',duration:.55,ease:'power3.out',scrollTrigger:{trigger:bar.closest('.sec-head'),start:'top 87%',toggleActions:'play none none none'}});
@@ -244,8 +271,12 @@ function applyTranslations(){
   st('mtab-all',t.mAll); st('mtab-1',t.m1); st('mtab-2',t.m2); st('mtab-3',t.m3); st('mtab-4',t.m4);
   st('admin-newpost-txt',t.newPost); st('feed-empty',t.feedEmpty); st('collapse-fab-txt',t.seeLess);
   st('dn-home-t',t.navHome); st('dn-promo-t',t.navDisc); st('dn-locs-t',t.navLocs); st('dn-about-t',t.navAbout);
-  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead); st('about-para',t.aboutPara);
+  st('about-title',t.aboutTitle); st('about-sub',t.aboutSub); st('about-eyebrow',t.aboutEyebrow); st('about-head',t.aboutHead);
+  renderAboutPara(t.aboutPara);
   st('ab1',t.ab1); st('ab2',t.ab2); st('ab3',t.ab3);
+  st('feat1-t',t.feat1t); st('feat1-l',t.feat1l); st('feat1-p',t.feat1p);
+  st('feat2-t',t.feat2t); st('feat2-l',t.feat2l); st('feat2-p',t.feat2p);
+  st('feat3-t',t.feat3t); st('feat3-l',t.feat3l); st('feat3-p',t.feat3p);
   st('locs-title',t.locsTitle); st('locs-sub',t.locsSub); st('loc1-name',t.loc1); st('loc1-addr',t.loc1addr); st('loc2-name',t.loc2); st('loc2-addr',t.loc2addr); st('loc3-name',t.loc3); st('loc3-addr',t.loc3addr); st('loc4-name',t.loc4); st('loc4-addr',t.loc4addr); st('lopen1',t.open); st('lopen2',t.open); st('lopen3',t.open); st('lopen4',t.open);
   st('rev-title',t.revTitle); st('rev-sub',t.revSub); st('rev-count',t.revCount); st('rev-cta-lbl',t.revCtaLbl);
   if(!liked){st('like-text',t.likeText);st('like-count',t.likeCount)}
@@ -255,6 +286,19 @@ function applyTranslations(){
   st('mn-home',t.navHome); st('mn-disc',t.navDisc); st('mn-locs',t.navLocs); st('mn-about',t.navAbout);
   st('di-home',t.navHome); st('di-promo',t.navDisc); st('di-locs',t.navLocs); st('di-work',t.navWork); st('di-about',t.navAbout);
   buildReviews();
+}
+
+/* ════ ABOUT PARAGRAPH — word-by-word reveal ════
+   Splits the paragraph into individual words, each with a staggered
+   entrance (fade + small top→down slide). Re-splits on language change. */
+function renderAboutPara(text){
+  const el=$('about-para'); if(!el)return;
+  const words=(text||'').trim().split(/\s+/).filter(Boolean);
+  // Freshly-inserted .aw spans matching ".about-visible .aw" auto-run their
+  // keyframes, so a language switch while the section is visible replays cleanly.
+  el.innerHTML=words.map((w,i)=>
+    `<span class="aw" style="--wd:${(i*0.08).toFixed(2)}s">${escapeHtml(w)}</span>`
+  ).join(' ');
 }
 
 /* ════ BUILD REVIEWS ════ */
@@ -468,8 +512,12 @@ async function handleAvatarChange(e){
 }
 
 /* ── IMAGE COMPRESS + UPLOAD ── */
-// Compress toward a target max file size (default ~500KB) while keeping quality high.
-// Starts at high quality/large size; only steps down if the result exceeds targetKB.
+// Compress toward a target max file size while keeping quality high.
+// IMPORTANT: we encode as JPEG, not WebP. Many mobile browsers can DECODE webp
+// but cannot ENCODE it — canvas.toBlob(...,'image/webp',q) then silently returns
+// a full-size lossless PNG that ignores the quality argument, producing >1MB
+// files. JPEG is encodable everywhere and always honours the quality step-down,
+// so images reliably land around 200–300KB.
 function compressImage(file, maxWidth=2000, targetKB=500){
   return new Promise((resolve,reject)=>{
     const reader=new FileReader();
@@ -480,17 +528,20 @@ function compressImage(file, maxWidth=2000, targetKB=500){
         const canvas=document.createElement('canvas');
         canvas.width=Math.round(img.width*scale);
         canvas.height=Math.round(img.height*scale);
-        canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+        const ctx=canvas.getContext('2d');
+        // JPEG has no transparency — paint white first so PNGs don't turn black.
+        ctx.fillStyle='#ffffff';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
         const targetBytes=targetKB*1024;
-        // Try qualities from high to lower until it fits under the target size.
-        const qualities=[0.95,0.9,0.85,0.8,0.75,0.7,0.62];
+        const qualities=[0.92,0.88,0.84,0.8,0.75,0.7,0.62,0.55];
         let idx=0;
         const tryQ=()=>{
           canvas.toBlob(blob=>{
             if(!blob){ reject(new Error('compress failed')); return; }
             if(blob.size<=targetBytes || idx>=qualities.length-1){ resolve(blob); return; }
             idx++; tryQ();
-          },'image/webp',qualities[idx]);
+          },'image/jpeg',qualities[idx]);
         };
         tryQ();
       };
@@ -504,18 +555,34 @@ function compressImage(file, maxWidth=2000, targetKB=500){
 async function uploadImageToR2(blob){
   if(UPLOAD_WORKER_URL.includes('PASTE_YOUR')) throw new Error('Worker URL not set yet');
   const { data:{ session } } = await sb.auth.getSession();
-  const fd=new FormData(); fd.append('file',blob,'image.webp');
+  // Unique filename per upload. If the Worker keys objects by the sent filename,
+  // a fixed name ('image.webp') makes rapid uploads overwrite each other so every
+  // post ends up pointing at the same picture. A random name prevents collisions.
+  const unique = 'hm-'+Date.now()+'-'+Math.random().toString(36).slice(2,10)+'.jpg';
+  const fd=new FormData(); fd.append('file',blob,unique);
   const res=await fetch(UPLOAD_WORKER_URL,{method:'POST',headers:{Authorization:`Bearer ${session.access_token}`},body:fd});
   if(!res.ok)throw new Error('upload failed: '+(await res.text()));
   return (await res.json()).url;
 }
 
 /* ── ADMIN NEW POST ── */
+let adminPostType='discount';
 function openAdminModal(){
   selectedAdminFiles=[];
-  $('admin-title').value=''; $('admin-detail').value=''; $('admin-days').value=7;
+  $('admin-title').value=''; $('admin-days').value=7;
+  const sd=$('admin-soon-date'); if(sd)sd.value='';
   $('admin-images').value=''; $('admin-image-preview').innerHTML=''; $('admin-error').textContent='';
+  setPostType('discount');
   $('admin-modal-ov').classList.add('open');
+}
+// Toggle between a normal "discount" post and a "coming soon" post.
+function setPostType(type){
+  adminPostType = type==='soon' ? 'soon' : 'discount';
+  document.querySelectorAll('#admin-ptype-toggle .ptype-opt').forEach(b=>
+    b.classList.toggle('active', b.dataset.ptype===adminPostType));
+  const dis=$('admin-discount-fields'), soon=$('admin-soon-fields');
+  if(dis) dis.style.display = adminPostType==='discount' ? '' : 'none';
+  if(soon) soon.style.display = adminPostType==='soon' ? '' : 'none';
 }
 function closeAdminModal(){ $('admin-modal-ov').classList.remove('open') }
 function handleAdminImagesChange(e){
@@ -543,16 +610,30 @@ function moveAdminImage(i,dir){
 }
 async function submitNewPost(){
   const err=$('admin-error');
-  const title=$('admin-title').value.trim(), detail=$('admin-detail').value.trim();
+  const title=$('admin-title').value.trim();               // title is OPTIONAL now
   const days=parseInt($('admin-days').value,10)||7, ratio=$('admin-ratio').value, marketId=parseInt($('admin-market').value,10);
-  if(!title){err.textContent='ناونیشان پێویستە';return}
+  const soonDate=($('admin-soon-date')?.value||'').trim();
+  // Only requirement: at least one image.
   if(selectedAdminFiles.length===0){err.textContent='لانیکەم یەک وێنە پێویستە';return}
   const btn=$('admin-submit-btn'); btn.disabled=true; st('admin-submit-txt','بارکردن...');
   try{
     const urls=[];
     for(const file of selectedAdminFiles){ urls.push(await uploadImageToR2(await compressImage(file,2200,700))); }
-    const discountEnd=new Date(Date.now()+days*86400000).toISOString();
-    const { data:post, error:pErr } = await sb.from('posts').insert({location_id:marketId,title,detail,discount_days:days,discount_end:discountEnd,gallery_ratio:ratio,created_by:currentUser.id}).select().single();
+    // "soon" posts stay in the feed until their start date (+buffer); discounts use the countdown.
+    const endMs = adminPostType==='soon'
+      ? (soonDate ? new Date(soonDate+'T23:59:59').getTime()+3*86400000 : Date.now()+90*86400000)
+      : Date.now()+days*86400000;
+    const row = {
+      location_id:marketId,
+      title: title || null,
+      post_type: adminPostType,
+      discount_days: days,
+      discount_end: new Date(endMs).toISOString(),
+      gallery_ratio: ratio,
+      created_by: currentUser.id
+    };
+    if(adminPostType==='soon') row.soon_date = soonDate || null;
+    const { data:post, error:pErr } = await sb.from('posts').insert(row).select().single();
     if(pErr)throw pErr;
     const rows=urls.map((url,i)=>({post_id:post.id,image_url:url,sort_order:i}));
     const { error:iErr } = await sb.from('post_images').insert(rows);
@@ -576,8 +657,12 @@ async function loadFeed(){
     .order('created_at',{ascending:false});
   if(error){console.error(error);return}
   const now=Date.now();
-  allPosts=(posts||[]).filter(p=>new Date(p.discount_end).getTime()+3*86400000>now);
-  const hasActive=allPosts.some(p=>new Date(p.discount_end).getTime()>now);
+  allPosts=(posts||[]).filter(p=>{
+    // "soon" posts always stay until their discount_end buffer; discounts drop 3 days after ending.
+    const end=new Date(p.discount_end).getTime();
+    return (p.post_type==='soon') ? end>now : end+3*86400000>now;
+  });
+  const hasActive=allPosts.some(p=>p.post_type==='soon' || new Date(p.discount_end).getTime()>now);
   const dnDot=$('dn-hot-dot'), mnbDot=$('mnb-hot-dot'), notifDot=$('notif-dot');
   if(dnDot)dnDot.style.display=hasActive?'inline-block':'none';
   if(mnbDot)mnbDot.style.display=hasActive?'block':'none';
@@ -655,48 +740,54 @@ function collapseFeed(){
 }
 function postCardHtml(p){
   const imgs=(p.post_images||[]).slice().sort((a,b)=>a.sort_order-b.sort_order);
-  const ended=new Date(p.discount_end).getTime()<Date.now();
+  const isSoon=p.post_type==='soon';
+  const ended=!isSoon && new Date(p.discount_end).getTime()<Date.now();
   const likeCount=(p.likes||[]).length;
   const cmts=(p.comments||[]);
   const commentCount=cmts.length;
   const likedByMe=currentUser&&(p.likes||[]).some(l=>l.user_id===currentUser.id);
+  const t=TX[lang];
 
   // images (auto-slide if >1)
   const slides=imgs.length?imgs.map((im,i)=>`<img src="${im.image_url}" class="ps-img ${i===0?'active':''}" loading="lazy">`).join(''):'<div class="ps-noimg"><i class="fas fa-image"></i></div>';
   const dots=imgs.length>1?`<div class="ps-dots">${imgs.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join('')}</div>`:'';
 
-  // TITLE: one line, inline see-more if long
+  // "Coming soon" ribbon on the cover
+  const soonRibbon=isSoon?`<div class="soon-ribbon"><i class="fas fa-hourglass-half"></i> ${t.soonBadge}</div>`:'';
+
+  // TITLE: one line, inline see-more if long (may be empty)
   const title=escapeHtml(p.title||'');
   const titleLong=(p.title||'').length>30;
-  const titleHtml=`<h4 class="post-title">${title}</h4>${titleLong?`<button class="see-more-t" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${TX[lang].seeMore}</button>`:''}`;
+  const titleHtml=title?`<div class="post-titrow"><h4 class="post-title">${title}</h4>${titleLong?`<button class="see-more-t" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${t.seeMore}</button>`:''}</div>`:'';
 
-  // DETAIL: one line, inline see-more if long
-  const detail=escapeHtml(p.detail||'');
-  const detailLong=(p.detail||'').length>42;
-  const detailHtml=detail?`<div class="post-detrow"><p class="post-detail">${detail}</p>${detailLong?`<button class="see-more-d" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${TX[lang].seeMore}</button>`:''}</div>`:'';
+  // STATUS BLOCK: soon → start date/day pill; discount → red 4-cell countdown
+  let statusHtml;
+  if(isSoon){
+    const when=formatSoonDate(p.soon_date);
+    statusHtml=`<div class="soon-info">
+      <span class="soon-tag"><i class="fas fa-hourglass-half"></i> ${t.soonBadge}</span>
+      ${when?`<span class="soon-when">${t.soonStart}: ${escapeHtml(when)}</span>`:''}
+    </div>`;
+  } else {
+    statusHtml=`<div class="cd-timer ${ended?'ended':''}" data-end="${p.discount_end}">
+      <div class="cd-cell"><span class="cd-num" data-u="d">00</span><span class="cd-lbl">${t.cdD}</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-cell"><span class="cd-num" data-u="h">00</span><span class="cd-lbl">${t.cdH}</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-cell"><span class="cd-num" data-u="m">00</span><span class="cd-lbl">${t.cdM}</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-cell"><span class="cd-num" data-u="s">00</span><span class="cd-lbl">${t.cdS}</span></div>
+    </div>`;
+  }
 
-  // RED 4-CELL DIGITAL COUNTDOWN
-  const cd=`<div class="cd-timer ${ended?'ended':''}" data-end="${p.discount_end}">
-    <div class="cd-cell"><span class="cd-num" data-u="d">00</span><span class="cd-lbl">${TX[lang].cdD}</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-cell"><span class="cd-num" data-u="h">00</span><span class="cd-lbl">${TX[lang].cdH}</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-cell"><span class="cd-num" data-u="m">00</span><span class="cd-lbl">${TX[lang].cdM}</span></div>
-    <span class="cd-sep">:</span>
-    <div class="cd-cell"><span class="cd-num" data-u="s">00</span><span class="cd-lbl">${TX[lang].cdS}</span></div>
-  </div>`;
-
-  // (comment avatar stack removed — only counts shown in actions)
-
-  return `<article class="post-card${ended?' is-ended':''}" onclick="openLightbox('${p.id}')">
+  return `<article class="post-card${ended?' is-ended':''}${isSoon?' is-soon':''}" onclick="openLightbox('${p.id}')">
     <div class="post-cover" data-count="${imgs.length}">
-      ${slides}${dots}
-      ${ended?`<div class="ended-overlay"><span class="ended-text">${TX[lang].cdEnded}</span></div>`:''}
+      ${slides}${dots}${soonRibbon}
+      ${ended?`<div class="ended-overlay"><span class="ended-text">${t.cdEnded}</span></div>`:''}
     </div>
     <div class="post-body">
-      <div class="post-titrow">${titleHtml}</div>
-      ${detailHtml}
-      ${cd}
+      ${titleHtml}
+      ${statusHtml}
       <div class="post-actions">
         <button class="pa-like ${likedByMe?'on':''}" onclick="event.stopPropagation();cardLike('${p.id}')">
           <i class="fas fa-heart"></i><span>${likeCount}</span>
@@ -762,26 +853,38 @@ function cardComment(postId){
   openLightbox(postId);
 }
 
-// Auto-slide card images every 4.5s
+/* ── SMART CARD IMAGE SLIDER ──
+   Recursive setTimeout (not setInterval). A slide only advances to the NEXT
+   image once that image is fully downloaded (img.complete), so there is no
+   blank flash. Pace: slow (~20s) for the first 2 minutes after page load so
+   images have time to cache, then normal (~7s) afterwards. */
+const PAGE_LOAD_TIME = Date.now();
 let cardSlideTimer=null;
-function startCardSliders(){
-  if(cardSlideTimer)clearInterval(cardSlideTimer);
-  cardSlideTimer=setInterval(()=>{
-    document.querySelectorAll('.post-cover').forEach(cover=>{
-      const imgs=cover.querySelectorAll('.ps-img');
-      if(imgs.length<2)return;
-      let cur=0; imgs.forEach((im,i)=>{ if(im.classList.contains('active'))cur=i; });
-      const next=(cur+1)%imgs.length;
-      imgs[cur].classList.remove('active'); imgs[next].classList.add('active');
-      const dots=cover.querySelectorAll('.ps-dots span');
-      if(dots.length){ dots[cur]?.classList.remove('on'); dots[next]?.classList.add('on'); }
-    });
-  },4500);
+function cardSlideTick(){
+  document.querySelectorAll('.post-cover').forEach(cover=>{
+    const imgs=cover.querySelectorAll('.ps-img');
+    if(imgs.length<2)return;
+    let cur=0; imgs.forEach((im,i)=>{ if(im.classList.contains('active'))cur=i; });
+    const next=(cur+1)%imgs.length;
+    const nextImg=imgs[next];
+    // Only advance when the next image is fully loaded — otherwise wait for the next tick.
+    if(!nextImg.complete || nextImg.naturalWidth===0) return;
+    imgs[cur].classList.remove('active'); nextImg.classList.add('active');
+    const dots=cover.querySelectorAll('.ps-dots span');
+    if(dots.length){ dots[cur]?.classList.remove('on'); dots[next]?.classList.add('on'); }
+  });
+  scheduleCardSlide();
+}
+function scheduleCardSlide(){
+  if(cardSlideTimer)clearTimeout(cardSlideTimer);
+  const elapsed=Date.now()-PAGE_LOAD_TIME;
+  const interval=elapsed<120000 ? 20000 : 7000;   // 20s first 2 min, then 7s
+  cardSlideTimer=setTimeout(cardSlideTick, interval);
 }
 function startCountdowns(){
   if(countdownTimer)clearInterval(countdownTimer);
   updateCountdowns(); countdownTimer=setInterval(updateCountdowns,1000);
-  startCardSliders();
+  scheduleCardSlide();
 }
 function pad2(n){ return n<10?'0'+n:''+n; }
 function updateCountdowns(){
@@ -805,7 +908,10 @@ document.addEventListener('click',e=>{
 async function openLightbox(postId){
   lightboxPost=allPosts.find(p=>p.id===postId); if(!lightboxPost)return;
   lightboxIndex=0;
-  st('lb-title',lightboxPost.title); st('lb-detail',lightboxPost.detail||'');
+  const isSoon=lightboxPost.post_type==='soon';
+  st('lb-title', lightboxPost.title || (isSoon?TX[lang].soonBadge:''));
+  const when=isSoon?formatSoonDate(lightboxPost.soon_date):'';
+  st('lb-detail', isSoon && when ? `${TX[lang].soonStart}: ${when}` : '');
   const del=$('lb-admin-delete'); if(del)del.style.display=isAdmin?'inline-flex':'none';
   renderLightboxImages(); renderLightboxLike(); await loadComments(postId);
   const ov=$('lightbox-ov'); ov.classList.add('open');
