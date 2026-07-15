@@ -1,3 +1,4 @@
+
 /* ═══════════════════════════════════════════════
    HALAL MARKET | script.js v6 — crash-safe + live server
 ═══════════════════════════════════════════════ */
@@ -58,17 +59,23 @@ const DAYS = {
   ar :['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
   en :['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
 };
-// Format a soon start date ("YYYY-MM-DD") -> {day, date} in the active language,
-// or null when there is no/invalid date (so the caller shows nothing at all).
-function formatSoonDate(dateStr){
+// Day name from the admin-chosen weekday INDEX (0=Sun … 6=Sat), translated to
+// the active language. Returns null when no day was chosen. The index is stored
+// (not the text) so the same post reads جومعە / الجمعة / Friday per language.
+function soonDayName(idx){
+  if(idx===null||idx===undefined||idx==='') return null;
+  idx=Number(idx);
+  if(isNaN(idx)||idx<0||idx>6) return null;
+  return (DAYS[lang]||DAYS.en)[idx];
+}
+// Format a soon start date ("YYYY-MM-DD") -> "DD / MM / YYYY", or null if none.
+function fmtSoonDate(dateStr){
   if(!dateStr) return null;
-  const d=new Date(dateStr+'T00:00:00');
+  const d=new Date(String(dateStr).slice(0,10)+'T00:00:00');
   if(isNaN(d.getTime())) return null;
-  const day=(DAYS[lang]||DAYS.en)[d.getDay()];
   const dd=String(d.getDate()).padStart(2,'0');
   const mm=String(d.getMonth()+1).padStart(2,'0');
-  const yy=d.getFullYear();
-  return { day, date:`${dd} / ${mm} / ${yy}` };
+  return `${dd} / ${mm} / ${d.getFullYear()}`;
 }
 
 /* ── STATE ── */
@@ -617,6 +624,7 @@ function openAdminModal(){
   selectedAdminFiles=[];
   $('admin-title').value=''; $('admin-days').value=7;
   const sd=$('admin-soon-date'); if(sd)sd.value='';
+  const sdy=$('admin-soon-day'); if(sdy)sdy.value='';   // default: no day selected
   $('admin-images').value=''; $('admin-image-preview').innerHTML=''; $('admin-error').textContent='';
   setPostType('discount');
   $('admin-modal-ov').classList.add('open');
@@ -659,6 +667,7 @@ async function submitNewPost(){
   const title=$('admin-title').value.trim();               // title is OPTIONAL now
   const days=parseInt($('admin-days').value,10)||7, ratio=$('admin-ratio').value, marketId=parseInt($('admin-market').value,10);
   const soonDate=($('admin-soon-date')?.value||'').trim();
+  const soonDayRaw=($('admin-soon-day')?.value||'').trim();   // '' or '0'..'6'
   // Only requirement: at least one image.
   if(selectedAdminFiles.length===0){err.textContent='لانیکەم یەک وێنە پێویستە';return}
   const btn=$('admin-submit-btn'); btn.disabled=true; st('admin-submit-txt','بارکردن...');
@@ -678,7 +687,10 @@ async function submitNewPost(){
       gallery_ratio: ratio,
       created_by: currentUser.id
     };
-    if(adminPostType==='soon') row.soon_date = soonDate || null;
+    if(adminPostType==='soon'){
+      row.soon_date = soonDate || null;
+      row.soon_day  = soonDayRaw==='' ? null : parseInt(soonDayRaw,10);
+    }
     const { data:post, error:pErr } = await sb.from('posts').insert(row).select().single();
     if(pErr)throw pErr;
     const rows=urls.map((url,i)=>({post_id:post.id,image_url:url,sort_order:i}));
@@ -814,12 +826,15 @@ function postCardHtml(p){
   //  • soon + NO date  → nothing at all (post looks completely normal)
   let statusHtml='';
   if(isSoon){
-    const when=formatSoonDate(p.soon_date);
-    if(when){
+    const dayName=soonDayName(p.soon_day);
+    const dateStr=fmtSoonDate(p.soon_date);
+    if(dayName||dateStr){
       statusHtml=`<div class="soon-date">
         <i class="fas fa-calendar-day"></i>
-        <span class="sd-day">${escapeHtml(when.day)}</span>
-        <span class="sd-date">${escapeHtml(when.date)}</span>
+        <div class="sd-lines">
+          ${dayName?`<span class="sd-day">${escapeHtml(dayName)}</span>`:''}
+          ${dateStr?`<span class="sd-date">${escapeHtml(dateStr)}</span>`:''}
+        </div>
       </div>`;
     }
   } else {
@@ -964,8 +979,9 @@ async function openLightbox(postId){
   lightboxIndex=0;
   const isSoon=lightboxPost.post_type==='soon';
   st('lb-title', lightboxPost.title || (isSoon?TX[lang].soonBadge:''));
-  const when=isSoon?formatSoonDate(lightboxPost.soon_date):null;
-  st('lb-detail', when ? `${when.day} · ${when.date}` : '');
+  const lbDay=isSoon?soonDayName(lightboxPost.soon_day):null;
+  const lbDate=isSoon?fmtSoonDate(lightboxPost.soon_date):null;
+  st('lb-detail', [lbDay,lbDate].filter(Boolean).join(' · '));
   const del=$('lb-admin-delete'); if(del)del.style.display=isAdmin?'inline-flex':'none';
   renderLightboxImages(); renderLightboxLike(); await loadComments(postId);
   const ov=$('lightbox-ov'); ov.classList.add('open');
