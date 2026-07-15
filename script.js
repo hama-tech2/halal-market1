@@ -30,21 +30,21 @@ const REVIEWS = [
 /* ── TRANSLATIONS ── */
 const TX = {
   ckb:{ eyebrow:'هەولێر · کوردستان', sub:'هەموو پێداویستییەکانی ماڵ و ژیان بە باشترین نرخ، کوالێتی بەرز و داشکاندنی هەفتانە لە حلال مارکێت.', btn1:'داشکاندنەکان', btn2:'شوێنەکانمان',
-    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'بازاڕی ناوەندی حلال', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓', soonBadge:'بەم زووانە', soonStart:'دەستپێدەکات', feat1t:'کوالێتی', feat1l:'هەڵبژاردەی وردی بەرهەم', feat1p:'تازە هەموو ڕۆژێک', feat2t:'داشکاندن', feat2l:'ئۆفەری نوێ هەموو هەفتەیەک', feat2p:'هەفتانە', feat3t:'متمانە', feat3l:'خزمەتگوزاری دڵنیا و پاک', feat3p:'متمانەپێکراو',
+    promoTitle:'داشکاندنەکان', promoSub:'ئۆفەرە تازەکان', mAll:'هەموو', m1:'حلال مارکێت ١', m2:'حلال مارکێت ٢', m3:'بازاڕی ناوەندی حلال', m4:'حلال مارکێت ٤', newPost:'داشکاندنێکی نوێ', feedEmpty:'هێشتا هیچ داشکاندنێک نییە', seeMore:'زیاتر ببینە', seeLess:'کەمتر پیشان بدە', cdD:'ڕۆژ', cdH:'کاژێر', cdM:'خولەک', cdS:'چرکە', cdEnded:'داشکاندن تەواو بوو', commented:'کۆمێنتیان کرد', notifNew:'داشکاندنی نوێ زیادکرا! 🏷️', shareText:'سەیری ئەم داشکاندنە بکە!', linkCopied:'لینک کۆپی کرا! ✓', soonBadge:'بەم زووانە', discBadge:'داشکاندن', langCode:'KU', soonStart:'دەستپێدەکات', feat1t:'کوالێتی', feat1l:'هەڵبژاردەی وردی بەرهەم', feat1p:'تازە هەموو ڕۆژێک', feat2t:'داشکاندن', feat2l:'ئۆفەری نوێ هەموو هەفتەیەک', feat2p:'هەفتانە', feat3t:'متمانە', feat3l:'خزمەتگوزاری دڵنیا و پاک', feat3p:'متمانەپێکراو',
     aboutTitle:'بۆچی حلال مارکێت؟', aboutSub:'هۆکارەکانی هەڵبژاردنمان', aboutEyebrow:'تازەیی، کوالێتی و متمانە', aboutHead:'حلال مارکێت', aboutPara:'لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.', ab1:'تازە و پاک', ab2:'کوالێتی بەرز', ab3:'متمانە و دڵنیایی',
     locsTitle:'شوێنەکانمان', locsSub:'هەر چوار لقەکانمان', loc1:'حلال مارکێت – لقی یەکەم', loc1addr:'جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج', loc2:'حلال مارکێت – لقی دووەم', loc2addr:'بەحركە - بەرامبەر بەنزینخانەی بەحركە', loc3:'بازاڕی ناوەندی حلال', loc3addr:'هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی', loc4:'حلال مارکێت – لقی چوارەم', loc4addr:'جووت سایدی کۆنی بنەسڵاوە، تەنیشت بەنزینخانەی ئاسک', open:'کراوەیە',
     revTitle:'نرخاندنی کڕیارەکان', revSub:'نرخاندنی کڕیارەکانمان', revCount:'+٢٠٠ نرخاندن', revCtaLbl:'کاڵاکانمان باشت بوون؟', likeText:'نرخاندنت بنێرە', likeCount:'+٢٠٠', likeDone:'سوپاس! 🌟',
     workerTitle:'کارمەندی پێویستمانە', workerSub:'ئەگەر دەتەوێت کار بکەیت، پەیوەندیمان بکە', wc1tag:'لقی یەکەم', wc1h:'حلال مارکێت ١', wc1p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc2tag:'لقی دووەم', wc2h:'حلال مارکێت ٢', wc2p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی دووەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc3tag:'لقی ناوەند', wc3h:'بازاڕی ناوەندی حلال', wc3p:'ئەگەر دەتەوێت کارمەندی بازاڕی ناوەندی حلال بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', wc4tag:'لقی چوارەم', wc4h:'حلال مارکێت ٤', wc4p:'ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی چوارەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.', waBtn:'پەیام بنێرە',
     copy:'© ٢٠٢٥ حلال مارکێت · هەولێر', navHome:'سەرەکی', navDisc:'داشکاندن', navLocs:'شوێن', navWork:'کارمەند', navAbout:'دەربارە', langLabel:'عربي' },
   ar:{ eyebrow:'أربيل · كوردستان', sub:'كل مستلزمات المنزل والحياة بأفضل الأسعار، جودة عالية وعروض أسبوعية في حلال ماركت.', btn1:'العروض', btn2:'فروعنا',
-    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓', soonBadge:'قريباً', soonStart:'يبدأ', feat1t:'الجودة', feat1l:'اختيار دقيق للمنتجات', feat1p:'طازج كل يوم', feat2t:'العروض', feat2l:'عروض جديدة كل أسبوع', feat2p:'أسبوعياً', feat3t:'الثقة', feat3l:'خدمة موثوقة ونظيفة', feat3p:'موثوق',
+    promoTitle:'العروض', promoSub:'أحدث الأسعار', mAll:'الكل', m1:'حلال ماركت ١', m2:'حلال ماركت ٢', m3:'حلال ماركت الأوسط', m4:'حلال ماركت ٤', newPost:'عرض جديد', feedEmpty:'لا توجد عروض بعد', seeMore:'عرض المزيد', seeLess:'عرض أقل', cdD:'يوم', cdH:'ساعة', cdM:'دقيقة', cdS:'ثانية', cdEnded:'انتهى العرض', commented:'علّقوا', notifNew:'عرض جديد أُضيف! 🏷️', shareText:'شاهد هذا العرض!', linkCopied:'تم نسخ الرابط! ✓', soonBadge:'قريباً', discBadge:'خصم', langCode:'AR', soonStart:'يبدأ', feat1t:'الجودة', feat1l:'اختيار دقيق للمنتجات', feat1p:'طازج كل يوم', feat2t:'العروض', feat2l:'عروض جديدة كل أسبوع', feat2p:'أسبوعياً', feat3t:'الثقة', feat3l:'خدمة موثوقة ونظيفة', feat3p:'موثوق',
     aboutTitle:'لماذا هلال ماركت؟', aboutSub:'أسباب اختيارنا', aboutEyebrow:'جودة تثق بها', aboutHead:'هلال ماركت', aboutPara:'متجر متخصص بالمواد الغذائية الطازجة بأعلى جودة وأفضل الأسعار يخدم عملاء أربيل. عروض جديدة كل أسبوع، منتجات طازجة، وخدمة موثوقة. الفرع الأول في بنسلاوة، الفرع الثاني في بحرگة.', ab1:'طازج ونظيف', ab2:'جودة عالية', ab3:'ثقة وأمان',
     locsTitle:'فروعنا', locsSub:'فروعنا الأربعة', loc1:'هلال ماركت – الفرع الأول', loc1addr:'بنسلاوة سايدين بجانب جامع الاسراء والمعراج', loc2:'هلال ماركت – الفرع الثاني', loc2addr:'بحرگة - مقابل محطة وقود بحرگة', loc3:'هلال ماركت – الفرع الأوسط', loc3addr:'أربيل، شارع 120 متر، قرب شقق كامەران', loc4:'هلال ماركت – الفرع الرابع', loc4addr:'جوت سايد القديم بنسلاوة، بجانب محطة وقود آسك', open:'مفتوح',
     revTitle:'آراء عملائنا', revSub:'ماذا يقول عملاؤنا', revCount:'+٢٠٠ تقييم', revCtaLbl:'أعجبك متجرنا؟', likeText:'أرسل تقييمك', likeCount:'+٢٠٠', likeDone:'شكراً! 🌟',
     workerTitle:'نحن نبحث عن موظفين', workerSub:'إذا أردت العمل معنا، تواصل معنا', wc1tag:'الفرع الأول', wc1h:'هلال ماركت ١', wc1p:'إذا أردت العمل في هلال ماركت الفرع الأول، أرسل رسالة أو اتصل بنا.', wc2tag:'الفرع الثاني', wc2h:'هلال ماركت ٢', wc2p:'إذا أردت العمل في هلال ماركت الفرع الثاني، أرسل رسالة أو اتصل بنا.', wc3tag:'الفرع الأوسط', wc3h:'هلال ماركت الأوسط', wc3p:'إذا أردت العمل في هلال ماركت الفرع الأوسط، أرسل رسالة أو اتصل بنا.', wc4tag:'الفرع الرابع', wc4h:'هلال ماركت ٤', wc4p:'إذا أردت العمل في هلال ماركت الفرع الرابع، أرسل رسالة أو اتصل بنا.', waBtn:'أرسل رسالة',
     copy:'© ٢٠٢٥ هلال ماركت · أربيل', navHome:'الرئيسية', navDisc:'العروض', navLocs:'الفروع', navWork:'التوظيف', navAbout:'عنّا', langLabel:'عربي' },
   en:{ eyebrow:'Erbil · Kurdistan', sub:'All your home and daily essentials at the best prices, high quality and weekly discounts at Halal Market.', btn1:'View Deals', btn2:'Our Locations',
-    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓', soonBadge:'Coming Soon', soonStart:'Starts', feat1t:'Quality', feat1l:'Carefully selected products', feat1p:'Fresh Daily', feat2t:'Discounts', feat2l:'New offers every week', feat2p:'Weekly', feat3t:'Trust', feat3l:'Reliable & clean service', feat3p:'Trusted',
+    promoTitle:'Discounts', promoSub:'Latest offers', mAll:'All', m1:'Halal Market 1', m2:'Halal Market 2', m3:'Halal Market Middle', m4:'Halal Market 4', newPost:'New Deal', feedEmpty:'No deals yet', seeMore:'See more', seeLess:'See less', cdD:'DAYS', cdH:'HRS', cdM:'MIN', cdS:'SEC', cdEnded:'Discount is Finished', commented:'commented', notifNew:'New discount added! 🏷️', shareText:'Check out this discount!', linkCopied:'Link copied! ✓', soonBadge:'Coming Soon', discBadge:'Discount', langCode:'EN', soonStart:'Starts', feat1t:'Quality', feat1l:'Carefully selected products', feat1p:'Fresh Daily', feat2t:'Discounts', feat2l:'New offers every week', feat2p:'Weekly', feat3t:'Trust', feat3l:'Reliable & clean service', feat3p:'Trusted',
     aboutTitle:'Why Halal Market?', aboutSub:'Reasons to choose us', aboutEyebrow:'Quality You Can Trust', aboutHead:'Halal Market', aboutPara:'A fresh and quality grocery store serving Erbil customers with the best products at great prices. New discounts every week, fresh products, and trusted service. Branch One in Binaslawa, Branch Two in Baharka.', ab1:'Fresh & Clean', ab2:'High Quality', ab3:'Trust & Safety',
     locsTitle:'Our Locations', locsSub:'All four branches', loc1:'Halal Market – Branch One', loc1addr:"Binaslawa Two-Way, Next to Al-Isra and Al-Mi'raj Mosque", loc2:'Halal Market – Branch Two', loc2addr:'Baharka - Opposite Baharka Gas Station', loc3:'Halal Market – Middle Branch', loc3addr:'Erbil, 120m Street, near Kamaran Apartments', loc4:'Halal Market – Branch Four', loc4addr:'Old Binaslawa Two-Way, next to Ask Gas Station', open:'Open Now',
     revTitle:'Customer Reviews', revSub:'What our customers say', revCount:'+200 reviews', revCtaLbl:'Enjoying Halal Market?', likeText:'Leave a review', likeCount:'+200', likeDone:'Thank you! 🌟',
@@ -54,18 +54,21 @@ const TX = {
 
 /* ── DAY NAMES (index = JS Date.getDay(): 0=Sun … 6=Sat) ── */
 const DAYS = {
-  ckb:['یەکشەممە','دووشەممە','سێشەممە','چوارشەممە','پێنجشەممە','هەینی','شەممە'],
+  ckb:['یەک شەممە','دوو شەممە','سێ شەممە','چوار شەممە','پێنجشەممە','جومعە','شەممە'],
   ar :['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
   en :['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
 };
-// Format a soon start date ("YYYY-MM-DD") -> "Weekday · DD/MM" in the active language.
+// Format a soon start date ("YYYY-MM-DD") -> {day, date} in the active language,
+// or null when there is no/invalid date (so the caller shows nothing at all).
 function formatSoonDate(dateStr){
-  if(!dateStr) return '';
+  if(!dateStr) return null;
   const d=new Date(dateStr+'T00:00:00');
-  if(isNaN(d.getTime())) return '';
+  if(isNaN(d.getTime())) return null;
   const day=(DAYS[lang]||DAYS.en)[d.getDay()];
-  const dd=String(d.getDate()).padStart(2,'0'), mm=String(d.getMonth()+1).padStart(2,'0');
-  return `${day} · ${dd}/${mm}`;
+  const dd=String(d.getDate()).padStart(2,'0');
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const yy=d.getFullYear();
+  return { day, date:`${dd} / ${mm} / ${yy}` };
 }
 
 /* ── STATE ── */
@@ -168,7 +171,14 @@ if(GSAP_OK){
     });
   }
   revealCardsOneByOne('.loc-card','.locs-grid','.loc-btns .lbtn');
-  revealCardsOneByOne('.wc-card','.worker-grid','.wc-actions .wc-btn');
+  // Worker cards live in a horizontal slider — a per-card y-stagger would leave
+  // the two visible cards misaligned mid-animation, so fade the whole block once.
+  (function(){
+    const grid=document.querySelector('.worker-slider'); if(!grid)return;
+    ScrollTrigger.create({trigger:'#worker',start:'top 85%',once:true,onEnter(){
+      gsap.from(grid,{y:26,opacity:0,duration:.8,ease:'power3.out'});
+    }});
+  })();
   document.querySelectorAll('.sec-bar').forEach(bar=>{
     gsap.from(bar,{scaleY:0,transformOrigin:'top center',duration:.55,ease:'power3.out',scrollTrigger:{trigger:bar.closest('.sec-head'),start:'top 87%',toggleActions:'play none none none'}});
   });
@@ -264,7 +274,7 @@ function setLang(l){
 function applyTranslations(){
   const t=TX[lang];
   st('h-eyebrow',t.eyebrow); st('h-sub',t.sub); st('h-btn1',t.btn1); st('h-btn2',t.btn2);
-  st('lang-label',t.langLabel);
+  st('lang-label',t.langCode);   // compact code: KU / AR / EN
   const gTxt={ckb:'چوونەژوورەوە بە گووگڵ',ar:'الدخول عبر جوجل',en:'Continue with Google'};
   const orTxt={ckb:'یان',ar:'أو',en:'or'};
   st('google-btn-txt',gTxt[lang]); st('auth-or',orTxt[lang]);
@@ -788,22 +798,30 @@ function postCardHtml(p){
   const slides=imgs.length?imgs.map((im,i)=>`<img src="${im.image_url}" class="ps-img ${i===0?'active':''}" loading="lazy">`).join(''):'<div class="ps-noimg"><i class="fas fa-image"></i></div>';
   const dots=imgs.length>1?`<div class="ps-dots">${imgs.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join('')}</div>`:'';
 
-  // "Coming soon" ribbon on the cover
-  const soonRibbon=isSoon?`<div class="soon-ribbon"><i class="fas fa-hourglass-half"></i> ${t.soonBadge}</div>`:'';
+  // ONE compact type badge on the cover: red "داشکاندن" or blue "بەم زووانە"
+  const typeBadge=isSoon
+    ? `<div class="type-badge tb-soon">${t.soonBadge}</div>`
+    : `<div class="type-badge tb-disc">${t.discBadge}</div>`;
 
   // TITLE: one line, inline see-more if long (may be empty)
   const title=escapeHtml(p.title||'');
   const titleLong=(p.title||'').length>30;
   const titleHtml=title?`<div class="post-titrow"><h4 class="post-title">${title}</h4>${titleLong?`<button class="see-more-t" onclick="event.stopPropagation();openLightbox('${p.id}')">... ${t.seeMore}</button>`:''}</div>`:'';
 
-  // STATUS BLOCK: soon → start date/day pill; discount → red 4-cell countdown
-  let statusHtml;
+  // STATUS BLOCK:
+  //  • discount        → red 4-cell countdown
+  //  • soon + date     → day name (bold) + DD / MM / YYYY
+  //  • soon + NO date  → nothing at all (post looks completely normal)
+  let statusHtml='';
   if(isSoon){
     const when=formatSoonDate(p.soon_date);
-    statusHtml=`<div class="soon-info">
-      <span class="soon-tag"><i class="fas fa-hourglass-half"></i> ${t.soonBadge}</span>
-      ${when?`<span class="soon-when">${t.soonStart}: ${escapeHtml(when)}</span>`:''}
-    </div>`;
+    if(when){
+      statusHtml=`<div class="soon-date">
+        <i class="fas fa-calendar-day"></i>
+        <span class="sd-day">${escapeHtml(when.day)}</span>
+        <span class="sd-date">${escapeHtml(when.date)}</span>
+      </div>`;
+    }
   } else {
     statusHtml=`<div class="cd-timer ${ended?'ended':''}" data-end="${p.discount_end}">
       <div class="cd-cell"><span class="cd-num" data-u="d">00</span><span class="cd-lbl">${t.cdD}</span></div>
@@ -818,7 +836,7 @@ function postCardHtml(p){
 
   return `<article class="post-card${ended?' is-ended':''}${isSoon?' is-soon':''}" onclick="openLightbox('${p.id}')">
     <div class="post-cover" data-count="${imgs.length}">
-      ${slides}${dots}${soonRibbon}
+      ${slides}${dots}${typeBadge}
       ${ended?`<div class="ended-overlay"><span class="ended-text">${t.cdEnded}</span></div>`:''}
     </div>
     <div class="post-body">
@@ -946,8 +964,8 @@ async function openLightbox(postId){
   lightboxIndex=0;
   const isSoon=lightboxPost.post_type==='soon';
   st('lb-title', lightboxPost.title || (isSoon?TX[lang].soonBadge:''));
-  const when=isSoon?formatSoonDate(lightboxPost.soon_date):'';
-  st('lb-detail', isSoon && when ? `${TX[lang].soonStart}: ${when}` : '');
+  const when=isSoon?formatSoonDate(lightboxPost.soon_date):null;
+  st('lb-detail', when ? `${when.day} · ${when.date}` : '');
   const del=$('lb-admin-delete'); if(del)del.style.display=isAdmin?'inline-flex':'none';
   renderLightboxImages(); renderLightboxLike(); await loadComments(postId);
   const ov=$('lightbox-ov'); ov.classList.add('open');
