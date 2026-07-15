@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
@@ -631,9 +630,20 @@
       <input type="number" id="admin-days" class="auth-input" value="7" min="1">
     </div>
 
-    <!-- Soon-only field -->
+    <!-- Soon-only fields -->
     <div id="admin-soon-fields" style="display:none">
-      <label class="field-label">بەرواری دەستپێک <span class="field-optional">(ئارەزوومەندانە)</span></label>
+      <label class="field-label">ڕۆژی هاتن <span class="field-optional">(ئارەزوومەندانە)</span></label>
+      <select id="admin-soon-day" class="auth-input">
+        <option value="">—</option>
+        <option value="5">جومعە</option>
+        <option value="6">شەممە</option>
+        <option value="0">یەک شەممە</option>
+        <option value="1">دوو شەممە</option>
+        <option value="2">سێ شەممە</option>
+        <option value="3">چوار شەممە</option>
+        <option value="4">پێنجشەممە</option>
+      </select>
+      <label class="field-label">بەروار <span class="field-optional">(ئارەزوومەندانە)</span></label>
       <input type="date" id="admin-soon-date" class="auth-input">
     </div>
 
