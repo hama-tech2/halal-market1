@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
@@ -241,7 +242,7 @@
       <button class="mtab active" data-market="all" id="mtab-all">هەموو</button>
       <button class="mtab" data-market="1" id="mtab-1">حلال مارکێت ١</button>
       <button class="mtab" data-market="2" id="mtab-2">حلال مارکێت ٢</button>
-      <button class="mtab" data-market="3" id="mtab-3">حلال مارکێت ناوەند</button>
+      <button class="mtab" data-market="3" id="mtab-3">بازاڕی ناوەندی حلال</button>
       <button class="mtab" data-market="4" id="mtab-4">حلال مارکێت ٤</button>
     </div>
 
@@ -279,13 +280,39 @@
         <span class="about-eyebrow lux-in" id="about-eyebrow" style="--d:.2s">تازەیی، کوالێتی و متمانە</span>
         <h3 class="about-head lux-in" id="about-head" style="--d:.9s">حلال مارکێت</h3>
         <div class="about-line lux-line" style="--d:1.6s"><span class="al-dot"></span></div>
-        <p class="about-para lux-in" id="about-para" style="--d:2.2s">
-          لە حلال مارکێت، هەموو بەرهەمێک بە وردترین پشکنین هەڵدەبژێردرێت تا تازەیی، کوالێتی و متمانە بە هەموو کڕیارێک بگات. ئامانجی ئێمە ئەوەیە هەموو ڕۆژێک ئەزموونێکی ئاسان، خێرا و جیاواز لە کڕین بۆ تۆ دابین بکەین.
-        </p>
+        <p class="about-para" id="about-para"></p>
         <div class="about-badges">
           <span class="ab-badge lux-in" style="--d:3s"><i class="fas fa-leaf"></i> <span id="ab1">تازە و پاک</span></span>
           <span class="ab-badge lux-in" style="--d:3.3s"><i class="fas fa-star"></i> <span id="ab2">کوالێتی بەرز</span></span>
           <span class="ab-badge lux-in" style="--d:3.6s"><i class="fas fa-shield-halved"></i> <span id="ab3">متمانە و دڵنیایی</span></span>
+        </div>
+
+        <!-- Premium feature cards: hover to reveal -->
+        <div class="feat-row lux-in" style="--d:3.9s">
+          <div class="feat-card">
+            <span class="feat-ic"><i class="fas fa-gem"></i></span>
+            <h4 class="feat-title" id="feat1-t">کوالێتی</h4>
+            <div class="feat-reveal">
+              <span class="feat-line" id="feat1-l">هەڵبژاردەی وردی بەرهەم</span>
+              <span class="feat-pill" id="feat1-p">تازە هەموو ڕۆژێک</span>
+            </div>
+          </div>
+          <div class="feat-card">
+            <span class="feat-ic"><i class="fas fa-tags"></i></span>
+            <h4 class="feat-title" id="feat2-t">داشکاندن</h4>
+            <div class="feat-reveal">
+              <span class="feat-line" id="feat2-l">ئۆفەری نوێ هەموو هەفتەیەک</span>
+              <span class="feat-pill" id="feat2-p">هەفتانە</span>
+            </div>
+          </div>
+          <div class="feat-card">
+            <span class="feat-ic"><i class="fas fa-shield-halved"></i></span>
+            <h4 class="feat-title" id="feat3-t">متمانە</h4>
+            <div class="feat-reveal">
+              <span class="feat-line" id="feat3-l">خزمەتگوزاری دڵنیا و پاک</span>
+              <span class="feat-pill" id="feat3-p">متمانەپێکراو</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -314,61 +341,61 @@
     </header>
     <div class="locs-grid">
 
-      <article class="loc-card" data-reveal data-delay="0.0">
+      <article class="loc-card">
         <span class="loc-num">01</span>
         <div class="loc-live"><span class="loc-dot"></span><span id="lopen1">کراوەیە</span></div>
         <div class="loc-icon"><i class="fas fa-store"></i></div>
         <h3 class="loc-name" id="loc1-name">حلال مارکێت – لقی یەکەم</h3>
         <ul class="loc-info">
           <li class="loc-row"><i class="fas fa-map-marker-alt"></i><span id="loc1-addr">جووتسایدی بنصڵاوە تەنيشت مزگەوتی اسراو و ميعراج</span></li>
-          <li class="loc-row"><i class="fas fa-phone"></i><span>0751 798 5971</span></li>
+          <li class="loc-row"><i class="fas fa-phone"></i><span>0750 362 2627</span></li>
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647517985971" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1F3AqCRB1T/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://share.google/SmG6oGvGx1CMVm4mi" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="https://wa.me/9647503622627" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+9647503622627" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
         </div>
       </article>
 
-      <article class="loc-card" data-reveal data-delay="0.14">
+      <article class="loc-card">
         <span class="loc-num">02</span>
         <div class="loc-live"><span class="loc-dot"></span><span id="lopen2">کراوەیە</span></div>
         <div class="loc-icon"><i class="fas fa-store"></i></div>
         <h3 class="loc-name" id="loc2-name">حلال مارکێت – لقی دووەم</h3>
         <ul class="loc-info">
           <li class="loc-row"><i class="fas fa-map-marker-alt"></i><span id="loc2-addr">بەحركە - بەرامبەر بەنزینخانەی بەحركە</span></li>
-          <li class="loc-row"><i class="fas fa-phone"></i><span>0750 736 4615</span></li>
+          <li class="loc-row"><i class="fas fa-phone"></i><span>0751 798 5971</span></li>
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/18LEioK1mf/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647507364615" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
-          <a href="https://wa.me/9647507364615" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/share/1E1PjZAML7/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://share.google/0QtmhtExD6Gl6ISO8" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
+          <a href="https://wa.me/9647517985971" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+9647517985971" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
         </div>
       </article>
 
-      <article class="loc-card" data-reveal data-delay="0.28">
+      <article class="loc-card">
         <span class="loc-num">03</span>
         <div class="loc-live"><span class="loc-dot"></span><span id="lopen3">کراوەیە</span></div>
         <div class="loc-icon"><i class="fas fa-store"></i></div>
-        <h3 class="loc-name" id="loc3-name">حلال مارکێت – لقی ناوەند</h3>
+        <h3 class="loc-name" id="loc3-name">بازاڕی ناوەندی حلال</h3>
         <ul class="loc-info">
           <li class="loc-row"><i class="fas fa-map-marker-alt"></i><span id="loc3-addr">هەولێر، شەقامی ١٢٠ مەتری، نزیک شوقەکانی کامەرانی</span></li>
           <li class="loc-row"><i class="fas fa-phone"></i><span>0751 466 5354</span></li>
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647514665354" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
+          <a href="https://www.facebook.com/share/1989dDzknG/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://share.google/AfE65NT4XKNZ0khxJ" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
           <a href="https://wa.me/9647514665354" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+9647514665354" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
         </div>
       </article>
 
-      <article class="loc-card" data-reveal data-delay="0.42">
+      <article class="loc-card">
         <span class="loc-num">04</span>
         <div class="loc-live"><span class="loc-dot"></span><span id="lopen4">کراوەیە</span></div>
         <div class="loc-icon"><i class="fas fa-store"></i></div>
@@ -379,10 +406,11 @@
           <li class="loc-row"><i class="far fa-clock"></i><span>8:00 AM – 12:00 AM</span></li>
         </ul>
         <div class="loc-btns">
-          <a href="https://www.facebook.com/share/1AmkRDDf5S/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://maps.app.goo.gl/rudJi41RGtGzbjG9A" target="_blank" rel="noreferrer" class="lbtn lbtn-map"><i class="fas fa-map-marker-alt"></i></a>
-          <a href="tel:+9647514665354" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
+          <a href="https://www.facebook.com/share/1H37sjfN3E/" target="_blank" rel="noreferrer" class="lbtn lbtn-fb"><i class="fab fa-facebook-f"></i></a>
+          <!-- HALAL-MARKET-4 MAPS LINK: paste the Google Maps share link between the quotes below (replace the # only) -->
+          <a href="#" target="_blank" rel="noreferrer" class="lbtn lbtn-map lbtn-soon" title="بەم زووانە"><i class="fas fa-map-marker-alt"></i></a>
           <a href="https://wa.me/9647514665354" target="_blank" rel="noreferrer" class="lbtn lbtn-wa"><i class="fab fa-whatsapp"></i></a>
+          <a href="tel:+9647514665354" class="lbtn lbtn-tel"><i class="fas fa-phone"></i></a>
         </div>
       </article>
 
@@ -439,21 +467,21 @@
       </div>
     </header>
     <div class="worker-grid">
-      <article class="wc-card" data-reveal data-delay="0.0">
+      <article class="wc-card">
         <div class="wc-tag"><i class="fas fa-store"></i><span id="wc1-tag">لقی یەکەم</span></div>
         <div class="wc-emoji">👨‍💼</div>
         <h3 class="wc-name" id="wc1-title">حلال مارکێت ١</h3>
         <p  class="wc-body"  id="wc1-txt">ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی یەکەم بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.</p>
         <div class="wc-actions">
-          <a href="https://wa.me/9647517985971?text=سڵاو، دەمەوێت کار بکەم لە حلال مارکێت لقی یەکەم" target="_blank" rel="noreferrer" class="wc-btn wc-wa">
+          <a href="https://wa.me/9647503622627?text=سڵاو، دەمەوێت کار بکەم لە حلال مارکێت لقی یەکەم" target="_blank" rel="noreferrer" class="wc-btn wc-wa">
             <i class="fab fa-whatsapp"></i><span id="wc1-wa">پەیام بنێرە</span>
           </a>
-          <a href="tel:+9647517985971" class="wc-btn wc-tel">
-            <i class="fas fa-phone"></i><span id="wc1-tel">0751 798 5971</span>
+          <a href="tel:+9647503622627" class="wc-btn wc-tel">
+            <i class="fas fa-phone"></i><span id="wc1-tel">0750 362 2627</span>
           </a>
         </div>
       </article>
-      <article class="wc-card" data-reveal data-delay="0.14">
+      <article class="wc-card">
         <div class="wc-tag"><i class="fas fa-store"></i><span id="wc2-tag">لقی دووەم</span></div>
         <div class="wc-emoji">👩‍💼</div>
         <h3 class="wc-name" id="wc2-title">حلال مارکێت ٢</h3>
@@ -468,10 +496,10 @@
         </div>
       </article>
 
-      <article class="wc-card" data-reveal data-delay="0.28">
+      <article class="wc-card">
         <div class="wc-tag"><i class="fas fa-store"></i><span id="wc3-tag">لقی ناوەند</span></div>
         <div class="wc-emoji">👨‍💼</div>
-        <h3 class="wc-name" id="wc3-title">حلال مارکێت ناوەند</h3>
+        <h3 class="wc-name" id="wc3-title">بازاڕی ناوەندی حلال</h3>
         <p  class="wc-body"  id="wc3-txt">ئەگەر دەتەوێت کارمەندی حلال مارکێت لقی ناوەند بیت، پەیامێک بنێرە یان پەیوەندیمان بکە.</p>
         <div class="wc-actions">
           <a href="https://wa.me/9647514665354?text=سڵاو، دەمەوێت کار بکەم لە حلال مارکێت لقی ناوەند" target="_blank" rel="noreferrer" class="wc-btn wc-wa">
@@ -483,7 +511,7 @@
         </div>
       </article>
 
-      <article class="wc-card" data-reveal data-delay="0.42">
+      <article class="wc-card">
         <div class="wc-tag"><i class="fas fa-store"></i><span id="wc4-tag">لقی چوارەم</span></div>
         <div class="wc-emoji">👩‍💼</div>
         <h3 class="wc-name" id="wc4-title">حلال مارکێت ٤</h3>
@@ -577,27 +605,39 @@
     <button class="modal-close" onclick="closeAdminModal()">×</button>
     <h3 class="modal-title">داشکاندنێکی نوێ</h3>
 
+    <label class="field-label">جۆری پۆست</label>
+    <div class="ptype-toggle" id="admin-ptype-toggle">
+      <button type="button" class="ptype-opt active" data-ptype="discount" onclick="setPostType('discount')">داشکاندن</button>
+      <button type="button" class="ptype-opt" data-ptype="soon" onclick="setPostType('soon')">بەم زووانە</button>
+    </div>
+
     <label class="field-label">مارکێت</label>
     <select id="admin-market" class="auth-input">
       <option value="1">حلال مارکێت ١</option>
       <option value="2">حلال مارکێت ٢</option>
-      <option value="3">حلال مارکێت ناوەند</option>
+      <option value="3">بازاڕی ناوەندی حلال</option>
       <option value="4">حلال مارکێت ٤</option>
     </select>
 
-    <label class="field-label">ناونیشان</label>
-    <input type="text" id="admin-title" class="auth-input" placeholder="بۆ نموونە: داشکاندنی برنج">
+    <label class="field-label">ناونیشان <span class="field-optional">(ئارەزوومەندانە)</span></label>
+    <input type="text" id="admin-title" class="auth-input" placeholder="دەتوانیت بەتاڵی بەجێبهێڵیت">
 
-    <label class="field-label">وردەکاری</label>
-    <textarea id="admin-detail" class="auth-input" rows="3"></textarea>
+    <!-- Discount-only field -->
+    <div id="admin-discount-fields">
+      <label class="field-label">چەند ڕۆژ داشکاندنەکە بەردەوامە؟</label>
+      <input type="number" id="admin-days" class="auth-input" value="7" min="1">
+    </div>
 
-    <label class="field-label">چەند ڕۆژ داشکاندنەکە بەردەوامە؟</label>
-    <input type="number" id="admin-days" class="auth-input" value="7" min="1">
+    <!-- Soon-only field -->
+    <div id="admin-soon-fields" style="display:none">
+      <label class="field-label">بەرواری دەستپێک <span class="field-optional">(ئارەزوومەندانە)</span></label>
+      <input type="date" id="admin-soon-date" class="auth-input">
+    </div>
 
     <label class="field-label">شێوازی وێنە لەناو پۆست</label>
     <select id="admin-ratio" class="auth-input">
-      <option value="1:1" selected>١:١ (چوارگۆشە)</option>
-      <option value="3:4">٣:٤ (درێژ)</option>
+      <option value="3:4" selected>٣:٤ (درێژ)</option>
+      <option value="1:1">١:١ (چوارگۆشە)</option>
       <option value="9:16">٩:١٦ (ستۆری)</option>
     </select>
 
