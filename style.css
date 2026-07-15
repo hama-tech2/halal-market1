@@ -155,20 +155,31 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .lo-ck{color:var(--gold);font-size:9px;opacity:0}
 .lang-opt.active .lo-ck{opacity:1}
 
-/* ── MOBILE HEADER (≤640): controls on the LEFT, bigger buttons, clean logo ── */
+/* ── MOBILE HEADER (≤640): logo on the RIGHT, controls on the LEFT ──
+   Left cluster order (visually L→R): ☰ Menu · 🌐 Lang · 🔔 Notif · 👤 Account.
+   Compact, equal-height, vertically centered touch targets. */
 @media(max-width:640px){
-  .hdr-row{justify-content:space-between;padding:9px 12px;gap:8px}
-  .hdr-group{display:flex;align-items:center;gap:6px}
-  .hdr-group-start{order:2}                 /* RTL: this lands on the LEFT */
-  .logo-btn{order:1;flex:0 1 auto;min-width:0;justify-content:flex-start;padding:2px;gap:7px}
+  .hdr-row{justify-content:space-between;padding:7px 12px;gap:8px}
+  .hdr-group{display:flex;align-items:center;gap:7px}
+  .hdr-group-start{order:2}                 /* RTL: lands on the LEFT */
+  .logo-btn{order:1;flex:0 1 auto;min-width:0;justify-content:flex-start;padding:2px;gap:8px}
   .hdr-group-end{display:none}              /* desktop nav not used on mobile */
-  .ham{width:38px;height:38px;border-radius:11px;gap:4.2px}
-  .ham span{width:16px;height:1.7px}
-  .acc-btn,.notif-btn{width:38px;height:38px;font-size:15px;margin:0}
-  .lang-btn{height:38px;padding:0 11px;font-size:12px;border-radius:12px;gap:5px}
-  .lang-chev{font-size:8px}
-  .logo-img{width:40px;height:40px;border-radius:10px}
-  .logo-name{font-size:16px;overflow:hidden;text-overflow:ellipsis}
+  /* order (higher = further left in RTL): Menu 4, Lang 3, Notif 2, Account 1 */
+  .hdr-group-start .ham{order:4}
+  .hdr-group-start .lang-wrap{order:3}
+  .hdr-group-start .notif-btn{order:2}
+  .hdr-group-start .acc-btn{order:1}
+  /* Equal-size icon buttons */
+  .ham{width:36px;height:36px;border-radius:10px;gap:4px}
+  .ham span{width:15px;height:1.7px}
+  .acc-btn,.notif-btn{width:36px;height:36px;font-size:14.5px;margin:0}
+  /* Compact language pill: 🌐 + KU/AR/EN + ▾ */
+  .lang-btn{height:36px;padding:0 9px;font-size:11.5px;font-weight:800;border-radius:10px;gap:4px}
+  .lang-btn>i:first-child{font-size:11px}
+  .lang-chev{font-size:7px}
+  /* Logo slightly larger than the icons */
+  .logo-img{width:42px;height:42px;border-radius:11px}
+  .logo-name{font-size:16.5px;overflow:hidden;text-overflow:ellipsis}
   .logo-sub{display:none}                   /* hide tiny "HALAL MARKET · ERBIL" line */
 }
 @media(min-width:641px){
@@ -322,14 +333,19 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .cd-timer.ended .cd-num,.cd-timer.ended .cd-sep{color:var(--mute)}
 .cd-timer.ended .cd-cell{background:var(--brd2);border-color:var(--brd2)}
 
-/* ── COMING SOON accent (blue/teal — clearly different from red discounts) ── */
+/* ── COMING SOON accent (blue — clearly different from red discounts) ── */
 :root{--soon:#38b6c9;--soon-bg:rgba(56,182,201,.1)}
 .post-card.is-soon{border-color:rgba(56,182,201,.28)}
 .post-card.is-soon::before{background:linear-gradient(90deg,#38b6c9,#2b8fa8)}
-.soon-ribbon{position:absolute;top:10px;inset-inline-start:10px;z-index:3;display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;background:rgba(56,182,201,.92);color:#04252b;font-size:9.5px;font-weight:800;letter-spacing:.3px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
-.soon-info{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:10px 0;direction:ltr;justify-content:flex-start}
-.soon-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:9px;background:var(--soon-bg);border:1px solid rgba(56,182,201,.28);color:var(--soon);font-size:11px;font-weight:800}
-.soon-when{font-family:var(--f-ara);font-size:11.5px;font-weight:700;color:var(--soft)}
+/* ONE compact type badge, top corner, never covers the middle of the image */
+.type-badge{position:absolute;top:9px;inset-inline-start:9px;z-index:3;padding:4px 10px;border-radius:8px;font-size:9.5px;font-weight:800;letter-spacing:.2px;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.4);backdrop-filter:blur(4px)}
+.tb-disc{background:rgba(224,90,74,.94);color:#fff}
+.tb-soon{background:rgba(56,182,201,.94);color:#04252b}
+/* Soon start date — day name bold, date smaller, only shown when a date exists */
+.soon-date{display:flex;align-items:center;gap:7px;margin:10px 0;padding:8px 12px;border-radius:10px;background:var(--soon-bg);border:1px solid rgba(56,182,201,.26);direction:ltr}
+.soon-date>i{color:var(--soon);font-size:12px;flex-shrink:0}
+.sd-day{font-family:var(--f-ara);font-weight:800;font-size:13px;color:var(--soon)}
+.sd-date{font-family:'DM Sans',monospace;font-weight:600;font-size:11px;color:var(--soft);margin-inline-start:auto;letter-spacing:.3px}
 /* ACTIONS */
 .post-actions{display:flex;align-items:center;gap:7px;margin-top:10px;padding-top:10px;border-top:1px solid var(--brd2)}
 .pa-like,.pa-comment,.pa-share{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;background:var(--brd2);color:var(--mute);font-size:11.5px;font-weight:700;transition:all .18s;cursor:pointer}
@@ -559,7 +575,7 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .worker-slider{display:grid;grid-template-columns:1fr 1fr;gap:14px;direction:ltr}
 .worker-slide{display:contents}
 .worker-dots{display:none}
-.wc-card{background:linear-gradient(165deg,var(--card),rgba(212,168,67,.03));border:1px solid var(--brd);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:11px;position:relative;overflow:hidden;transition:border-color .22s,box-shadow .22s,transform .22s}
+.wc-card{background:linear-gradient(165deg,var(--card),rgba(212,168,67,.03));border:1px solid var(--brd);border-radius:16px;padding:16px;height:100%;display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden;transition:border-color .22s,box-shadow .22s,transform .22s}
 .wc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-lt),var(--gold));opacity:0;transition:opacity .28s}
 .wc-card:hover{border-color:rgba(212,168,67,.3);box-shadow:0 14px 36px rgba(0,0,0,.48);transform:translateY(-4px)}
 .wc-card:hover::before{opacity:1}
@@ -567,8 +583,8 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 /* Gold icon badge (premium, replaces the flat emoji) */
 .wc-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(150deg,var(--gold-bg),rgba(212,168,67,.14));border:1px solid rgba(212,168,67,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:19px;margin-top:2px;box-shadow:inset 0 0 14px rgba(212,168,67,.08)}
 .wc-name{font-family:var(--f-dis);font-weight:800;font-size:14.5px;line-height:1.3}
-.wc-body{font-family:var(--f-ara);font-size:11.5px;color:var(--soft);line-height:1.8;flex:1}
-.wc-actions{display:flex;flex-direction:column;gap:7px;margin-top:2px}
+.wc-body{font-family:var(--f-ara);font-size:11px;color:var(--soft);line-height:1.65;flex:1}
+.wc-actions{display:flex;flex-direction:column;gap:7px;margin-top:auto}
 .wc-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px 11px;border-radius:10px;font-size:12px;font-weight:800;transition:all .16s;text-decoration:none;font-family:var(--f-bod)}
 .wc-btn:hover{transform:translateY(-2px)}
 .wc-wa{background:linear-gradient(135deg,rgba(37,211,102,.18),rgba(37,211,102,.1));border:1px solid rgba(37,211,102,.32);color:var(--wa)}
@@ -577,9 +593,11 @@ body.custom-cursor-on .cur-dot,body.custom-cursor-on .cur-ring{display:block}
 .wc-tel:hover{background:rgba(212,168,67,.18)}
 /* Mobile carousel: 2 cards per slide, swipe between slides + dots */
 @media(max-width:640px){
-  .worker-slider{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;-ms-overflow-style:none;scrollbar-width:none}
+  /* align-items:start keeps each slide its own natural height (no cross-slide
+     stretching → no empty space); the grid inside equalises the 2 cards. */
+  .worker-slider{display:flex;grid-template-columns:none;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:0;-ms-overflow-style:none;scrollbar-width:none}
   .worker-slider::-webkit-scrollbar{display:none}
-  .worker-slide{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:0 0 100%;scroll-snap-align:center;padding:2px 1px}
+  .worker-slide{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;gap:9px;flex:0 0 100%;scroll-snap-align:center;padding:2px 1px}
   .worker-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
   .wdot{width:8px;height:8px;border-radius:50%;background:var(--brd2);border:1px solid var(--brd);padding:0;cursor:pointer;transition:all .25s}
   .wdot.on{background:linear-gradient(135deg,var(--gold-lt),var(--gold));border-color:transparent;width:22px;border-radius:5px}
