@@ -715,9 +715,10 @@ async function loadFeed(){
   if(error){console.error(error);return}
   const now=Date.now();
   allPosts=(posts||[]).filter(p=>{
-    // "soon" posts always stay until their discount_end buffer; discounts drop 3 days after ending.
-    const end=new Date(p.discount_end).getTime();
-    return (p.post_type==='soon') ? end>now : end+3*86400000>now;
+    // "soon" posts ALWAYS show (their date is only informational and may be in the
+    // past). Discount posts drop 3 days after the countdown ends.
+    if(p.post_type==='soon') return true;
+    return new Date(p.discount_end).getTime()+3*86400000>now;
   });
   const hasActive=allPosts.some(p=>p.post_type==='soon' || new Date(p.discount_end).getTime()>now);
   const dnDot=$('dn-hot-dot'), mnbDot=$('mnb-hot-dot'), notifDot=$('notif-dot');
